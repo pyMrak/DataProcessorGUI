@@ -222,6 +222,17 @@ class UIFunction(MainWindow):
                 self.ui.lab_tab.setText("About > Cloud")
                 self.ui.frame_cloud.setStyleSheet("background:rgb(91,90,90)") # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
 
+        elif buttonName=='bn_measurements':
+            if self.ui.frame_bottom_west.width()==80 and index!=6:
+                self.ui.stackedWidget.setCurrentWidget(self.ui.page_measurements)
+                self.ui.lab_tab.setText("Measurements")
+                self.ui.frame_measurements.setStyleSheet("background:rgb(80,180,180)") # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
+
+            elif self.ui.frame_bottom_west.width()==160 and index!=2:   # ABOUT PAGE STACKED WIDGET
+                self.ui.stackedWidget.setCurrentWidget(self.ui.page_measurements)
+                self.ui.lab_tab.setText("About > Measurements")
+                self.ui.frame_measurements.setStyleSheet("background:rgb(80,180,180)") # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
+
         #ADD ANOTHER ELIF STATEMENT HERE FOR EXECTUITING A NEW MENU BUTTON STACK PAGE.
     ########################################################################################################################
 
@@ -251,6 +262,11 @@ class UIFunction(MainWindow):
         self.ui.bn_android_game.clicked.connect(lambda: UIFunction.androidStackPages(self, "page_game"))
         self.ui.bn_android_clean.clicked.connect(lambda: UIFunction.androidStackPages(self, "page_clean"))
         self.ui.bn_android_world.clicked.connect(lambda: UIFunction.androidStackPages(self, "page_world"))
+
+        self.ui.bn_read_measurement.clicked.connect(lambda: UIFunction.measurementStackPages(self, "page_read_measurement"))
+        self.ui.bn_view_measurement.clicked.connect(lambda: UIFunction.measurementStackPages(self, "page_view_measurement"))
+        self.ui.bn_view_parameters.clicked.connect(lambda: UIFunction.measurementStackPages(self, "page_view_parameters"))
+        self.ui.bn_view_graph.clicked.connect(lambda: UIFunction.measurementStackPages(self, "page_view_graph"))
         
         ######ANDROID > PAGE CONTACT >>>>>>>>>>>>>>>>>>>>
         self.ui.bn_android_contact_delete.clicked.connect(lambda: self.dialogexec("Warning", "The Contact Infromtion will be Deleted, Do you want to continue.", "icons/1x/errorAsset 55.png", "Cancel", "Yes"))
@@ -301,6 +317,31 @@ class UIFunction(MainWindow):
             self.ui.stackedWidget_android.setCurrentWidget(self.ui.page_android_world)
             self.ui.lab_tab.setText("Android > World")
             self.ui.frame_android_world.setStyleSheet("background:rgb(91,90,90)")
+
+    def measurementStackPages(self, page):
+        # ------> THIS LINE CLEARS THE BG COLOR OF PREVIOUS TABS
+        for each in self.ui.frame_measurement_view.findChildren(QFrame):
+            each.setStyleSheet("background:rgb(51,51,51)")
+
+        if page == "page_read_measurement":
+            self.ui.stackedWidget_measurements.setCurrentWidget(self.ui.page_read_measurements)
+            self.ui.lab_tab.setText("Measurement > Read measurement")
+            self.ui.frame_read_measurement.setStyleSheet("background:rgb(91,90,90)")
+
+        elif page == "page_view_measurement":
+            self.ui.stackedWidget_measurements.setCurrentWidget(self.ui.page_view_measurements)
+            self.ui.lab_tab.setText("Measurement > View measurement")
+            self.ui.frame_view_measurement.setStyleSheet("background:rgb(91,90,90)")
+
+        elif page == "page_view_parameters":
+            self.ui.stackedWidget_measurements.setCurrentWidget(self.ui.page_view_parameters)
+            self.ui.lab_tab.setText("Measurement > View parameters")
+            self.ui.frame_view_parameters.setStyleSheet("background:rgb(91,90,90)")
+
+        elif page == "page_view_graph":
+            self.ui.stackedWidget_measurements.setCurrentWidget(self.ui.page_view_graphs)
+            self.ui.lab_tab.setText("Measurement > View graph")
+            self.ui.frame_view_graph.setStyleSheet("background:rgb(91,90,90)")
 
         #ADD A ADDITIONAL ELIF STATEMNT WITH THE SIMILAR CODE UP ABOVE FOR YOUR NEW SUBMENU BUTTON IN THE ANDROID STACK PAGE.
     ##############################################################################################################
