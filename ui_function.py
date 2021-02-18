@@ -35,6 +35,10 @@ from main import * #IMPORTING THE MAIN.PY FILE
 
 from about import *
 
+from matplotlib.backends.qt_compat import QtCore, QtWidgets, is_pyqt5
+from matplotlib.backends.backend_qt5agg import (FigureCanvas, NavigationToolbar2QT as NavigationToolbar)
+from matplotlib.figure import Figure
+
 
 GLOBAL_STATE = 0 #NECESSERY FOR CHECKING WEATHER THE WINDWO IS FULL SCREEN OR NOT
 GLOBAL_TITLE_BAR = True #NECESSERY FOR CHECKING WEATHER THE WINDWO IS FULL SCREEN OR NOT
@@ -176,7 +180,7 @@ class UIFunction(MainWindow):
         #------> THIS LINE CLEARS THE BG OF PREVIOUS TABS I.E. FROM THE LITER COLOR TO THE SAME BG COLOR I.E. TO CHANGE THE HIGHLIGHT.
         for each in self.ui.frame_bottom_west.findChildren(QFrame):
             each.setStyleSheet("background:rgb(51,51,51)")
-
+        print(buttonName)
         if buttonName=='bn_home':
             if self.ui.frame_bottom_west.width()==80  and index!=0:
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
@@ -337,6 +341,20 @@ class UIFunction(MainWindow):
             self.ui.stackedWidget_measurements.setCurrentWidget(self.ui.page_view_parameters)
             self.ui.lab_tab.setText("Measurement > View parameters")
             self.ui.frame_view_parameters.setStyleSheet("background:rgb(91,90,90)")
+            # Row count
+            self.ui.parameter_table.setRowCount(3)
+
+            # Column count
+            self.ui.parameter_table.setColumnCount(2)
+
+            self.ui.parameter_table.setHorizontalHeaderItem(0, QTableWidgetItem("Name"))
+            self.ui.parameter_table.setHorizontalHeaderItem(1, QTableWidgetItem("City"))
+            self.ui.parameter_table.setItem(0, 0, QTableWidgetItem("Aloysius"))
+            self.ui.parameter_table.setItem(0, 1, QTableWidgetItem("Indore"))
+            self.ui.parameter_table.setItem(1, 0, QTableWidgetItem("Alan"))
+            self.ui.parameter_table.setItem(1, 1, QTableWidgetItem("Bhopal"))
+            self.ui.parameter_table.setItem(2, 0, QTableWidgetItem("Arnavi"))
+            self.ui.parameter_table.setItem(2, 1, QTableWidgetItem("Mandsaur"))
 
         elif page == "page_view_graph":
             self.ui.stackedWidget_measurements.setCurrentWidget(self.ui.page_view_graphs)
@@ -345,6 +363,10 @@ class UIFunction(MainWindow):
 
         #ADD A ADDITIONAL ELIF STATEMNT WITH THE SIMILAR CODE UP ABOVE FOR YOUR NEW SUBMENU BUTTON IN THE ANDROID STACK PAGE.
     ##############################################################################################################
+
+
+
+
 
     
 #------> CLASS WHERE ALL THE ACTION OF TH SOFTWARE IS PERFORMED:

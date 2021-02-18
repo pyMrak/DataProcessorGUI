@@ -2018,15 +2018,18 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.page_android)
         self.page_measurements = QWidget()
         self.page_measurements.setObjectName(u"page_measurements")
-        sizePolicy1 = QSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.MinimumExpanding)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.page_measurements.sizePolicy().hasHeightForWidth())
-        self.page_measurements.setSizePolicy(sizePolicy1)
+        self.verticalLayout_91 = QVBoxLayout(self.page_measurements)
+        self.verticalLayout_91.setSpacing(0)
+        self.verticalLayout_91.setObjectName(u"verticalLayout_91")
+        self.verticalLayout_91.setContentsMargins(0, 0, 0, 0)
         self.frame_measurement_menu = QFrame(self.page_measurements)
         self.frame_measurement_menu.setObjectName(u"frame_measurement_menu")
         self.frame_measurement_menu.setEnabled(False)
-        self.frame_measurement_menu.setGeometry(QRect(0, 0, 720, 30))
+        sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.frame_measurement_menu.sizePolicy().hasHeightForWidth())
+        self.frame_measurement_menu.setSizePolicy(sizePolicy1)
         self.frame_measurement_menu.setMinimumSize(QSize(0, 30))
         self.frame_measurement_menu.setMaximumSize(QSize(16777215, 30))
         self.frame_measurement_menu.setStyleSheet(u"background:rgb(51,51,51);")
@@ -2062,6 +2065,7 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
+        self.bn_group_1.setIcon(icon)
         self.bn_group_1.setFlat(True)
 
         self.horizontalLayout_32.addWidget(self.bn_group_1)
@@ -2072,8 +2076,9 @@ class Ui_MainWindow(object):
         self.frame_group_2 = QFrame(self.frame_measurement_menu)
         self.frame_group_2.setObjectName(u"frame_group_2")
         self.frame_group_2.setMinimumSize(QSize(120, 30))
-        self.frame_group_2.setFrameShape(QFrame.StyledPanel)
-        self.frame_group_2.setFrameShadow(QFrame.Raised)
+        self.frame_group_2.setFrameShape(QFrame.NoFrame)
+        self.frame_group_2.setFrameShadow(QFrame.Plain)
+        self.frame_group_2.setLineWidth(0)
         self.horizontalLayout_33 = QHBoxLayout(self.frame_group_2)
         self.horizontalLayout_33.setSpacing(0)
         self.horizontalLayout_33.setObjectName(u"horizontalLayout_33")
@@ -2095,6 +2100,7 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
+        self.bn_group_2.setIcon(icon)
         self.bn_group_2.setFlat(True)
 
         self.horizontalLayout_33.addWidget(self.bn_group_2)
@@ -2105,8 +2111,9 @@ class Ui_MainWindow(object):
         self.frame_group_3 = QFrame(self.frame_measurement_menu)
         self.frame_group_3.setObjectName(u"frame_group_3")
         self.frame_group_3.setMinimumSize(QSize(120, 30))
-        self.frame_group_3.setFrameShape(QFrame.StyledPanel)
-        self.frame_group_3.setFrameShadow(QFrame.Raised)
+        self.frame_group_3.setFrameShape(QFrame.NoFrame)
+        self.frame_group_3.setFrameShadow(QFrame.Plain)
+        self.frame_group_3.setLineWidth(0)
         self.horizontalLayout_34 = QHBoxLayout(self.frame_group_3)
         self.horizontalLayout_34.setSpacing(0)
         self.horizontalLayout_34.setObjectName(u"horizontalLayout_34")
@@ -2128,6 +2135,7 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
+        self.bn_group_3.setIcon(icon)
         self.bn_group_3.setFlat(True)
 
         self.horizontalLayout_34.addWidget(self.bn_group_3)
@@ -2138,8 +2146,9 @@ class Ui_MainWindow(object):
         self.frame_group_4 = QFrame(self.frame_measurement_menu)
         self.frame_group_4.setObjectName(u"frame_group_4")
         self.frame_group_4.setMinimumSize(QSize(120, 30))
-        self.frame_group_4.setFrameShape(QFrame.StyledPanel)
-        self.frame_group_4.setFrameShadow(QFrame.Raised)
+        self.frame_group_4.setFrameShape(QFrame.NoFrame)
+        self.frame_group_4.setFrameShadow(QFrame.Plain)
+        self.frame_group_4.setLineWidth(0)
         self.horizontalLayout_35 = QHBoxLayout(self.frame_group_4)
         self.horizontalLayout_35.setSpacing(0)
         self.horizontalLayout_35.setObjectName(u"horizontalLayout_35")
@@ -2171,8 +2180,8 @@ class Ui_MainWindow(object):
         self.frame_group_5 = QFrame(self.frame_measurement_menu)
         self.frame_group_5.setObjectName(u"frame_group_5")
         self.frame_group_5.setMinimumSize(QSize(120, 30))
-        self.frame_group_5.setFrameShape(QFrame.StyledPanel)
-        self.frame_group_5.setFrameShadow(QFrame.Raised)
+        self.frame_group_5.setFrameShape(QFrame.NoFrame)
+        self.frame_group_5.setFrameShadow(QFrame.Plain)
         self.horizontalLayout_36 = QHBoxLayout(self.frame_group_5)
         self.horizontalLayout_36.setSpacing(0)
         self.horizontalLayout_36.setObjectName(u"horizontalLayout_36")
@@ -2205,8 +2214,8 @@ class Ui_MainWindow(object):
         self.frame_group_6.setObjectName(u"frame_group_6")
         self.frame_group_6.setMinimumSize(QSize(120, 30))
         self.frame_group_6.setMaximumSize(QSize(240, 30))
-        self.frame_group_6.setFrameShape(QFrame.StyledPanel)
-        self.frame_group_6.setFrameShadow(QFrame.Raised)
+        self.frame_group_6.setFrameShape(QFrame.NoFrame)
+        self.frame_group_6.setFrameShadow(QFrame.Plain)
         self.horizontalLayout_37 = QHBoxLayout(self.frame_group_6)
         self.horizontalLayout_37.setSpacing(0)
         self.horizontalLayout_37.setObjectName(u"horizontalLayout_37")
@@ -2235,141 +2244,43 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_31.addWidget(self.frame_group_6)
 
-        self.stackedWidget_measurements = QStackedWidget(self.page_measurements)
-        self.stackedWidget_measurements.setObjectName(u"stackedWidget_measurements")
-        self.stackedWidget_measurements.setGeometry(QRect(40, 30, 680, 445))
-        self.stackedWidget_measurements.setStyleSheet(u"")
-        self.page_read_measurements = QWidget()
-        self.page_read_measurements.setObjectName(u"page_read_measurements")
-        self.comboBox_bug_2 = QComboBox(self.page_read_measurements)
-        self.comboBox_bug_2.addItem("")
-        self.comboBox_bug_2.addItem("")
-        self.comboBox_bug_2.addItem("")
-        self.comboBox_bug_2.addItem("")
-        self.comboBox_bug_2.setObjectName(u"comboBox_bug_2")
-        self.comboBox_bug_2.setGeometry(QRect(110, 40, 85, 23))
-        self.comboBox_bug_2.setMaximumSize(QSize(16777215, 25))
-        self.comboBox_bug_2.setFont(font2)
-        self.comboBox_bug_2.setStyleSheet(u"QComboBox {\n"
-"	border: 2px solid rgb(51,51,51);\n"
-"	border-radius: 5px;	\n"
-"	color:rgb(255,255,255);\n"
-"	background-color: rgb(51,51,51);\n"
-"}\n"
-"\n"
-"QComboBox:hover {\n"
-"	border: 2px solid rgb(0,143,170);\n"
-"	border-radius: 5px;	\n"
-"	color:rgb(255,255,255);\n"
-"	background-color: rgb(0,143,170);\n"
-"}\n"
-"\n"
-"QComboBox:!editable, QComboBox::drop-down:editable {\n"
-"	background: rgb(51,51,51);\n"
-"}\n"
-"\n"
-"QComboBox:!editable:on, QComboBox::drop-down:editable:on {\n"
-"    background:rgb(51,51,51);\n"
-"}\n"
-"\n"
-"QComboBox:on { /* shift the text when the popup opens */\n"
-"    padding-top: 3px;\n"
-"    padding-left: 4px;\n"
-"}\n"
-"\n"
-"QComboBox::drop-down {\n"
-"    subcontrol-origin: padding;\n"
-"    subcontrol-position: top right;\n"
-"    width: 15px;\n"
-"\n"
-"    border-left-width: 1px;\n"
-"    border-left-color: darkgray;\n"
-"    border-left-style: solid; /* just a single line */\n"
-"    border-top-right-radius: 5px; /* same radius as the QComboBox */\n"
-"    border-bottom-right-radius: 5px;\n"
-""
-                        "}\n"
-"\n"
-"QComboBox::down-arrow {\n"
-"    image: url(icons/1x/arrow.png);\n"
-"}\n"
-"\n"
-"QComboBox::down-arrow:on { /* shift the arrow when popup is open */\n"
-"    top: 1px;\n"
-"    left: 1px;\n"
-"}\n"
-"\n"
-"QComboBox::drop-down {\n"
-"    background:rgb(51,51,51);\n"
-"}\n"
-"\n"
-"")
-        self.comboBox_bug_2.setSizeAdjustPolicy(QComboBox.AdjustToContents)
-        self.comboBox_bug_2.setFrame(False)
-        self.comboBox_bug_2.setModelColumn(0)
-        self.progressBar_bug_2 = QProgressBar(self.page_read_measurements)
-        self.progressBar_bug_2.setObjectName(u"progressBar_bug_2")
-        self.progressBar_bug_2.setEnabled(True)
-        self.progressBar_bug_2.setGeometry(QRect(50, 410, 590, 21))
-        self.progressBar_bug_2.setStyleSheet(u"QProgressBar\n"
-"{\n"
-"	color:rgb(255,255,255);\n"
-"	background-color :rgb(51,51,51);\n"
-"	border : 2px;\n"
-"	border-radius:4px;\n"
-"}\n"
-"\n"
-"QProgressBar::chunk{\n"
-"	border : 2px;\n"
-"	border-radius:4px;\n"
-"	background-color:rgb(0,143,170);\n"
-"}")
-        self.progressBar_bug_2.setValue(0)
-        self.progressBar_bug_2.setAlignment(Qt.AlignCenter)
-        self.progressBar_bug_2.setTextVisible(True)
-        self.progressBar_bug_2.setOrientation(Qt.Horizontal)
-        self.progressBar_bug_2.setInvertedAppearance(False)
-        self.progressBar_bug_2.setTextDirection(QProgressBar.TopToBottom)
-        self.stackedWidget_measurements.addWidget(self.page_read_measurements)
-        self.page_view_measurements = QWidget()
-        self.page_view_measurements.setObjectName(u"page_view_measurements")
-        self.tv_measurements = QTableView(self.page_view_measurements)
-        self.tv_measurements.setObjectName(u"tv_measurements")
-        self.tv_measurements.setGeometry(QRect(0, 0, 720, 445))
-        self.stackedWidget_measurements.addWidget(self.page_view_measurements)
-        self.page_view_parameters = QWidget()
-        self.page_view_parameters.setObjectName(u"page_view_parameters")
-        self.checkBox_5 = QCheckBox(self.page_view_parameters)
-        self.checkBox_5.setObjectName(u"checkBox_5")
-        self.checkBox_5.setGeometry(QRect(250, 180, 70, 17))
-        self.stackedWidget_measurements.addWidget(self.page_view_parameters)
-        self.page_view_graphs = QWidget()
-        self.page_view_graphs.setObjectName(u"page_view_graphs")
-        self.stackedWidget_measurements.addWidget(self.page_view_graphs)
-        self.frame_measurement_view = QFrame(self.page_measurements)
+
+        self.verticalLayout_91.addWidget(self.frame_measurement_menu)
+
+        self.frame_measurement_details = QFrame(self.page_measurements)
+        self.frame_measurement_details.setObjectName(u"frame_measurement_details")
+        sizePolicy1.setHeightForWidth(self.frame_measurement_details.sizePolicy().hasHeightForWidth())
+        self.frame_measurement_details.setSizePolicy(sizePolicy1)
+        self.frame_measurement_details.setMinimumSize(QSize(720, 445))
+        self.frame_measurement_details.setFrameShape(QFrame.NoFrame)
+        self.frame_measurement_details.setFrameShadow(QFrame.Plain)
+        self.horizontalLayout_38 = QHBoxLayout(self.frame_measurement_details)
+        self.horizontalLayout_38.setSpacing(0)
+        self.horizontalLayout_38.setObjectName(u"horizontalLayout_38")
+        self.horizontalLayout_38.setContentsMargins(0, 0, 0, 0)
+        self.frame_measurement_view = QFrame(self.frame_measurement_details)
         self.frame_measurement_view.setObjectName(u"frame_measurement_view")
-        self.frame_measurement_view.setGeometry(QRect(0, 30, 40, 445))
         self.frame_measurement_view.setMinimumSize(QSize(40, 445))
         self.frame_measurement_view.setMaximumSize(QSize(40, 16777215))
         self.frame_measurement_view.setStyleSheet(u"background:rgb(55,55,55);")
         self.frame_measurement_view.setFrameShape(QFrame.NoFrame)
         self.frame_measurement_view.setFrameShadow(QFrame.Plain)
         self.frame_measurement_view.setLineWidth(0)
-        self.verticalLayout_4 = QVBoxLayout(self.frame_measurement_view)
-        self.verticalLayout_4.setSpacing(0)
-        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_19 = QVBoxLayout(self.frame_measurement_view)
+        self.verticalLayout_19.setSpacing(0)
+        self.verticalLayout_19.setObjectName(u"verticalLayout_19")
+        self.verticalLayout_19.setContentsMargins(0, 0, 0, 0)
         self.frame_read_measurement = QFrame(self.frame_measurement_view)
         self.frame_read_measurement.setObjectName(u"frame_read_measurement")
         self.frame_read_measurement.setMinimumSize(QSize(40, 120))
-        self.frame_read_measurement.setMaximumSize(QSize(40, 240))
+        self.frame_read_measurement.setMaximumSize(QSize(40, 300))
         self.frame_read_measurement.setFrameShape(QFrame.NoFrame)
         self.frame_read_measurement.setFrameShadow(QFrame.Plain)
         self.frame_read_measurement.setLineWidth(1)
-        self.verticalLayout_14 = QVBoxLayout(self.frame_read_measurement)
-        self.verticalLayout_14.setSpacing(0)
-        self.verticalLayout_14.setObjectName(u"verticalLayout_14")
-        self.verticalLayout_14.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_20 = QVBoxLayout(self.frame_read_measurement)
+        self.verticalLayout_20.setSpacing(0)
+        self.verticalLayout_20.setObjectName(u"verticalLayout_20")
+        self.verticalLayout_20.setContentsMargins(0, 0, 0, 0)
         self.bn_read_measurement = QPushButton(self.frame_read_measurement)
         self.bn_read_measurement.setObjectName(u"bn_read_measurement")
         self.bn_read_measurement.setEnabled(True)
@@ -2379,7 +2290,7 @@ class Ui_MainWindow(object):
         sizePolicy2.setHeightForWidth(self.bn_read_measurement.sizePolicy().hasHeightForWidth())
         self.bn_read_measurement.setSizePolicy(sizePolicy2)
         self.bn_read_measurement.setMinimumSize(QSize(40, 30))
-        self.bn_read_measurement.setMaximumSize(QSize(40, 120))
+        self.bn_read_measurement.setMaximumSize(QSize(40, 300))
         self.bn_read_measurement.setStyleSheet(u"QPushButton {\n"
 "	border: none;\n"
 "	background-color: rgba(0,0,0,0);\n"
@@ -2395,27 +2306,27 @@ class Ui_MainWindow(object):
         self.bn_read_measurement.setIcon(icon13)
         self.bn_read_measurement.setFlat(True)
 
-        self.verticalLayout_14.addWidget(self.bn_read_measurement)
+        self.verticalLayout_20.addWidget(self.bn_read_measurement)
 
 
-        self.verticalLayout_4.addWidget(self.frame_read_measurement)
+        self.verticalLayout_19.addWidget(self.frame_read_measurement)
 
         self.frame_view_measurement = QFrame(self.frame_measurement_view)
         self.frame_view_measurement.setObjectName(u"frame_view_measurement")
-        self.frame_view_measurement.setMaximumSize(QSize(40, 120))
+        self.frame_view_measurement.setMaximumSize(QSize(40, 300))
         self.frame_view_measurement.setFrameShape(QFrame.NoFrame)
         self.frame_view_measurement.setFrameShadow(QFrame.Plain)
-        self.verticalLayout_16 = QVBoxLayout(self.frame_view_measurement)
-        self.verticalLayout_16.setSpacing(0)
-        self.verticalLayout_16.setObjectName(u"verticalLayout_16")
-        self.verticalLayout_16.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_21 = QVBoxLayout(self.frame_view_measurement)
+        self.verticalLayout_21.setSpacing(0)
+        self.verticalLayout_21.setObjectName(u"verticalLayout_21")
+        self.verticalLayout_21.setContentsMargins(0, 0, 0, 0)
         self.bn_view_measurement = QPushButton(self.frame_view_measurement)
         self.bn_view_measurement.setObjectName(u"bn_view_measurement")
         self.bn_view_measurement.setEnabled(True)
         sizePolicy2.setHeightForWidth(self.bn_view_measurement.sizePolicy().hasHeightForWidth())
         self.bn_view_measurement.setSizePolicy(sizePolicy2)
         self.bn_view_measurement.setMinimumSize(QSize(40, 30))
-        self.bn_view_measurement.setMaximumSize(QSize(40, 120))
+        self.bn_view_measurement.setMaximumSize(QSize(40, 300))
         self.bn_view_measurement.setStyleSheet(u"QPushButton {\n"
 "	border: none;\n"
 "	background-color: rgba(0,0,0,0);\n"
@@ -2432,28 +2343,28 @@ class Ui_MainWindow(object):
         self.bn_view_measurement.setIconSize(QSize(22, 22))
         self.bn_view_measurement.setFlat(True)
 
-        self.verticalLayout_16.addWidget(self.bn_view_measurement)
+        self.verticalLayout_21.addWidget(self.bn_view_measurement)
 
 
-        self.verticalLayout_4.addWidget(self.frame_view_measurement)
+        self.verticalLayout_19.addWidget(self.frame_view_measurement)
 
         self.frame_view_parameters = QFrame(self.frame_measurement_view)
         self.frame_view_parameters.setObjectName(u"frame_view_parameters")
         self.frame_view_parameters.setMinimumSize(QSize(30, 120))
-        self.frame_view_parameters.setMaximumSize(QSize(40, 120))
+        self.frame_view_parameters.setMaximumSize(QSize(40, 300))
         self.frame_view_parameters.setFrameShape(QFrame.NoFrame)
         self.frame_view_parameters.setFrameShadow(QFrame.Plain)
-        self.verticalLayout_17 = QVBoxLayout(self.frame_view_parameters)
-        self.verticalLayout_17.setSpacing(0)
-        self.verticalLayout_17.setObjectName(u"verticalLayout_17")
-        self.verticalLayout_17.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_22 = QVBoxLayout(self.frame_view_parameters)
+        self.verticalLayout_22.setSpacing(0)
+        self.verticalLayout_22.setObjectName(u"verticalLayout_22")
+        self.verticalLayout_22.setContentsMargins(0, 0, 0, 0)
         self.bn_view_parameters = QPushButton(self.frame_view_parameters)
         self.bn_view_parameters.setObjectName(u"bn_view_parameters")
         self.bn_view_parameters.setEnabled(True)
         sizePolicy2.setHeightForWidth(self.bn_view_parameters.sizePolicy().hasHeightForWidth())
         self.bn_view_parameters.setSizePolicy(sizePolicy2)
         self.bn_view_parameters.setMinimumSize(QSize(40, 30))
-        self.bn_view_parameters.setMaximumSize(QSize(40, 120))
+        self.bn_view_parameters.setMaximumSize(QSize(40, 300))
         self.bn_view_parameters.setStyleSheet(u"QPushButton {\n"
 "	border: none;\n"
 "	background-color: rgba(0,0,0,0);\n"
@@ -2468,28 +2379,28 @@ class Ui_MainWindow(object):
         self.bn_view_parameters.setIconSize(QSize(22, 22))
         self.bn_view_parameters.setFlat(True)
 
-        self.verticalLayout_17.addWidget(self.bn_view_parameters)
+        self.verticalLayout_22.addWidget(self.bn_view_parameters)
 
 
-        self.verticalLayout_4.addWidget(self.frame_view_parameters)
+        self.verticalLayout_19.addWidget(self.frame_view_parameters)
 
         self.frame_view_graph = QFrame(self.frame_measurement_view)
         self.frame_view_graph.setObjectName(u"frame_view_graph")
-        self.frame_view_graph.setMaximumSize(QSize(40, 120))
+        self.frame_view_graph.setMaximumSize(QSize(40, 300))
         self.frame_view_graph.setFrameShape(QFrame.NoFrame)
         self.frame_view_graph.setFrameShadow(QFrame.Plain)
         self.frame_view_graph.setLineWidth(0)
-        self.verticalLayout_15 = QVBoxLayout(self.frame_view_graph)
-        self.verticalLayout_15.setSpacing(0)
-        self.verticalLayout_15.setObjectName(u"verticalLayout_15")
-        self.verticalLayout_15.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_23 = QVBoxLayout(self.frame_view_graph)
+        self.verticalLayout_23.setSpacing(0)
+        self.verticalLayout_23.setObjectName(u"verticalLayout_23")
+        self.verticalLayout_23.setContentsMargins(0, 0, 0, 0)
         self.bn_view_graph = QPushButton(self.frame_view_graph)
         self.bn_view_graph.setObjectName(u"bn_view_graph")
         self.bn_view_graph.setEnabled(True)
         sizePolicy2.setHeightForWidth(self.bn_view_graph.sizePolicy().hasHeightForWidth())
         self.bn_view_graph.setSizePolicy(sizePolicy2)
         self.bn_view_graph.setMinimumSize(QSize(40, 30))
-        self.bn_view_graph.setMaximumSize(QSize(40, 120))
+        self.bn_view_graph.setMaximumSize(QSize(40, 300))
         self.bn_view_graph.setStyleSheet(u"QPushButton {\n"
 "	border: none;\n"
 "	background-color: rgba(0,0,0,0);\n"
@@ -2505,10 +2416,125 @@ class Ui_MainWindow(object):
         self.bn_view_graph.setIcon(icon15)
         self.bn_view_graph.setFlat(True)
 
-        self.verticalLayout_15.addWidget(self.bn_view_graph)
+        self.verticalLayout_23.addWidget(self.bn_view_graph)
 
 
-        self.verticalLayout_4.addWidget(self.frame_view_graph)
+        self.verticalLayout_19.addWidget(self.frame_view_graph)
+
+
+        self.horizontalLayout_38.addWidget(self.frame_measurement_view)
+
+        self.stackedWidget_measurements = QStackedWidget(self.frame_measurement_details)
+        self.stackedWidget_measurements.setObjectName(u"stackedWidget_measurements")
+        sizePolicy1.setHeightForWidth(self.stackedWidget_measurements.sizePolicy().hasHeightForWidth())
+        self.stackedWidget_measurements.setSizePolicy(sizePolicy1)
+        self.stackedWidget_measurements.setStyleSheet(u"")
+        self.page_read_measurements = QWidget()
+        self.page_read_measurements.setObjectName(u"page_read_measurements")
+        self.frame_read_measurements = QFrame(self.page_read_measurements)
+        self.frame_read_measurements.setObjectName(u"frame_read_measurements")
+        self.frame_read_measurements.setGeometry(QRect(0, 0, 700, 477))
+        self.frame_read_measurements.setMinimumSize(QSize(680, 445))
+        self.frame_read_measurements.setFrameShape(QFrame.StyledPanel)
+        self.frame_read_measurements.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_24 = QVBoxLayout(self.frame_read_measurements)
+        self.verticalLayout_24.setSpacing(0)
+        self.verticalLayout_24.setObjectName(u"verticalLayout_24")
+        self.verticalLayout_24.setContentsMargins(0, 0, 0, 0)
+        self.frame_select_meas_folder = QFrame(self.frame_read_measurements)
+        self.frame_select_meas_folder.setObjectName(u"frame_select_meas_folder")
+        self.frame_select_meas_folder.setMinimumSize(QSize(680, 150))
+        self.frame_select_meas_folder.setFrameShape(QFrame.StyledPanel)
+        self.frame_select_meas_folder.setFrameShadow(QFrame.Raised)
+
+        self.verticalLayout_24.addWidget(self.frame_select_meas_folder)
+
+        self.frame_select_param_file = QFrame(self.frame_read_measurements)
+        self.frame_select_param_file.setObjectName(u"frame_select_param_file")
+        self.frame_select_param_file.setMinimumSize(QSize(680, 150))
+        self.frame_select_param_file.setFrameShape(QFrame.StyledPanel)
+        self.frame_select_param_file.setFrameShadow(QFrame.Raised)
+
+        self.verticalLayout_24.addWidget(self.frame_select_param_file)
+
+        self.frame_select_graph_template = QFrame(self.frame_read_measurements)
+        self.frame_select_graph_template.setObjectName(u"frame_select_graph_template")
+        self.frame_select_graph_template.setMinimumSize(QSize(680, 145))
+        self.frame_select_graph_template.setFrameShape(QFrame.StyledPanel)
+        self.frame_select_graph_template.setFrameShadow(QFrame.Raised)
+
+        self.verticalLayout_24.addWidget(self.frame_select_graph_template)
+
+        self.stackedWidget_measurements.addWidget(self.page_read_measurements)
+        self.page_view_measurements = QWidget()
+        self.page_view_measurements.setObjectName(u"page_view_measurements")
+        self.frame_view_measurements = QFrame(self.page_view_measurements)
+        self.frame_view_measurements.setObjectName(u"frame_view_measurements")
+        self.frame_view_measurements.setGeometry(QRect(0, 0, 698, 463))
+        self.frame_view_measurements.setMinimumSize(QSize(680, 445))
+        self.frame_view_measurements.setFrameShape(QFrame.NoFrame)
+        self.frame_view_measurements.setFrameShadow(QFrame.Plain)
+        self.verticalLayout_4 = QVBoxLayout(self.frame_view_measurements)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.tableWidget = QTableWidget(self.frame_view_measurements)
+        self.tableWidget.setObjectName(u"tableWidget")
+        self.tableWidget.setMinimumSize(QSize(680, 445))
+        self.tableWidget.setFrameShape(QFrame.NoFrame)
+        self.tableWidget.setFrameShadow(QFrame.Plain)
+        self.tableWidget.setLineWidth(0)
+
+        self.verticalLayout_4.addWidget(self.tableWidget)
+
+        self.stackedWidget_measurements.addWidget(self.page_view_measurements)
+        self.page_view_parameters = QWidget()
+        self.page_view_parameters.setObjectName(u"page_view_parameters")
+        self.frame_6 = QFrame(self.page_view_parameters)
+        self.frame_6.setObjectName(u"frame_6")
+        self.frame_6.setGeometry(QRect(0, 0, 680, 445))
+        sizePolicy1.setHeightForWidth(self.frame_6.sizePolicy().hasHeightForWidth())
+        self.frame_6.setSizePolicy(sizePolicy1)
+        self.frame_6.setMinimumSize(QSize(680, 445))
+        self.frame_6.setFrameShape(QFrame.NoFrame)
+        self.frame_6.setFrameShadow(QFrame.Plain)
+        self.frame_6.setLineWidth(0)
+        self.verticalLayout_14 = QVBoxLayout(self.frame_6)
+        self.verticalLayout_14.setSpacing(0)
+        self.verticalLayout_14.setObjectName(u"verticalLayout_14")
+        self.verticalLayout_14.setContentsMargins(0, 0, 0, 0)
+        self.checkBox_5 = QCheckBox(self.frame_6)
+        self.checkBox_5.setObjectName(u"checkBox_5")
+
+        self.verticalLayout_14.addWidget(self.checkBox_5)
+
+        self.parameter_table = QTableWidget(self.frame_6)
+        self.parameter_table.setObjectName(u"parameter_table")
+        self.parameter_table.setStyleSheet(u"QLineEdit {border: none;\n"
+" background-color: white; selection-color: white;color: black; font-weight:900;}\n"
+"\n"
+"QTableView::item:selected { color:white; background:rgb(80,180,180); font-weight:900; }\n"
+"QTableView::item { color:white; font-weight:900; }\n"
+"QTableCornerButton::section { background-color:rgb(80,80,80); }\n"
+"QHeaderView::section { border:none; color:white; background-color:rgb(80,80,80);selection-color: white }\n"
+"\n"
+"")
+        self.parameter_table.setFrameShape(QFrame.NoFrame)
+        self.parameter_table.setFrameShadow(QFrame.Plain)
+        self.parameter_table.setLineWidth(0)
+        self.parameter_table.setSelectionMode(QAbstractItemView.ExtendedSelection)
+        self.parameter_table.setTextElideMode(Qt.ElideMiddle)
+        self.parameter_table.setSortingEnabled(True)
+
+        self.verticalLayout_14.addWidget(self.parameter_table)
+
+        self.stackedWidget_measurements.addWidget(self.page_view_parameters)
+        self.page_view_graphs = QWidget()
+        self.page_view_graphs.setObjectName(u"page_view_graphs")
+        self.stackedWidget_measurements.addWidget(self.page_view_graphs)
+
+        self.horizontalLayout_38.addWidget(self.stackedWidget_measurements)
+
+
+        self.verticalLayout_91.addWidget(self.frame_measurement_details)
 
         self.stackedWidget.addWidget(self.page_measurements)
 
@@ -2582,7 +2608,7 @@ class Ui_MainWindow(object):
 
         self.stackedWidget.setCurrentIndex(8)
         self.stackedWidget_android.setCurrentIndex(1)
-        self.stackedWidget_measurements.setCurrentIndex(0)
+        self.stackedWidget_measurements.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -2714,17 +2740,11 @@ class Ui_MainWindow(object):
         self.bn_group_4.setText("")
         self.bn_group_5.setText("")
         self.bn_group_6.setText("")
-        self.comboBox_bug_2.setItemText(0, QCoreApplication.translate("MainWindow", u"100000", None))
-        self.comboBox_bug_2.setItemText(1, QCoreApplication.translate("MainWindow", u"1000000", None))
-        self.comboBox_bug_2.setItemText(2, QCoreApplication.translate("MainWindow", u"10000000", None))
-        self.comboBox_bug_2.setItemText(3, QCoreApplication.translate("MainWindow", u"100000000", None))
-
-        self.comboBox_bug_2.setCurrentText(QCoreApplication.translate("MainWindow", u"100000", None))
-        self.checkBox_5.setText(QCoreApplication.translate("MainWindow", u"Hello", None))
         self.bn_read_measurement.setText("")
         self.bn_view_measurement.setText("")
         self.bn_view_parameters.setText("")
         self.bn_view_graph.setText("")
+        self.checkBox_5.setText(QCoreApplication.translate("MainWindow", u"Hello", None))
         self.lab_tab.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><br/></p></body></html>", None))
 #if QT_CONFIG(tooltip)
         self.frame_drag.setToolTip(QCoreApplication.translate("MainWindow", u"Drag", None))
