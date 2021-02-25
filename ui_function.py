@@ -297,15 +297,10 @@ class UIFunction(MainWindow):
         self.ui.checkBox_2.stateChanged.connect(lambda: self.errorexec("Even More Happy to hear this", "icons/1x/smileAsset 1.png", "Ok"))
 
         self.measurementGroups['Group1'].activate()
-        # self.ui.bn_group_1.clicked.connect(lambda: UIFunction.measurementGroup(self, 'group1'))
-        # self.ui.bn_group_2.clicked.connect(lambda: UIFunction.measurementGroup(self, 'group2'))
-        # self.ui.bn_group_3.clicked.connect(lambda: UIFunction.measurementGroup(self, 'group3'))
-        # self.ui.bn_group_4.clicked.connect(lambda: UIFunction.measurementGroup(self, 'group4'))
-        # self.ui.bn_group_5.clicked.connect(lambda: UIFunction.measurementGroup(self, 'group5'))
-        # self.ui.bn_group_6.clicked.connect(lambda: UIFunction.measurementGroup(self, 'group6'))
 
         ######MEASUREMENTS > PAGE READ MEASUREMENTS >>>>>>>>>>>>>>>>>>>>>>
         self.ui.bn_meas_open_folder.clicked.connect(lambda: APFunction.openFileDialog(self))
+        self.ui.bn_meas_grp_rename.clicked.connect(lambda: APFunction.changeGroupName(self))
 
 
 
@@ -383,30 +378,6 @@ class UIFunction(MainWindow):
             self.ui.frame_view_graph.setStyleSheet("background:rgb(91,90,90)")
 
         # ADD A ADDITIONAL ELIF STATEMNT WITH THE SIMILAR CODE UP ABOVE FOR YOUR NEW SUBMENU BUTTON IN THE ANDROID STACK PAGE.
-
-    # def measurementGroup(self, group=None):
-    #     if group is not None:
-    #
-    #     APFunction.openMeasGroup(self)
-    #     for each in self.ui.frame_measurement_menu.findChildren(QFrame):
-    #         each.setStyleSheet("background:rgb(51,51,51)")
-    #     if self.GUIsett.currentGroup == "group1":
-    #         self.ui.frame_group_1.setStyleSheet("background:rgb(91,90,90)")
-    #     elif self.GUIsett.currentGroup == "group2":
-    #         self.ui.frame_group_2.setStyleSheet("background:rgb(91,90,90)")
-    #     elif self.GUIsett.currentGroup == "group3":
-    #         self.ui.frame_group_3.setStyleSheet("background:rgb(91,90,90)")
-    #     elif self.GUIsett.currentGroup == "group4":
-    #         self.ui.frame_group_4.setStyleSheet("background:rgb(91,90,90)")
-    #     elif self.GUIsett.currentGroup == "group5":
-    #         self.ui.frame_group_5.setStyleSheet("background:rgb(91,90,90)")
-    #     elif self.GUIsett.currentGroup == "group6":
-    #         self.ui.frame_group_6.setStyleSheet("background:rgb(91,90,90)")
-
-
-
-
-
 
     ##############################################################################################################
 
@@ -489,41 +460,10 @@ class APFunction():
         self.ui.line_meas_folder.setText(folderSrting)
         self.GUIsett.setFolder(folderSrting)
 
-    # def openMeasGroup(self):
-    #     if self.GUIsett.currentGroup in self.GUIsett.measGroupNames:
-    #         groupName = self.GUIsett.currentGroup
-    #
-    #         #TODO dodaj da nastavi ostale stvari
-    #     else:
-    #         addIcon = QIcon("icons/1x/addAsset.png")  #TODO popravi na Path.icon
-    #         noIcon = QIcon()
-    #         if self.GUIsett.currentGroup == 'group2':
-    #             self.ui.bn_group_2.setText("Group 2")
-    #             self.ui.bn_group_2.setIcon(noIcon)
-    #             self.ui.bn_group_3.setIcon(addIcon)
-    #             self.ui.bn_group_3.setEnabled(True)
-    #         elif self.GUIsett.currentGroup == 'group3':
-    #             self.ui.bn_group_3.setText("Group 3")
-    #             self.ui.bn_group_3.setIcon(noIcon)
-    #             self.ui.bn_group_4.setIcon(addIcon)
-    #             self.ui.bn_group_4.setEnabled(True)
-    #         elif self.GUIsett.currentGroup == 'group4':
-    #             self.ui.bn_group_4.setText("Group 4")
-    #             self.ui.bn_group_4.setIcon(noIcon)
-    #             self.ui.bn_group_5.setIcon(addIcon)
-    #             self.ui.bn_group_5.setEnabled(True)
-    #         elif self.GUIsett.currentGroup == 'group5':
-    #             self.ui.bn_group_5.setText("Group 5")
-    #             self.ui.bn_group_5.setIcon(noIcon)
-    #             self.ui.bn_group_6.setIcon(addIcon)
-    #             self.ui.bn_group_6.setEnabled(True)
-    #         elif self.GUIsett.currentGroup == 'group6':
-    #             self.ui.bn_group_6.setText("Group 6")
-    #             self.ui.bn_group_6.setIcon(noIcon)
-
-
     def changeGroupName(self):
-        self.GUIsett.changeGroupName(self.ui.line_meas_grp_name)
+        newName = self.ui.line_meas_grp_name.text()
+        self.GUIsett.changeGroupName(newName)
+        self.measurementGroups[self.GUIsett.currentGroup].changeGroupName(newName)
 
 
 
@@ -610,6 +550,7 @@ class MeasurementGroup():
         self.button.setIcon(self.noIcon)
         self.active = True
         self.main.GUIsett.addMeasGroupSetting()
+        self.changeData()
 
     def enableNext(self):
         enable = False
@@ -640,7 +581,11 @@ class MeasurementGroup():
 
     def changeData(self):
         self.main.ui.line_meas_folder.setText(self.main.GUIsett.measGroupSettings[self.name]['folder'])
+        self.main.ui.line_meas_grp_name.setText(self.main.GUIsett.measGroupNames[self.name])
+        # TODO dodaj da nastavi ostale stvari
 
+    def changeGroupName(self, name):
+        self.button.setText(name)
 
 
 
