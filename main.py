@@ -161,6 +161,14 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.GUIsett = GUIsettings(None)
+        self.graph = GUIgraph(self)
+        self.measurementGroups = {}
+        for i in range(1,7):
+            groupName = 'Group{0}'.format(i)
+            button = self.ui.__dict__['bn_group_{0}'.format(i)]
+            frame = self.ui.__dict__['frame_group_{0}'.format(i)]
+            self.measurementGroups[groupName] = MeasurementGroup(self, groupName, button, frame)
 
 
         #----> SET WINDOW TITLE AND ICON

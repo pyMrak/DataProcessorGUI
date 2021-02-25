@@ -17,7 +17,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(800, 550)
+        MainWindow.resize(820, 550)
         MainWindow.setMinimumSize(QSize(800, 550))
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -2024,7 +2024,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_91.setContentsMargins(0, 0, 0, 0)
         self.frame_measurement_menu = QFrame(self.page_measurements)
         self.frame_measurement_menu.setObjectName(u"frame_measurement_menu")
-        self.frame_measurement_menu.setEnabled(False)
+        self.frame_measurement_menu.setEnabled(True)
         sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
@@ -2032,6 +2032,7 @@ class Ui_MainWindow(object):
         self.frame_measurement_menu.setSizePolicy(sizePolicy1)
         self.frame_measurement_menu.setMinimumSize(QSize(0, 30))
         self.frame_measurement_menu.setMaximumSize(QSize(16777215, 30))
+        self.frame_measurement_menu.setFocusPolicy(Qt.StrongFocus)
         self.frame_measurement_menu.setStyleSheet(u"background:rgb(51,51,51);")
         self.frame_measurement_menu.setFrameShape(QFrame.NoFrame)
         self.frame_measurement_menu.setFrameShadow(QFrame.Plain)
@@ -2041,21 +2042,28 @@ class Ui_MainWindow(object):
         self.horizontalLayout_31.setContentsMargins(0, 0, 0, 0)
         self.frame_group_1 = QFrame(self.frame_measurement_menu)
         self.frame_group_1.setObjectName(u"frame_group_1")
+        self.frame_group_1.setEnabled(True)
         self.frame_group_1.setMinimumSize(QSize(120, 30))
         self.frame_group_1.setFrameShape(QFrame.NoFrame)
         self.frame_group_1.setFrameShadow(QFrame.Plain)
+        self.frame_group_1.setLineWidth(0)
         self.horizontalLayout_32 = QHBoxLayout(self.frame_group_1)
         self.horizontalLayout_32.setSpacing(0)
         self.horizontalLayout_32.setObjectName(u"horizontalLayout_32")
         self.horizontalLayout_32.setContentsMargins(0, 0, 0, 0)
         self.bn_group_1 = QPushButton(self.frame_group_1)
         self.bn_group_1.setObjectName(u"bn_group_1")
-        self.bn_group_1.setEnabled(False)
-        sizePolicy.setHeightForWidth(self.bn_group_1.sizePolicy().hasHeightForWidth())
-        self.bn_group_1.setSizePolicy(sizePolicy)
+        self.bn_group_1.setEnabled(True)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.bn_group_1.sizePolicy().hasHeightForWidth())
+        self.bn_group_1.setSizePolicy(sizePolicy2)
         self.bn_group_1.setMinimumSize(QSize(120, 30))
         self.bn_group_1.setMaximumSize(QSize(240, 30))
         self.bn_group_1.setStyleSheet(u"QPushButton {\n"
+"    color: rgba(255,255,255,255);\n"
+"    font-weight: 900;\n"
 "	border: none;\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}\n"
@@ -2065,7 +2073,6 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        self.bn_group_1.setIcon(icon)
         self.bn_group_1.setFlat(True)
 
         self.horizontalLayout_32.addWidget(self.bn_group_1)
@@ -2085,12 +2092,14 @@ class Ui_MainWindow(object):
         self.horizontalLayout_33.setContentsMargins(0, 0, 0, 0)
         self.bn_group_2 = QPushButton(self.frame_group_2)
         self.bn_group_2.setObjectName(u"bn_group_2")
-        self.bn_group_2.setEnabled(False)
+        self.bn_group_2.setEnabled(True)
         sizePolicy.setHeightForWidth(self.bn_group_2.sizePolicy().hasHeightForWidth())
         self.bn_group_2.setSizePolicy(sizePolicy)
         self.bn_group_2.setMinimumSize(QSize(120, 30))
         self.bn_group_2.setMaximumSize(QSize(240, 30))
         self.bn_group_2.setStyleSheet(u"QPushButton {\n"
+"    color: rgba(255,255,255,255);\n"
+"    font-weight: 900;\n"
 "	border: none;\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}\n"
@@ -2100,7 +2109,9 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        self.bn_group_2.setIcon(icon)
+        icon13 = QIcon()
+        icon13.addFile(u"icons/1x/addAsset.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.bn_group_2.setIcon(icon13)
         self.bn_group_2.setFlat(True)
 
         self.horizontalLayout_33.addWidget(self.bn_group_2)
@@ -2126,6 +2137,8 @@ class Ui_MainWindow(object):
         self.bn_group_3.setMinimumSize(QSize(120, 30))
         self.bn_group_3.setMaximumSize(QSize(240, 30))
         self.bn_group_3.setStyleSheet(u"QPushButton {\n"
+"    color: rgba(255,255,255,255);\n"
+"    font-weight: 900;\n"
 "	border: none;\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}\n"
@@ -2135,7 +2148,6 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        self.bn_group_3.setIcon(icon)
         self.bn_group_3.setFlat(True)
 
         self.horizontalLayout_34.addWidget(self.bn_group_3)
@@ -2161,6 +2173,8 @@ class Ui_MainWindow(object):
         self.bn_group_4.setMinimumSize(QSize(120, 30))
         self.bn_group_4.setMaximumSize(QSize(240, 30))
         self.bn_group_4.setStyleSheet(u"QPushButton {\n"
+"    color: rgba(255,255,255,255);\n"
+"    font-weight: 900;\n"
 "	border: none;\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}\n"
@@ -2194,6 +2208,8 @@ class Ui_MainWindow(object):
         self.bn_group_5.setMinimumSize(QSize(120, 30))
         self.bn_group_5.setMaximumSize(QSize(240, 30))
         self.bn_group_5.setStyleSheet(u"QPushButton {\n"
+"    color: rgba(255,255,255,255);\n"
+"    font-weight: 900;\n"
 "	border: none;\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}\n"
@@ -2228,6 +2244,8 @@ class Ui_MainWindow(object):
         self.bn_group_6.setMinimumSize(QSize(120, 30))
         self.bn_group_6.setMaximumSize(QSize(240, 30))
         self.bn_group_6.setStyleSheet(u"QPushButton {\n"
+"    color: rgba(255,255,255,255);\n"
+"    font-weight: 900;\n"
 "	border: none;\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}\n"
@@ -2284,9 +2302,6 @@ class Ui_MainWindow(object):
         self.bn_read_measurement = QPushButton(self.frame_read_measurement)
         self.bn_read_measurement.setObjectName(u"bn_read_measurement")
         self.bn_read_measurement.setEnabled(True)
-        sizePolicy2 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.bn_read_measurement.sizePolicy().hasHeightForWidth())
         self.bn_read_measurement.setSizePolicy(sizePolicy2)
         self.bn_read_measurement.setMinimumSize(QSize(40, 30))
@@ -2301,9 +2316,9 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        icon13 = QIcon()
-        icon13.addFile(u"icons/1x/settAsset 50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.bn_read_measurement.setIcon(icon13)
+        icon14 = QIcon()
+        icon14.addFile(u"icons/1x/settAsset 50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.bn_read_measurement.setIcon(icon14)
         self.bn_read_measurement.setFlat(True)
 
         self.verticalLayout_20.addWidget(self.bn_read_measurement)
@@ -2337,9 +2352,9 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        icon14 = QIcon()
-        icon14.addFile(u"icons/1x/listAsset.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.bn_view_measurement.setIcon(icon14)
+        icon15 = QIcon()
+        icon15.addFile(u"icons/1x/listAsset.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.bn_view_measurement.setIcon(icon15)
         self.bn_view_measurement.setIconSize(QSize(22, 22))
         self.bn_view_measurement.setFlat(True)
 
@@ -2411,9 +2426,9 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        icon15 = QIcon()
-        icon15.addFile(u"icons/1x/graphAsset.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.bn_view_graph.setIcon(icon15)
+        icon16 = QIcon()
+        icon16.addFile(u"icons/1x/graphAsset.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.bn_view_graph.setIcon(icon16)
         self.bn_view_graph.setFlat(True)
 
         self.verticalLayout_23.addWidget(self.bn_view_graph)
@@ -2431,9 +2446,12 @@ class Ui_MainWindow(object):
         self.stackedWidget_measurements.setStyleSheet(u"")
         self.page_read_measurements = QWidget()
         self.page_read_measurements.setObjectName(u"page_read_measurements")
+        self.verticalLayout_92 = QVBoxLayout(self.page_read_measurements)
+        self.verticalLayout_92.setSpacing(0)
+        self.verticalLayout_92.setObjectName(u"verticalLayout_92")
+        self.verticalLayout_92.setContentsMargins(0, 0, 0, 0)
         self.frame_read_measurements = QFrame(self.page_read_measurements)
         self.frame_read_measurements.setObjectName(u"frame_read_measurements")
-        self.frame_read_measurements.setGeometry(QRect(0, 0, 700, 477))
         self.frame_read_measurements.setMinimumSize(QSize(680, 445))
         self.frame_read_measurements.setFrameShape(QFrame.StyledPanel)
         self.frame_read_measurements.setFrameShadow(QFrame.Raised)
@@ -2444,8 +2462,226 @@ class Ui_MainWindow(object):
         self.frame_select_meas_folder = QFrame(self.frame_read_measurements)
         self.frame_select_meas_folder.setObjectName(u"frame_select_meas_folder")
         self.frame_select_meas_folder.setMinimumSize(QSize(680, 150))
+        self.frame_select_meas_folder.setMaximumSize(QSize(16777215, 300))
         self.frame_select_meas_folder.setFrameShape(QFrame.StyledPanel)
         self.frame_select_meas_folder.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_15 = QVBoxLayout(self.frame_select_meas_folder)
+        self.verticalLayout_15.setSpacing(2)
+        self.verticalLayout_15.setObjectName(u"verticalLayout_15")
+        self.verticalLayout_15.setContentsMargins(2, 2, 2, 2)
+        self.group_select_meas_fold = QGroupBox(self.frame_select_meas_folder)
+        self.group_select_meas_fold.setObjectName(u"group_select_meas_fold")
+        self.group_select_meas_fold.setMinimumSize(QSize(650, 140))
+        self.group_select_meas_fold.setMaximumSize(QSize(16777215, 16777215))
+        self.group_select_meas_fold.setFont(font8)
+        self.group_select_meas_fold.setStyleSheet(u"QGroupBox{\n"
+"	border:1px solid rgb(51,51,51);	\n"
+"	border-radius:4px;\n"
+"	color:white;\n"
+"	background:rgb(91,90,90);\n"
+"}\n"
+"")
+        self.group_select_meas_fold.setCheckable(False)
+        self.gridLayout_7 = QGridLayout(self.group_select_meas_fold)
+        self.gridLayout_7.setObjectName(u"gridLayout_7")
+        self.lab_meas_folder = QLabel(self.group_select_meas_fold)
+        self.lab_meas_folder.setObjectName(u"lab_meas_folder")
+        self.lab_meas_folder.setMinimumSize(QSize(0, 20))
+        self.lab_meas_folder.setMaximumSize(QSize(16777215, 30))
+        self.lab_meas_folder.setFont(font7)
+        self.lab_meas_folder.setStyleSheet(u"color:rgb(255,255,255);")
+        self.lab_meas_folder.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout_7.addWidget(self.lab_meas_folder, 0, 0, 1, 2)
+
+        self.line_meas_folder = QLineEdit(self.group_select_meas_fold)
+        self.line_meas_folder.setObjectName(u"line_meas_folder")
+        self.line_meas_folder.setEnabled(True)
+        self.line_meas_folder.setMinimumSize(QSize(300, 25))
+        self.line_meas_folder.setMaximumSize(QSize(500, 25))
+        self.line_meas_folder.setFont(font6)
+        self.line_meas_folder.setStyleSheet(u"QLineEdit {\n"
+"	color:rgb(255,255,255);\n"
+"	border:2px solid rgb(51,51,51);\n"
+"	border-radius:4px;\n"
+"	background:rgb(51,51,51);\n"
+"}\n"
+"\n"
+"QLineEdit:disabled {\n"
+"	color:rgb(255,255,255);\n"
+"	border:2px solid rgb(112,112,112);\n"
+"	border-radius:4px;\n"
+"	background:rgb(112,112,112);\n"
+"}")
+
+        self.gridLayout_7.addWidget(self.line_meas_folder, 0, 2, 2, 2)
+
+        self.bn_meas_open_folder = QPushButton(self.group_select_meas_fold)
+        self.bn_meas_open_folder.setObjectName(u"bn_meas_open_folder")
+        self.bn_meas_open_folder.setMinimumSize(QSize(80, 25))
+        self.bn_meas_open_folder.setMaximumSize(QSize(80, 25))
+        self.bn_meas_open_folder.setFont(font6)
+        self.bn_meas_open_folder.setStyleSheet(u"QPushButton {\n"
+"	border: 2px solid rgb(51,51,51);\n"
+"	border-radius: 5px;	\n"
+"	color:rgb(255,255,255);\n"
+"	background-color: rgb(51,51,51);\n"
+"}\n"
+"QPushButton:hover {\n"
+"	border: 2px solid rgb(0,143,150);\n"
+"	background-color: rgb(0,143,150);\n"
+"}\n"
+"QPushButton:pressed {	\n"
+"	border: 2px solid rgb(0,143,150);\n"
+"	background-color: rgb(51,51,51);\n"
+"}\n"
+"\n"
+"QPushButton:disabled {	\n"
+"	border-radius: 5px;	\n"
+"	border: 2px solid rgb(112,112,112);\n"
+"	background-color: rgb(112,112,112);\n"
+"}")
+        self.bn_meas_open_folder.setCheckable(False)
+        self.bn_meas_open_folder.setFlat(True)
+
+        self.gridLayout_7.addWidget(self.bn_meas_open_folder, 0, 4, 1, 1)
+
+        self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_7.addItem(self.horizontalSpacer_8, 0, 5, 1, 1)
+
+        self.line_meas_grp_name = QLineEdit(self.group_select_meas_fold)
+        self.line_meas_grp_name.setObjectName(u"line_meas_grp_name")
+        self.line_meas_grp_name.setEnabled(True)
+        self.line_meas_grp_name.setMinimumSize(QSize(300, 25))
+        self.line_meas_grp_name.setMaximumSize(QSize(500, 25))
+        self.line_meas_grp_name.setFont(font6)
+        self.line_meas_grp_name.setStyleSheet(u"QLineEdit {\n"
+"	color:rgb(255,255,255);\n"
+"	border:2px solid rgb(51,51,51);\n"
+"	border-radius:4px;\n"
+"	background:rgb(51,51,51);\n"
+"}\n"
+"\n"
+"QLineEdit:disabled {\n"
+"	color:rgb(255,255,255);\n"
+"	border:2px solid rgb(112,112,112);\n"
+"	border-radius:4px;\n"
+"	background:rgb(112,112,112);\n"
+"}")
+
+        self.gridLayout_7.addWidget(self.line_meas_grp_name, 1, 3, 3, 1)
+
+        self.verticalSpacer_6 = QSpacerItem(20, 36, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout_7.addItem(self.verticalSpacer_6, 4, 2, 2, 2)
+
+        self.bn_read_meas_2 = QPushButton(self.group_select_meas_fold)
+        self.bn_read_meas_2.setObjectName(u"bn_read_meas_2")
+        self.bn_read_meas_2.setMinimumSize(QSize(69, 25))
+        self.bn_read_meas_2.setMaximumSize(QSize(69, 25))
+        self.bn_read_meas_2.setFont(font6)
+        self.bn_read_meas_2.setStyleSheet(u"QPushButton {\n"
+"	border: 2px solid rgb(51,51,51);\n"
+"	border-radius: 5px;	\n"
+"	color:rgb(255,255,255);\n"
+"	background-color: rgb(51,51,51);\n"
+"}\n"
+"QPushButton:hover {\n"
+"	border: 2px solid rgb(0,143,150);\n"
+"	background-color: rgb(0,143,150);\n"
+"}\n"
+"QPushButton:pressed {	\n"
+"	border: 2px solid rgb(0,143,150);\n"
+"	background-color: rgb(51,51,51);\n"
+"}\n"
+"\n"
+"QPushButton:disabled {	\n"
+"	border-radius: 5px;	\n"
+"	border: 2px solid rgb(112,112,112);\n"
+"	background-color: rgb(112,112,112);\n"
+"}")
+        self.bn_read_meas_2.setCheckable(False)
+        self.bn_read_meas_2.setFlat(True)
+
+        self.gridLayout_7.addWidget(self.bn_read_meas_2, 6, 0, 1, 1)
+
+        self.lab_meas_grp_name = QLabel(self.group_select_meas_fold)
+        self.lab_meas_grp_name.setObjectName(u"lab_meas_grp_name")
+        self.lab_meas_grp_name.setMinimumSize(QSize(0, 20))
+        self.lab_meas_grp_name.setMaximumSize(QSize(16777215, 30))
+        self.lab_meas_grp_name.setFont(font7)
+        self.lab_meas_grp_name.setStyleSheet(u"color:rgb(255,255,255);")
+        self.lab_meas_grp_name.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout_7.addWidget(self.lab_meas_grp_name, 2, 1, 1, 1)
+
+        self.verticalSpacer_7 = QSpacerItem(20, 42, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout_7.addItem(self.verticalSpacer_7, 2, 0, 1, 1)
+
+        self.bn_meas_grp_rename = QPushButton(self.group_select_meas_fold)
+        self.bn_meas_grp_rename.setObjectName(u"bn_meas_grp_rename")
+        self.bn_meas_grp_rename.setMinimumSize(QSize(80, 25))
+        self.bn_meas_grp_rename.setMaximumSize(QSize(80, 25))
+        self.bn_meas_grp_rename.setFont(font6)
+        self.bn_meas_grp_rename.setStyleSheet(u"QPushButton {\n"
+"	border: 2px solid rgb(51,51,51);\n"
+"	border-radius: 5px;	\n"
+"	color:rgb(255,255,255);\n"
+"	background-color: rgb(51,51,51);\n"
+"}\n"
+"QPushButton:hover {\n"
+"	border: 2px solid rgb(0,143,150);\n"
+"	background-color: rgb(0,143,150);\n"
+"}\n"
+"QPushButton:pressed {	\n"
+"	border: 2px solid rgb(0,143,150);\n"
+"	background-color: rgb(51,51,51);\n"
+"}\n"
+"\n"
+"QPushButton:disabled {	\n"
+"	border-radius: 5px;	\n"
+"	border: 2px solid rgb(112,112,112);\n"
+"	background-color: rgb(112,112,112);\n"
+"}")
+        self.bn_meas_grp_rename.setCheckable(False)
+        self.bn_meas_grp_rename.setFlat(True)
+
+        self.gridLayout_7.addWidget(self.bn_meas_grp_rename, 2, 4, 1, 1)
+
+        self.horizontalSpacer_9 = QSpacerItem(36, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_7.addItem(self.horizontalSpacer_9, 2, 5, 1, 1)
+
+        self.progressBar_read_meas = QProgressBar(self.group_select_meas_fold)
+        self.progressBar_read_meas.setObjectName(u"progressBar_read_meas")
+        self.progressBar_read_meas.setEnabled(True)
+        self.progressBar_read_meas.setStyleSheet(u"QProgressBar\n"
+"{\n"
+"	color:rgb(255,255,255);\n"
+"	background-color :rgb(51,51,51);\n"
+"	border : 2px;\n"
+"	border-radius:4px;\n"
+"}\n"
+"\n"
+"QProgressBar::chunk{\n"
+"	border : 2px;\n"
+"	border-radius:4px;\n"
+"	background-color:rgb(0,143,170);\n"
+"}")
+        self.progressBar_read_meas.setValue(0)
+        self.progressBar_read_meas.setAlignment(Qt.AlignCenter)
+        self.progressBar_read_meas.setTextVisible(True)
+        self.progressBar_read_meas.setOrientation(Qt.Horizontal)
+        self.progressBar_read_meas.setInvertedAppearance(False)
+        self.progressBar_read_meas.setTextDirection(QProgressBar.TopToBottom)
+
+        self.gridLayout_7.addWidget(self.progressBar_read_meas, 6, 1, 1, 5)
+
+
+        self.verticalLayout_15.addWidget(self.group_select_meas_fold)
+
 
         self.verticalLayout_24.addWidget(self.frame_select_meas_folder)
 
@@ -2454,6 +2690,174 @@ class Ui_MainWindow(object):
         self.frame_select_param_file.setMinimumSize(QSize(680, 150))
         self.frame_select_param_file.setFrameShape(QFrame.StyledPanel)
         self.frame_select_param_file.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_16 = QVBoxLayout(self.frame_select_param_file)
+        self.verticalLayout_16.setSpacing(2)
+        self.verticalLayout_16.setObjectName(u"verticalLayout_16")
+        self.verticalLayout_16.setContentsMargins(2, 5, 2, 2)
+        self.group_select_param_file = QGroupBox(self.frame_select_param_file)
+        self.group_select_param_file.setObjectName(u"group_select_param_file")
+        self.group_select_param_file.setMinimumSize(QSize(650, 140))
+        self.group_select_param_file.setMaximumSize(QSize(16777215, 16777215))
+        self.group_select_param_file.setFont(font8)
+        self.group_select_param_file.setStyleSheet(u"QGroupBox{\n"
+"	border:1px solid rgb(51,51,51);	\n"
+"	border-radius:4px;\n"
+"	color:white;\n"
+"	background:rgb(91,90,90);\n"
+"}\n"
+"")
+        self.group_select_param_file.setCheckable(False)
+        self.combo_parameter = QComboBox(self.group_select_param_file)
+        self.combo_parameter.addItem("")
+        self.combo_parameter.addItem("")
+        self.combo_parameter.addItem("")
+        self.combo_parameter.addItem("")
+        self.combo_parameter.setObjectName(u"combo_parameter")
+        self.combo_parameter.setGeometry(QRect(390, 60, 85, 23))
+        self.combo_parameter.setMaximumSize(QSize(16777215, 25))
+        self.combo_parameter.setFont(font2)
+        self.combo_parameter.setStyleSheet(u"QComboBox {\n"
+"	border: 2px solid rgb(51,51,51);\n"
+"	border-radius: 5px;	\n"
+"	color:rgb(255,255,255);\n"
+"	background-color: rgb(51,51,51);\n"
+"}\n"
+"\n"
+"QComboBox:hover {\n"
+"	border: 2px solid rgb(0,143,170);\n"
+"	border-radius: 5px;	\n"
+"	color:rgb(255,255,255);\n"
+"	background-color: rgb(0,143,170);\n"
+"}\n"
+"\n"
+"QComboBox:!editable, QComboBox::drop-down:editable {\n"
+"	background: rgb(51,51,51);\n"
+"}\n"
+"\n"
+"QComboBox:!editable:on, QComboBox::drop-down:editable:on {\n"
+"    background:rgb(51,51,51);\n"
+"}\n"
+"\n"
+"QComboBox:on { /* shift the text when the popup opens */\n"
+"    padding-top: 3px;\n"
+"    padding-left: 4px;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down {\n"
+"    subcontrol-origin: padding;\n"
+"    subcontrol-position: top right;\n"
+"    width: 15px;\n"
+"\n"
+"    border-left-width: 1px;\n"
+"    border-left-color: darkgray;\n"
+"    border-left-style: solid; /* just a single line */\n"
+"    border-top-right-radius: 5px; /* same radius as the QComboBox */\n"
+"    border-bottom-right-radius: 5px;\n"
+""
+                        "}\n"
+"\n"
+"QComboBox::down-arrow {\n"
+"    image: url(icons/1x/arrow.png);\n"
+"}\n"
+"\n"
+"QComboBox::down-arrow:on { /* shift the arrow when popup is open */\n"
+"    top: 1px;\n"
+"    left: 1px;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down {\n"
+"    background:rgb(51,51,51);\n"
+"}\n"
+"\n"
+"")
+        self.combo_parameter.setSizeAdjustPolicy(QComboBox.AdjustToContents)
+        self.combo_parameter.setFrame(False)
+        self.combo_parameter.setModelColumn(0)
+        self.lab_bug_action_3 = QLabel(self.group_select_param_file)
+        self.lab_bug_action_3.setObjectName(u"lab_bug_action_3")
+        self.lab_bug_action_3.setGeometry(QRect(10, 60, 361, 25))
+        self.lab_bug_action_3.setMinimumSize(QSize(0, 20))
+        self.lab_bug_action_3.setMaximumSize(QSize(16777215, 30))
+        self.lab_bug_action_3.setFont(font7)
+        self.lab_bug_action_3.setStyleSheet(u"color:rgb(255,255,255);")
+        self.lab_bug_action_3.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.lab_bug_action_4 = QLabel(self.group_select_param_file)
+        self.lab_bug_action_4.setObjectName(u"lab_bug_action_4")
+        self.lab_bug_action_4.setGeometry(QRect(10, 30, 361, 25))
+        self.lab_bug_action_4.setMinimumSize(QSize(0, 20))
+        self.lab_bug_action_4.setMaximumSize(QSize(16777215, 30))
+        self.lab_bug_action_4.setFont(font7)
+        self.lab_bug_action_4.setStyleSheet(u"color:rgb(255,255,255);")
+        self.lab_bug_action_4.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.combo_parameter_2 = QComboBox(self.group_select_param_file)
+        self.combo_parameter_2.addItem("")
+        self.combo_parameter_2.addItem("")
+        self.combo_parameter_2.addItem("")
+        self.combo_parameter_2.addItem("")
+        self.combo_parameter_2.setObjectName(u"combo_parameter_2")
+        self.combo_parameter_2.setGeometry(QRect(390, 30, 85, 23))
+        self.combo_parameter_2.setMaximumSize(QSize(16777215, 25))
+        self.combo_parameter_2.setFont(font2)
+        self.combo_parameter_2.setStyleSheet(u"QComboBox {\n"
+"	border: 2px solid rgb(51,51,51);\n"
+"	border-radius: 5px;	\n"
+"	color:rgb(255,255,255);\n"
+"	background-color: rgb(51,51,51);\n"
+"}\n"
+"\n"
+"QComboBox:hover {\n"
+"	border: 2px solid rgb(0,143,170);\n"
+"	border-radius: 5px;	\n"
+"	color:rgb(255,255,255);\n"
+"	background-color: rgb(0,143,170);\n"
+"}\n"
+"\n"
+"QComboBox:!editable, QComboBox::drop-down:editable {\n"
+"	background: rgb(51,51,51);\n"
+"}\n"
+"\n"
+"QComboBox:!editable:on, QComboBox::drop-down:editable:on {\n"
+"    background:rgb(51,51,51);\n"
+"}\n"
+"\n"
+"QComboBox:on { /* shift the text when the popup opens */\n"
+"    padding-top: 3px;\n"
+"    padding-left: 4px;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down {\n"
+"    subcontrol-origin: padding;\n"
+"    subcontrol-position: top right;\n"
+"    width: 15px;\n"
+"\n"
+"    border-left-width: 1px;\n"
+"    border-left-color: darkgray;\n"
+"    border-left-style: solid; /* just a single line */\n"
+"    border-top-right-radius: 5px; /* same radius as the QComboBox */\n"
+"    border-bottom-right-radius: 5px;\n"
+""
+                        "}\n"
+"\n"
+"QComboBox::down-arrow {\n"
+"    image: url(icons/1x/arrow.png);\n"
+"}\n"
+"\n"
+"QComboBox::down-arrow:on { /* shift the arrow when popup is open */\n"
+"    top: 1px;\n"
+"    left: 1px;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down {\n"
+"    background:rgb(51,51,51);\n"
+"}\n"
+"\n"
+"")
+        self.combo_parameter_2.setSizeAdjustPolicy(QComboBox.AdjustToContents)
+        self.combo_parameter_2.setFrame(False)
+        self.combo_parameter_2.setModelColumn(0)
+
+        self.verticalLayout_16.addWidget(self.group_select_param_file)
+
 
         self.verticalLayout_24.addWidget(self.frame_select_param_file)
 
@@ -2462,20 +2866,52 @@ class Ui_MainWindow(object):
         self.frame_select_graph_template.setMinimumSize(QSize(680, 145))
         self.frame_select_graph_template.setFrameShape(QFrame.StyledPanel)
         self.frame_select_graph_template.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_17 = QVBoxLayout(self.frame_select_graph_template)
+        self.verticalLayout_17.setSpacing(2)
+        self.verticalLayout_17.setObjectName(u"verticalLayout_17")
+        self.verticalLayout_17.setContentsMargins(2, 2, 2, 2)
+        self.group_select_graph_template = QGroupBox(self.frame_select_graph_template)
+        self.group_select_graph_template.setObjectName(u"group_select_graph_template")
+        self.group_select_graph_template.setMinimumSize(QSize(650, 100))
+        self.group_select_graph_template.setMaximumSize(QSize(16777215, 16777215))
+        self.group_select_graph_template.setFont(font8)
+        self.group_select_graph_template.setStyleSheet(u"QGroupBox{\n"
+"	border:1px solid rgb(51,51,51);	\n"
+"	border-radius:4px;\n"
+"	color:white;\n"
+"	background:rgb(91,90,90);\n"
+"}\n"
+"")
+        self.group_select_graph_template.setCheckable(False)
+        self.gridLayout_9 = QGridLayout(self.group_select_graph_template)
+        self.gridLayout_9.setSpacing(2)
+        self.gridLayout_9.setObjectName(u"gridLayout_9")
+        self.gridLayout_9.setContentsMargins(2, 2, 2, 2)
+
+        self.verticalLayout_17.addWidget(self.group_select_graph_template)
+
 
         self.verticalLayout_24.addWidget(self.frame_select_graph_template)
+
+
+        self.verticalLayout_92.addWidget(self.frame_read_measurements)
 
         self.stackedWidget_measurements.addWidget(self.page_read_measurements)
         self.page_view_measurements = QWidget()
         self.page_view_measurements.setObjectName(u"page_view_measurements")
+        self.verticalLayout_93 = QVBoxLayout(self.page_view_measurements)
+        self.verticalLayout_93.setSpacing(0)
+        self.verticalLayout_93.setObjectName(u"verticalLayout_93")
+        self.verticalLayout_93.setContentsMargins(0, 0, 0, 0)
         self.frame_view_measurements = QFrame(self.page_view_measurements)
         self.frame_view_measurements.setObjectName(u"frame_view_measurements")
-        self.frame_view_measurements.setGeometry(QRect(0, 0, 698, 463))
         self.frame_view_measurements.setMinimumSize(QSize(680, 445))
         self.frame_view_measurements.setFrameShape(QFrame.NoFrame)
         self.frame_view_measurements.setFrameShadow(QFrame.Plain)
         self.verticalLayout_4 = QVBoxLayout(self.frame_view_measurements)
+        self.verticalLayout_4.setSpacing(0)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
         self.tableWidget = QTableWidget(self.frame_view_measurements)
         self.tableWidget.setObjectName(u"tableWidget")
         self.tableWidget.setMinimumSize(QSize(680, 445))
@@ -2485,12 +2921,18 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_4.addWidget(self.tableWidget)
 
+
+        self.verticalLayout_93.addWidget(self.frame_view_measurements)
+
         self.stackedWidget_measurements.addWidget(self.page_view_measurements)
         self.page_view_parameters = QWidget()
         self.page_view_parameters.setObjectName(u"page_view_parameters")
+        self.verticalLayout_94 = QVBoxLayout(self.page_view_parameters)
+        self.verticalLayout_94.setSpacing(0)
+        self.verticalLayout_94.setObjectName(u"verticalLayout_94")
+        self.verticalLayout_94.setContentsMargins(0, 0, 0, 0)
         self.frame_6 = QFrame(self.page_view_parameters)
         self.frame_6.setObjectName(u"frame_6")
-        self.frame_6.setGeometry(QRect(0, 0, 680, 445))
         sizePolicy1.setHeightForWidth(self.frame_6.sizePolicy().hasHeightForWidth())
         self.frame_6.setSizePolicy(sizePolicy1)
         self.frame_6.setMinimumSize(QSize(680, 445))
@@ -2525,6 +2967,9 @@ class Ui_MainWindow(object):
         self.parameter_table.setSortingEnabled(True)
 
         self.verticalLayout_14.addWidget(self.parameter_table)
+
+
+        self.verticalLayout_94.addWidget(self.frame_6)
 
         self.stackedWidget_measurements.addWidget(self.page_view_parameters)
         self.page_view_graphs = QWidget()
@@ -2607,8 +3052,8 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.stackedWidget.setCurrentIndex(8)
-        self.stackedWidget_android.setCurrentIndex(1)
-        self.stackedWidget_measurements.setCurrentIndex(2)
+        self.stackedWidget_android.setCurrentIndex(0)
+        self.stackedWidget_measurements.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -2734,7 +3179,7 @@ class Ui_MainWindow(object):
         self.lab_clean.setText("")
         self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Sliders", None))
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"VACANT? TRY YOUR IMAGINATION", None))
-        self.bn_group_1.setText("")
+        self.bn_group_1.setText(QCoreApplication.translate("MainWindow", u"Group 1", None))
         self.bn_group_2.setText("")
         self.bn_group_3.setText("")
         self.bn_group_4.setText("")
@@ -2744,6 +3189,28 @@ class Ui_MainWindow(object):
         self.bn_view_measurement.setText("")
         self.bn_view_parameters.setText("")
         self.bn_view_graph.setText("")
+        self.group_select_meas_fold.setTitle(QCoreApplication.translate("MainWindow", u"Meritve", None))
+        self.lab_meas_folder.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#ffffff;\">Izberi mapo z meritvami:</span></p></body></html>", None))
+        self.line_meas_folder.setText("")
+        self.bn_meas_open_folder.setText(QCoreApplication.translate("MainWindow", u"Prebrskaj", None))
+        self.line_meas_grp_name.setText("")
+        self.bn_read_meas_2.setText(QCoreApplication.translate("MainWindow", u"Beri", None))
+        self.lab_meas_grp_name.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#ffffff;\">Ime skupine:</span></p></body></html>", None))
+        self.bn_meas_grp_rename.setText(QCoreApplication.translate("MainWindow", u"Spremeni", None))
+        self.group_select_param_file.setTitle(QCoreApplication.translate("MainWindow", u"Parametri", None))
+        self.combo_parameter.setItemText(0, QCoreApplication.translate("MainWindow", u"100000", None))
+        self.combo_parameter.setItemText(1, QCoreApplication.translate("MainWindow", u"1000000", None))
+        self.combo_parameter.setItemText(2, QCoreApplication.translate("MainWindow", u"10000000", None))
+        self.combo_parameter.setItemText(3, QCoreApplication.translate("MainWindow", u"100000000", None))
+
+        self.lab_bug_action_3.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:14pt; color:#ffffff;\">Izberi datoteko za ustvarjanje parametrov:</span></p></body></html>", None))
+        self.lab_bug_action_4.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:14pt; color:#ffffff;\">Izberi datoteko za obdelavo meritev:</span></p></body></html>", None))
+        self.combo_parameter_2.setItemText(0, QCoreApplication.translate("MainWindow", u"100000", None))
+        self.combo_parameter_2.setItemText(1, QCoreApplication.translate("MainWindow", u"1000000", None))
+        self.combo_parameter_2.setItemText(2, QCoreApplication.translate("MainWindow", u"10000000", None))
+        self.combo_parameter_2.setItemText(3, QCoreApplication.translate("MainWindow", u"100000000", None))
+
+        self.group_select_graph_template.setTitle(QCoreApplication.translate("MainWindow", u"Nastavitve grafov", None))
         self.checkBox_5.setText(QCoreApplication.translate("MainWindow", u"Hello", None))
         self.lab_tab.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><br/></p></body></html>", None))
 #if QT_CONFIG(tooltip)

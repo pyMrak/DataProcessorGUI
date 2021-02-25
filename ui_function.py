@@ -35,9 +35,16 @@ from main import * #IMPORTING THE MAIN.PY FILE
 
 from about import *
 
-from matplotlib.backends.qt_compat import QtCore, QtWidgets, is_pyqt5
+from PySide2.QtGui import QColor, qRgb, QIcon
+
+from matplotlib.backends.qt_compat import QtCore, QtWidgets as QtWidgMat, is_pyqt5
 from matplotlib.backends.backend_qt5agg import (FigureCanvas, NavigationToolbar2QT as NavigationToolbar)
 from matplotlib.figure import Figure
+import matplotlib as mpl
+mpl.rcParams['text.color'] = 'white'
+mpl.rcParams['font.size'] = 12
+
+
 
 
 GLOBAL_STATE = 0 #NECESSERY FOR CHECKING WEATHER THE WINDWO IS FULL SCREEN OR NOT
@@ -289,6 +296,19 @@ class UIFunction(MainWindow):
         self.ui.checkBox.stateChanged.connect(lambda: self.errorexec("Happy to Know you liked the UI", "icons/1x/smile2Asset 1.png", "Ok")) #WHEN THE CHECK BOX IS CHECKED IT ECECUTES THE ERROR BOX WITH MESSAGE.
         self.ui.checkBox_2.stateChanged.connect(lambda: self.errorexec("Even More Happy to hear this", "icons/1x/smileAsset 1.png", "Ok"))
 
+        self.measurementGroups['Group1'].activate()
+        # self.ui.bn_group_1.clicked.connect(lambda: UIFunction.measurementGroup(self, 'group1'))
+        # self.ui.bn_group_2.clicked.connect(lambda: UIFunction.measurementGroup(self, 'group2'))
+        # self.ui.bn_group_3.clicked.connect(lambda: UIFunction.measurementGroup(self, 'group3'))
+        # self.ui.bn_group_4.clicked.connect(lambda: UIFunction.measurementGroup(self, 'group4'))
+        # self.ui.bn_group_5.clicked.connect(lambda: UIFunction.measurementGroup(self, 'group5'))
+        # self.ui.bn_group_6.clicked.connect(lambda: UIFunction.measurementGroup(self, 'group6'))
+
+        ######MEASUREMENTS > PAGE READ MEASUREMENTS >>>>>>>>>>>>>>>>>>>>>>
+        self.ui.bn_meas_open_folder.clicked.connect(lambda: APFunction.openFileDialog(self))
+
+
+
         ##########PAGE: ABOUT HOME #############
         self.ui.text_about_home.setVerticalScrollBar(self.ui.vsb_about_home)
         self.ui.text_about_home.setText(aboutHome)
@@ -357,11 +377,37 @@ class UIFunction(MainWindow):
             self.ui.parameter_table.setItem(2, 1, QTableWidgetItem("Mandsaur"))
 
         elif page == "page_view_graph":
+            APFunction.drawGaph(self)
             self.ui.stackedWidget_measurements.setCurrentWidget(self.ui.page_view_graphs)
             self.ui.lab_tab.setText("Measurement > View graph")
             self.ui.frame_view_graph.setStyleSheet("background:rgb(91,90,90)")
 
-        #ADD A ADDITIONAL ELIF STATEMNT WITH THE SIMILAR CODE UP ABOVE FOR YOUR NEW SUBMENU BUTTON IN THE ANDROID STACK PAGE.
+        # ADD A ADDITIONAL ELIF STATEMNT WITH THE SIMILAR CODE UP ABOVE FOR YOUR NEW SUBMENU BUTTON IN THE ANDROID STACK PAGE.
+
+    # def measurementGroup(self, group=None):
+    #     if group is not None:
+    #
+    #     APFunction.openMeasGroup(self)
+    #     for each in self.ui.frame_measurement_menu.findChildren(QFrame):
+    #         each.setStyleSheet("background:rgb(51,51,51)")
+    #     if self.GUIsett.currentGroup == "group1":
+    #         self.ui.frame_group_1.setStyleSheet("background:rgb(91,90,90)")
+    #     elif self.GUIsett.currentGroup == "group2":
+    #         self.ui.frame_group_2.setStyleSheet("background:rgb(91,90,90)")
+    #     elif self.GUIsett.currentGroup == "group3":
+    #         self.ui.frame_group_3.setStyleSheet("background:rgb(91,90,90)")
+    #     elif self.GUIsett.currentGroup == "group4":
+    #         self.ui.frame_group_4.setStyleSheet("background:rgb(91,90,90)")
+    #     elif self.GUIsett.currentGroup == "group5":
+    #         self.ui.frame_group_5.setStyleSheet("background:rgb(91,90,90)")
+    #     elif self.GUIsett.currentGroup == "group6":
+    #         self.ui.frame_group_6.setStyleSheet("background:rgb(91,90,90)")
+
+
+
+
+
+
     ##############################################################################################################
 
 
@@ -429,4 +475,173 @@ class APFunction():
         self.ui.bn_android_contact_edit.setEnabled(True)
         self.ui.bn_android_contact_share.setEnabled(True)
         self.ui.bn_android_contact_delete.setEnabled(True)
+
+    def drawGaph(self):
+        import numpy as np
+        t = np.linspace(0, 10, 501)
+        self.graph._static_ax.clear()
+        self.graph.format()
+        self.graph._static_ax.plot(t, np.tan(t))
+        self.graph._static_ax.figure.canvas.draw()
+
+    def openFileDialog(self):
+        folderSrting = str(QFileDialog.getExistingDirectory(self, "Izberi mapo"))
+        self.ui.line_meas_folder.setText(folderSrting)
+        self.GUIsett.setFolder(folderSrting)
+
+    # def openMeasGroup(self):
+    #     if self.GUIsett.currentGroup in self.GUIsett.measGroupNames:
+    #         groupName = self.GUIsett.currentGroup
+    #
+    #         #TODO dodaj da nastavi ostale stvari
+    #     else:
+    #         addIcon = QIcon("icons/1x/addAsset.png")  #TODO popravi na Path.icon
+    #         noIcon = QIcon()
+    #         if self.GUIsett.currentGroup == 'group2':
+    #             self.ui.bn_group_2.setText("Group 2")
+    #             self.ui.bn_group_2.setIcon(noIcon)
+    #             self.ui.bn_group_3.setIcon(addIcon)
+    #             self.ui.bn_group_3.setEnabled(True)
+    #         elif self.GUIsett.currentGroup == 'group3':
+    #             self.ui.bn_group_3.setText("Group 3")
+    #             self.ui.bn_group_3.setIcon(noIcon)
+    #             self.ui.bn_group_4.setIcon(addIcon)
+    #             self.ui.bn_group_4.setEnabled(True)
+    #         elif self.GUIsett.currentGroup == 'group4':
+    #             self.ui.bn_group_4.setText("Group 4")
+    #             self.ui.bn_group_4.setIcon(noIcon)
+    #             self.ui.bn_group_5.setIcon(addIcon)
+    #             self.ui.bn_group_5.setEnabled(True)
+    #         elif self.GUIsett.currentGroup == 'group5':
+    #             self.ui.bn_group_5.setText("Group 5")
+    #             self.ui.bn_group_5.setIcon(noIcon)
+    #             self.ui.bn_group_6.setIcon(addIcon)
+    #             self.ui.bn_group_6.setEnabled(True)
+    #         elif self.GUIsett.currentGroup == 'group6':
+    #             self.ui.bn_group_6.setText("Group 6")
+    #             self.ui.bn_group_6.setIcon(noIcon)
+
+
+    def changeGroupName(self):
+        self.GUIsett.changeGroupName(self.ui.line_meas_grp_name)
+
+
+
+
+
+class GUIsettings(object):
+
+    def __init__(self, user):
+        self.user = user
+        self.measGroupNames = {}
+        self.measGroupSettings = {}
+        self.currentGroup = 'Group1'
+        #self.addMeasGroupSetting()
+
+    def addMeasGroupSetting(self):
+
+        groupName = 'Group{0}'.format(len(self.measGroupNames)+1)
+        print('adding for group '+groupName)
+        self.measGroupNames[groupName] = groupName
+        self.measGroupSettings[groupName] = {'folder': '',
+                                             }
+    def setFolder(self, folder):
+        self.measGroupSettings[self.currentGroup]['folder'] = folder
+
+    def setCurrentGroup(self, group):
+        if group[:-1] == 'Group':
+            if group[-1] in '123456':
+                self.currentGroup = group
+
+    def changeGroupName(self, groupName):
+        self.measGroupNames[self.currentGroup] = groupName
+
+
+class GUIgraph():
+
+    def __init__(self, main):
+        self.layout = QtWidgMat.QVBoxLayout(main.ui.page_view_graphs)
+        self.figure = Figure()
+        self.bacgroundHex = QColor.fromRgb(qRgb(91, 90, 90)).name()
+        self.markingsHex = QColor.fromRgb(qRgb(51, 51, 51)).name()
+        self.figure.patch.set_facecolor(self.bacgroundHex)
+        self.static_canvas = FigureCanvas(self.figure)
+        self.layout.addWidget(self.static_canvas)
+        self.toolbar = NavigationToolbar(self.static_canvas, main.ui.page_view_graphs)
+        self.toolbar.setStyleSheet("""QTabWidget::pane {border: none;background: rgb(91, 90, 90);;}
+                                        QTabBar::tab {background: rgb(51, 51, 51); border: 1px solid lightgray;
+                                                        border-color: rgb(51, 51, 51);padding: 5px; }
+                                       QTabBar::tab:selected {background: rgb(70, 70, 70);margin-bottom: -1px;}""")
+
+        self.layout.addWidget(self.toolbar)
+        # self.addToolBar(NavigationToolbar(static_canvas, frame))
+        self._static_ax = self.static_canvas.figure.subplots()
+        # self._static_ax.style.use('ggplot')
+        self.format()
+
+
+        self._static_ax.tick_params(colors=self.markingsHex)
+        self._static_ax.xaxis.label.set_color(self.markingsHex)
+        self._static_ax.yaxis.label.set_color(self.markingsHex)
+
+    def format(self):
+        self._static_ax.patch.set_facecolor(self.bacgroundHex)
+        self._static_ax.grid(color=self.markingsHex)
+        self._static_ax.spines['top'].set_color(self.markingsHex)
+        self._static_ax.spines['bottom'].set_color(self.markingsHex)
+        self._static_ax.spines['left'].set_color(self.markingsHex)
+        self._static_ax.spines['right'].set_color(self.markingsHex)
+
+
+class MeasurementGroup():
+
+    def __init__(self, main, name, button, frame):
+        self.main = main
+        self.button = button
+        self.frame = frame
+        self.name = name
+        self.addIcon = QIcon("icons/1x/addAsset.png")  #TODO popravi na Path.icon
+        self.noIcon = QIcon()
+        self.active = False
+        self.button.clicked.connect(lambda: self.clicked())
+
+    def activate(self):
+        self.button.setText(self.name)
+        self.button.setIcon(self.noIcon)
+        self.active = True
+        self.main.GUIsett.addMeasGroupSetting()
+
+    def enableNext(self):
+        enable = False
+        for group in self.main.measurementGroups:
+            if group == self.name:
+                enable = True
+            elif enable:
+                self.main.measurementGroups[group].enable()
+                break
+
+    def enable(self):
+        self.button.setIcon(self.addIcon)
+        self.button.setEnabled(True)
+
+
+    def clicked(self):
+        #print('clicked {0} active:{1}'.format(self.name, self.active))
+        self.main.GUIsett.setCurrentGroup(self.name)
+        for each in self.main.ui.frame_measurement_menu.findChildren(QFrame):
+            each.setStyleSheet("background:rgb(51,51,51)")
+        self.frame.setStyleSheet("background:rgb(91,90,90)")
+        if self.active:
+            self.changeData()
+        else:
+            print("activating "+self.name)
+            self.activate()
+            self.enableNext()
+
+    def changeData(self):
+        self.main.ui.line_meas_folder.setText(self.main.GUIsett.measGroupSettings[self.name]['folder'])
+
+
+
+
 ###############################################################################################################################################################
