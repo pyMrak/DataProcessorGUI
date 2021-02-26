@@ -2912,14 +2912,14 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.setSpacing(0)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
-        self.tableWidget = QTableWidget(self.frame_view_measurements)
-        self.tableWidget.setObjectName(u"tableWidget")
-        self.tableWidget.setMinimumSize(QSize(680, 445))
-        self.tableWidget.setFrameShape(QFrame.NoFrame)
-        self.tableWidget.setFrameShadow(QFrame.Plain)
-        self.tableWidget.setLineWidth(0)
+        self.table_meas = QTableWidget(self.frame_view_measurements)
+        self.table_meas.setObjectName(u"table_meas")
+        self.table_meas.setMinimumSize(QSize(680, 445))
+        self.table_meas.setFrameShape(QFrame.NoFrame)
+        self.table_meas.setFrameShadow(QFrame.Plain)
+        self.table_meas.setLineWidth(0)
 
-        self.verticalLayout_4.addWidget(self.tableWidget)
+        self.verticalLayout_4.addWidget(self.table_meas)
 
 
         self.verticalLayout_93.addWidget(self.frame_view_measurements)
@@ -2948,9 +2948,9 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_14.addWidget(self.checkBox_5)
 
-        self.parameter_table = QTableWidget(self.frame_6)
-        self.parameter_table.setObjectName(u"parameter_table")
-        self.parameter_table.setStyleSheet(u"QLineEdit {border: none;\n"
+        self.table_parameters = QTableWidget(self.frame_6)
+        self.table_parameters.setObjectName(u"table_parameters")
+        self.table_parameters.setStyleSheet(u"QLineEdit {border: none;\n"
 " background-color: white; selection-color: white;color: black; font-weight:900;}\n"
 "\n"
 "QTableView::item:selected { color:white; background:rgb(80,180,180); font-weight:900; }\n"
@@ -2959,14 +2959,14 @@ class Ui_MainWindow(object):
 "QHeaderView::section { border:none; color:white; background-color:rgb(80,80,80);selection-color: white }\n"
 "\n"
 "")
-        self.parameter_table.setFrameShape(QFrame.NoFrame)
-        self.parameter_table.setFrameShadow(QFrame.Plain)
-        self.parameter_table.setLineWidth(0)
-        self.parameter_table.setSelectionMode(QAbstractItemView.ExtendedSelection)
-        self.parameter_table.setTextElideMode(Qt.ElideMiddle)
-        self.parameter_table.setSortingEnabled(True)
+        self.table_parameters.setFrameShape(QFrame.NoFrame)
+        self.table_parameters.setFrameShadow(QFrame.Plain)
+        self.table_parameters.setLineWidth(0)
+        self.table_parameters.setSelectionMode(QAbstractItemView.ExtendedSelection)
+        self.table_parameters.setTextElideMode(Qt.ElideMiddle)
+        self.table_parameters.setSortingEnabled(True)
 
-        self.verticalLayout_14.addWidget(self.parameter_table)
+        self.verticalLayout_14.addWidget(self.table_parameters)
 
 
         self.verticalLayout_94.addWidget(self.frame_6)
@@ -3053,7 +3053,7 @@ class Ui_MainWindow(object):
 
         self.stackedWidget.setCurrentIndex(8)
         self.stackedWidget_android.setCurrentIndex(0)
-        self.stackedWidget_measurements.setCurrentIndex(0)
+        self.stackedWidget_measurements.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -3193,7 +3193,7 @@ class Ui_MainWindow(object):
         self.lab_meas_folder.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#ffffff;\">Izberi mapo z meritvami:</span></p></body></html>", None))
         self.line_meas_folder.setText("")
         self.bn_meas_open_folder.setText(QCoreApplication.translate("MainWindow", u"Prebrskaj", None))
-        self.line_meas_grp_name.setText("")
+        self.line_meas_grp_name.setText(QCoreApplication.translate("MainWindow", u"Group 1", None))
         self.bn_read_meas_2.setText(QCoreApplication.translate("MainWindow", u"Beri", None))
         self.lab_meas_grp_name.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#ffffff;\">Ime skupine:</span></p></body></html>", None))
         self.bn_meas_grp_rename.setText(QCoreApplication.translate("MainWindow", u"Spremeni", None))

@@ -356,20 +356,7 @@ class UIFunction(MainWindow):
             self.ui.stackedWidget_measurements.setCurrentWidget(self.ui.page_view_parameters)
             self.ui.lab_tab.setText("Measurement > View parameters")
             self.ui.frame_view_parameters.setStyleSheet("background:rgb(91,90,90)")
-            # Row count
-            self.ui.parameter_table.setRowCount(3)
 
-            # Column count
-            self.ui.parameter_table.setColumnCount(2)
-
-            self.ui.parameter_table.setHorizontalHeaderItem(0, QTableWidgetItem("Name"))
-            self.ui.parameter_table.setHorizontalHeaderItem(1, QTableWidgetItem("City"))
-            self.ui.parameter_table.setItem(0, 0, QTableWidgetItem("Aloysius"))
-            self.ui.parameter_table.setItem(0, 1, QTableWidgetItem("Indore"))
-            self.ui.parameter_table.setItem(1, 0, QTableWidgetItem("Alan"))
-            self.ui.parameter_table.setItem(1, 1, QTableWidgetItem("Bhopal"))
-            self.ui.parameter_table.setItem(2, 0, QTableWidgetItem("Arnavi"))
-            self.ui.parameter_table.setItem(2, 1, QTableWidgetItem("Mandsaur"))
 
         elif page == "page_view_graph":
             APFunction.drawGaph(self)
@@ -464,6 +451,36 @@ class APFunction():
         newName = self.ui.line_meas_grp_name.text()
         self.GUIsett.changeGroupName(newName)
         self.measurementGroups[self.GUIsett.currentGroup].changeGroupName(newName)
+
+    def setParamTable(self):
+        table = self.ui.table_parameters
+        data = 'a'#None
+        APFunction.setTable(self, table, data)
+
+    def setMeasTable(self):
+        table = self.ui.table_measurements
+        data = 'a'#None
+        APFunction.setTable(self, table, data)
+
+    def setTable(self, table, data=None):
+        if data is None:
+            table.setRowCount(0)
+            table.setColumnCount(0)
+        else:
+            # Row count
+            table.setRowCount(3)
+
+            # Column count
+            table.setColumnCount(2)
+
+            table.setHorizontalHeaderItem(0, QTableWidgetItem("Name"))
+            table.setHorizontalHeaderItem(1, QTableWidgetItem("City"))
+            table.setItem(0, 0, QTableWidgetItem("Aloysius"))
+            table.setItem(0, 1, QTableWidgetItem("Indore"))
+            table.setItem(1, 0, QTableWidgetItem("Alan"))
+            table.setItem(1, 1, QTableWidgetItem("Bhopal"))
+            table.setItem(2, 0, QTableWidgetItem("Arnavi"))
+            table.setItem(2, 1, QTableWidgetItem("Mandsaur"))
 
 
 
@@ -582,6 +599,7 @@ class MeasurementGroup():
     def changeData(self):
         self.main.ui.line_meas_folder.setText(self.main.GUIsett.measGroupSettings[self.name]['folder'])
         self.main.ui.line_meas_grp_name.setText(self.main.GUIsett.measGroupNames[self.name])
+        APFunction.setParamTable(self.main)
         # TODO dodaj da nastavi ostale stvari
 
     def changeGroupName(self, name):

@@ -5217,7 +5217,7 @@ QPushButton:pressed {
                        <string notr="true"/>
                       </property>
                       <property name="currentIndex">
-                       <number>0</number>
+                       <number>1</number>
                       </property>
                       <widget class="QWidget" name="page_read_measurements">
                        <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -6239,7 +6239,7 @@ QComboBox::drop-down {
                             <number>0</number>
                            </property>
                            <item>
-                            <widget class="QTableWidget" name="tableWidget">
+                            <widget class="QTableWidget" name="table_meas">
                              <property name="minimumSize">
                               <size>
                                <width>680</width>
@@ -6326,7 +6326,7 @@ QComboBox::drop-down {
                             </widget>
                            </item>
                            <item>
-                            <widget class="QTableWidget" name="parameter_table">
+                            <widget class="QTableWidget" name="table_parameters">
                              <property name="styleSheet">
                               <string notr="true">QLineEdit {border: none;
  background-color: white; selection-color: white;color: black; font-weight:900;}
