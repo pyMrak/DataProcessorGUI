@@ -437,10 +437,10 @@ class APFunction():
     def drawGaph(self):
         import numpy as np
         t = np.linspace(0, 10, 501)
-        self.graph._static_ax.clear()
+        self.graph.ax.clear()
         self.graph.format()
-        self.graph._static_ax.plot(t, np.tan(t))
-        self.graph._static_ax.figure.canvas.draw()
+        self.graph.ax.plot(t, np.tan(t))
+        self.graph.draw()
 
     def openFileDialog(self):
         folderSrting = str(QFileDialog.getExistingDirectory(self, "Izberi mapo"))
@@ -532,22 +532,32 @@ class GUIgraph():
 
         self.layout.addWidget(self.toolbar)
         # self.addToolBar(NavigationToolbar(static_canvas, frame))
-        self._static_ax = self.static_canvas.figure.subplots()
+        self.ax = self.static_canvas.figure.subplots()
         # self._static_ax.style.use('ggplot')
         self.format()
 
 
-        self._static_ax.tick_params(colors=self.markingsHex)
-        self._static_ax.xaxis.label.set_color(self.markingsHex)
-        self._static_ax.yaxis.label.set_color(self.markingsHex)
+        self.ax.tick_params(colors=self.markingsHex)
+        self.ax.xaxis.label.set_color(self.markingsHex)
+        self.ax.yaxis.label.set_color(self.markingsHex)
+        self.ax2 = None
 
     def format(self):
-        self._static_ax.patch.set_facecolor(self.bacgroundHex)
-        self._static_ax.grid(color=self.markingsHex)
-        self._static_ax.spines['top'].set_color(self.markingsHex)
-        self._static_ax.spines['bottom'].set_color(self.markingsHex)
-        self._static_ax.spines['left'].set_color(self.markingsHex)
-        self._static_ax.spines['right'].set_color(self.markingsHex)
+        self.ax.patch.set_facecolor(self.bacgroundHex)
+        self.ax.grid(color=self.markingsHex)
+        self.ax.spines['top'].set_color(self.markingsHex)
+        self.ax.spines['bottom'].set_color(self.markingsHex)
+        self.ax.spines['left'].set_color(self.markingsHex)
+        self.ax.spines['right'].set_color(self.markingsHex)
+
+    def draw(self):
+        self.ax.figure.canvas.draw()
+
+    def addYAxis(self):
+        self.ax2 = self.ax.twinx()
+        self.ax2.tick_params(colors=self.markingsHex)
+        self.ax2.xaxis.label.set_color(self.markingsHex)
+        self.ax2.yaxis.label.set_color(self.markingsHex)
 
 
 class MeasurementGroup():
