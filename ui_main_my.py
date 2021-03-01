@@ -2299,14 +2299,14 @@ class Ui_MainWindow(object):
         self.verticalLayout_20.setSpacing(0)
         self.verticalLayout_20.setObjectName(u"verticalLayout_20")
         self.verticalLayout_20.setContentsMargins(0, 0, 0, 0)
-        self.bn_read_measurement = QPushButton(self.frame_read_measurement)
-        self.bn_read_measurement.setObjectName(u"bn_read_measurement")
-        self.bn_read_measurement.setEnabled(True)
-        sizePolicy2.setHeightForWidth(self.bn_read_measurement.sizePolicy().hasHeightForWidth())
-        self.bn_read_measurement.setSizePolicy(sizePolicy2)
-        self.bn_read_measurement.setMinimumSize(QSize(40, 30))
-        self.bn_read_measurement.setMaximumSize(QSize(40, 300))
-        self.bn_read_measurement.setStyleSheet(u"QPushButton {\n"
+        self.bn_view_read_meas = QPushButton(self.frame_read_measurement)
+        self.bn_view_read_meas.setObjectName(u"bn_view_read_meas")
+        self.bn_view_read_meas.setEnabled(True)
+        sizePolicy2.setHeightForWidth(self.bn_view_read_meas.sizePolicy().hasHeightForWidth())
+        self.bn_view_read_meas.setSizePolicy(sizePolicy2)
+        self.bn_view_read_meas.setMinimumSize(QSize(40, 30))
+        self.bn_view_read_meas.setMaximumSize(QSize(40, 300))
+        self.bn_view_read_meas.setStyleSheet(u"QPushButton {\n"
 "	border: none;\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}\n"
@@ -2318,10 +2318,10 @@ class Ui_MainWindow(object):
 "}")
         icon14 = QIcon()
         icon14.addFile(u"icons/1x/settAsset 50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.bn_read_measurement.setIcon(icon14)
-        self.bn_read_measurement.setFlat(True)
+        self.bn_view_read_meas.setIcon(icon14)
+        self.bn_view_read_meas.setFlat(True)
 
-        self.verticalLayout_20.addWidget(self.bn_read_measurement)
+        self.verticalLayout_20.addWidget(self.bn_view_read_meas)
 
 
         self.verticalLayout_19.addWidget(self.frame_read_measurement)
@@ -2576,12 +2576,12 @@ class Ui_MainWindow(object):
 
         self.gridLayout_7.addItem(self.verticalSpacer_6, 4, 2, 2, 2)
 
-        self.bn_read_meas_2 = QPushButton(self.group_select_meas_fold)
-        self.bn_read_meas_2.setObjectName(u"bn_read_meas_2")
-        self.bn_read_meas_2.setMinimumSize(QSize(69, 25))
-        self.bn_read_meas_2.setMaximumSize(QSize(69, 25))
-        self.bn_read_meas_2.setFont(font6)
-        self.bn_read_meas_2.setStyleSheet(u"QPushButton {\n"
+        self.bn_read_meas = QPushButton(self.group_select_meas_fold)
+        self.bn_read_meas.setObjectName(u"bn_read_meas")
+        self.bn_read_meas.setMinimumSize(QSize(69, 25))
+        self.bn_read_meas.setMaximumSize(QSize(69, 25))
+        self.bn_read_meas.setFont(font6)
+        self.bn_read_meas.setStyleSheet(u"QPushButton {\n"
 "	border: 2px solid rgb(51,51,51);\n"
 "	border-radius: 5px;	\n"
 "	color:rgb(255,255,255);\n"
@@ -2601,10 +2601,10 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(112,112,112);\n"
 "	background-color: rgb(112,112,112);\n"
 "}")
-        self.bn_read_meas_2.setCheckable(False)
-        self.bn_read_meas_2.setFlat(True)
+        self.bn_read_meas.setCheckable(False)
+        self.bn_read_meas.setFlat(True)
 
-        self.gridLayout_7.addWidget(self.bn_read_meas_2, 6, 0, 1, 1)
+        self.gridLayout_7.addWidget(self.bn_read_meas, 6, 0, 1, 1)
 
         self.lab_meas_grp_name = QLabel(self.group_select_meas_fold)
         self.lab_meas_grp_name.setObjectName(u"lab_meas_grp_name")
@@ -2912,9 +2912,109 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.setSpacing(0)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.frame_view_meas_fun = QFrame(self.frame_view_measurements)
+        self.frame_view_meas_fun.setObjectName(u"frame_view_meas_fun")
+        self.frame_view_meas_fun.setMinimumSize(QSize(0, 40))
+        self.frame_view_meas_fun.setFrameShape(QFrame.NoFrame)
+        self.frame_view_meas_fun.setFrameShadow(QFrame.Plain)
+        self.frame_view_meas_fun.setLineWidth(0)
+        self.horizontalLayout_39 = QHBoxLayout(self.frame_view_meas_fun)
+        self.horizontalLayout_39.setSpacing(0)
+        self.horizontalLayout_39.setObjectName(u"horizontalLayout_39")
+        self.horizontalLayout_39.setContentsMargins(0, 0, 0, 0)
+        self.bn_meas_prev = QPushButton(self.frame_view_meas_fun)
+        self.bn_meas_prev.setObjectName(u"bn_meas_prev")
+        self.bn_meas_prev.setEnabled(False)
+        sizePolicy2.setHeightForWidth(self.bn_meas_prev.sizePolicy().hasHeightForWidth())
+        self.bn_meas_prev.setSizePolicy(sizePolicy2)
+        self.bn_meas_prev.setMinimumSize(QSize(120, 40))
+        self.bn_meas_prev.setMaximumSize(QSize(240, 40))
+        self.bn_meas_prev.setStyleSheet(u"QPushButton {\n"
+"    color: rgba(255,255,255,255);\n"
+"    font-weight: 900;\n"
+"	border: none;\n"
+"	background-color: rgba(0,0,0,0);\n"
+"}\n"
+"QPushButton:hover {\n"
+"	background-color: rgb(51,50,50);\n"
+"}\n"
+"QPushButton:pressed {	\n"
+"	background-color: rgba(0,0,0,0);\n"
+"}")
+        icon17 = QIcon()
+        icon17.addFile(u"icons/1x/prevAsset.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.bn_meas_prev.setIcon(icon17)
+        self.bn_meas_prev.setIconSize(QSize(28, 28))
+        self.bn_meas_prev.setFlat(True)
+
+        self.horizontalLayout_39.addWidget(self.bn_meas_prev)
+
+        self.frame_4 = QFrame(self.frame_view_meas_fun)
+        self.frame_4.setObjectName(u"frame_4")
+        self.frame_4.setMinimumSize(QSize(440, 40))
+        self.frame_4.setMaximumSize(QSize(16777215, 40))
+        self.frame_4.setFrameShape(QFrame.StyledPanel)
+        self.frame_4.setFrameShadow(QFrame.Raised)
+
+        self.horizontalLayout_39.addWidget(self.frame_4)
+
+        self.bn_meas_next = QPushButton(self.frame_view_meas_fun)
+        self.bn_meas_next.setObjectName(u"bn_meas_next")
+        self.bn_meas_next.setEnabled(False)
+        sizePolicy2.setHeightForWidth(self.bn_meas_next.sizePolicy().hasHeightForWidth())
+        self.bn_meas_next.setSizePolicy(sizePolicy2)
+        self.bn_meas_next.setMinimumSize(QSize(120, 40))
+        self.bn_meas_next.setMaximumSize(QSize(240, 40))
+        self.bn_meas_next.setStyleSheet(u"QPushButton {\n"
+"    color: rgba(255,255,255,255);\n"
+"    font-weight: 900;\n"
+"	border: none;\n"
+"	background-color: rgba(0,0,0,0);\n"
+"}\n"
+"QPushButton:hover {\n"
+"	background-color: rgb(51,50,50);\n"
+"}\n"
+"QPushButton:pressed {	\n"
+"	background-color: rgba(0,0,0,0);\n"
+"}")
+        icon18 = QIcon()
+        icon18.addFile(u"icons/1x/nextAsset.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.bn_meas_next.setIcon(icon18)
+        self.bn_meas_next.setIconSize(QSize(28, 28))
+        self.bn_meas_next.setFlat(True)
+
+        self.horizontalLayout_39.addWidget(self.bn_meas_next)
+
+
+        self.verticalLayout_4.addWidget(self.frame_view_meas_fun)
+
         self.table_meas = QTableWidget(self.frame_view_measurements)
         self.table_meas.setObjectName(u"table_meas")
-        self.table_meas.setMinimumSize(QSize(680, 445))
+        self.table_meas.setMinimumSize(QSize(680, 405))
+        self.table_meas.setStyleSheet(u"QLineEdit {border: none;\n"
+" background-color: white; selection-color: white;color: black; font-weight:900;}\n"
+"\n"
+"QTableView::item:selected { color:white; background:rgb(80,180,180); font-weight:900; }\n"
+"QTableView::item { color:white; font-weight:900; }\n"
+"QTableCornerButton::section { background-color:rgb(80,80,80); }\n"
+"QHeaderView::section { border:none; color:white; background-color:rgb(80,80,80);selection-color: white }\n"
+"\n"
+"QScrollBar:vertical {\n"
+"	background:rgb(51,51,51);\n"
+"    width:20px;\n"
+"    margin: 0px 0px 0px 0px;\n"
+"}\n"
+"QScrollBar::handle:vertical {\n"
+"    background:rgb(0,143,170);\n"
+"	height: 10px;\n"
+"	width: 20px;\n"
+"}\n"
+"QScrollBar::add-page:vertical {\n"
+" 	background:rgb(51,51,51);\n"
+"}\n"
+"QScrollBar::sub-page:vertical {\n"
+" 	background:rgb(51,51,51);\n"
+"}")
         self.table_meas.setFrameShape(QFrame.NoFrame)
         self.table_meas.setFrameShadow(QFrame.Plain)
         self.table_meas.setLineWidth(0)
@@ -3185,7 +3285,7 @@ class Ui_MainWindow(object):
         self.bn_group_4.setText("")
         self.bn_group_5.setText("")
         self.bn_group_6.setText("")
-        self.bn_read_measurement.setText("")
+        self.bn_view_read_meas.setText("")
         self.bn_view_measurement.setText("")
         self.bn_view_parameters.setText("")
         self.bn_view_graph.setText("")
@@ -3194,7 +3294,7 @@ class Ui_MainWindow(object):
         self.line_meas_folder.setText("")
         self.bn_meas_open_folder.setText(QCoreApplication.translate("MainWindow", u"Prebrskaj", None))
         self.line_meas_grp_name.setText(QCoreApplication.translate("MainWindow", u"Group 1", None))
-        self.bn_read_meas_2.setText(QCoreApplication.translate("MainWindow", u"Beri", None))
+        self.bn_read_meas.setText(QCoreApplication.translate("MainWindow", u"Beri", None))
         self.lab_meas_grp_name.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#ffffff;\">Ime skupine:</span></p></body></html>", None))
         self.bn_meas_grp_rename.setText(QCoreApplication.translate("MainWindow", u"Spremeni", None))
         self.group_select_param_file.setTitle(QCoreApplication.translate("MainWindow", u"Parametri", None))
@@ -3211,6 +3311,8 @@ class Ui_MainWindow(object):
         self.combo_parameter_2.setItemText(3, QCoreApplication.translate("MainWindow", u"100000000", None))
 
         self.group_select_graph_template.setTitle(QCoreApplication.translate("MainWindow", u"Nastavitve grafov", None))
+        self.bn_meas_prev.setText("")
+        self.bn_meas_next.setText("")
         self.checkBox_5.setText(QCoreApplication.translate("MainWindow", u"Hello", None))
         self.lab_tab.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><br/></p></body></html>", None))
 #if QT_CONFIG(tooltip)

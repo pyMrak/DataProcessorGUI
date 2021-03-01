@@ -45,6 +45,7 @@ mpl.rcParams['text.color'] = 'white'
 mpl.rcParams['font.size'] = 12
 
 from DataProcessor.Data import DataGroup
+from DataProcessor.Texts import Text
 
 
 
@@ -276,7 +277,7 @@ class UIFunction(MainWindow):
         self.ui.bn_android_clean.clicked.connect(lambda: UIFunction.androidStackPages(self, "page_clean"))
         self.ui.bn_android_world.clicked.connect(lambda: UIFunction.androidStackPages(self, "page_world"))
 
-        self.ui.bn_read_measurement.clicked.connect(lambda: UIFunction.measurementStackPages(self, "page_read_measurement"))
+        self.ui.bn_view_read_meas.clicked.connect(lambda: UIFunction.measurementStackPages(self, "page_read_measurement"))
         self.ui.bn_view_measurement.clicked.connect(lambda: UIFunction.measurementStackPages(self, "page_view_measurement"))
         self.ui.bn_view_parameters.clicked.connect(lambda: UIFunction.measurementStackPages(self, "page_view_parameters"))
         self.ui.bn_view_graph.clicked.connect(lambda: UIFunction.measurementStackPages(self, "page_view_graph"))
@@ -303,7 +304,11 @@ class UIFunction(MainWindow):
         ######MEASUREMENTS > PAGE READ MEASUREMENTS >>>>>>>>>>>>>>>>>>>>>>
         self.ui.bn_meas_open_folder.clicked.connect(lambda: APFunction.openFileDialog(self))
         self.ui.bn_meas_grp_rename.clicked.connect(lambda: APFunction.changeGroupName(self))
-        self.ui.bn_read_measurement.clicked.connect(lambda: APFunction.readGroup(self))
+        self.ui.bn_read_meas.clicked.connect(lambda: APFunction.readGroup(self))
+
+        ######MEASUREMENTS > PAGE VIEW MEASUREMENTS >>>>>>>>>>>>>>>>>>>>>>
+        self.ui.bn_meas_prev.clicked.connect(lambda: APFunction.viewPrevMeas(self))
+        self.ui.bn_meas_next.clicked.connect(lambda: APFunction.viewNextMeas(self))
 
 
 
@@ -464,6 +469,17 @@ class APFunction():
         table = self.ui.table_meas
         data = self.GUIsett.getMeasurement()
         APFunction.setTable(self, table, data)
+        if self.GUIsett.isDefined():
+            self.ui.bn_meas_prev.setEnabled(True)
+            self.ui.bn_meas_next.setEnabled(True)
+        else:
+            self.ui.bn_meas_prev.setEnabled(False)
+            self.ui.bn_meas_next.setEnabled(False)
+        name, prev, nex = self.GUIsett.getMeasName()
+        if prev:
+            self.ui.bn_meas_prev.setEnabled(False)
+        if nex:
+            self.ui.bn_meas_next.setEnabled(False)
 
     def setTable(self, table, data=None):
         if data is None:
@@ -492,9 +508,19 @@ class APFunction():
         APFunction.setParamTable(self)
 
 
+
     def readGroup(self):
-        self.GUIsett.readGroup()
+        self.GUIsett.readGroup(self)
         APFunction.setMeasurementTab(self)
+
+
+    def viewPrevMeas(self):
+        self.GUIsett.viewPrevMeas()
+        APFunction.setMeasTable(self)
+
+    def viewNextMeas(self):
+        self.GUIsett.viewNextMeas()
+        APFunction.setMeasTable(self)
 
 
 
@@ -508,6 +534,7 @@ class GUIsettings(object):
         self.measGroupSettings = {}
         self.groupMeasurements = {}
         self.currentGroup = 'Group1'
+        self.GUIfunObj = GUIfunObj(self.user)
         #self.addMeasGroupSetting()
 
     def addMeasGroupSetting(self):
@@ -515,9 +542,9 @@ class GUIsettings(object):
         groupName = 'Group{0}'.format(len(self.measGroupNames)+1)
         print('adding for group '+groupName)
         self.measGroupNames[groupName] = groupName
-        self.groupMeasurements[groupName] = DataGroup()
+        self.groupMeasurements[groupName] = DataGroup(GUIobj=self.GUIfunObj)
         self.measGroupSettings[groupName] = {'folder': '',
-                                             'currIdx': 0,
+                                             'currViewIdx': 0,
                                              }
     def setFolder(self, folder):
         self.measGroupSettings[self.currentGroup]['folder'] = folder
@@ -531,12 +558,14 @@ class GUIsettings(object):
     def changeGroupName(self, groupName):
         self.measGroupNames[self.currentGroup] = groupName
 
-    def readGroup(self):
+    def readGroup(self, main):
+        self.GUIfunObj.setProgressBar(main.ui.progressBar_read_meas)
         self.groupMeasurements[self.currentGroup].readPyro('functionalLab')
+        self.GUIfunObj.resetProgessBar()
 
     def getMeasurement(self):
         if self.groupMeasurements[self.currentGroup].isDefined():
-            currIdx = self.measGroupSettings[self.currentGroup]["currIdx"]
+            currIdx = self.measGroupSettings[self.currentGroup]["currViewIdx"]
             return self.groupMeasurements[self.currentGroup][currIdx]
         else:
             return None
@@ -546,6 +575,122 @@ class GUIsettings(object):
             return self.groupMeasurements[self.currentGroup]['parameters']
         else:
             return None
+
+    def isDefined(self):
+        return self.groupMeasurements[self.currentGroup].isDefined()
+
+    def viewPrevMeas(self):
+        if self.groupMeasurements[self.currentGroup].isDefined():
+            self.measGroupSettings[self.currentGroup]["currViewIdx"] -= 1
+
+    def viewNextMeas(self):
+        if self.groupMeasurements[self.currentGroup].isDefined():
+            self.measGroupSettings[self.currentGroup]["currViewIdx"] += 1
+
+    def getMeasName(self):
+        next = False
+        prev = False
+        measName = None
+        if self.groupMeasurements[self.currentGroup].isDefined():
+            currIdx = self.measGroupSettings[self.currentGroup]["currViewIdx"]
+            measNames = list(self.groupMeasurements[self.currentGroup])
+            measName = measNames[currIdx]
+            if currIdx+1 == len(measNames):
+                next = True
+            if currIdx == 0:
+                prev = True
+        return measName, prev, next
+
+
+
+
+
+class GUIfunObj(object):
+
+    def __init__(self, username):
+        self.username = username
+        self.error = None
+        self.warnings = []
+        self.text = Text()
+        self.progGoal = 100
+        self.currProgress = 0
+        self.progressBar = None
+
+    def setLan(self, lan):
+        self.text.setLan(lan)
+
+    def checkError(self):
+        out = self.error
+        self.error = None
+        return out
+
+    def checkWarnings(self):
+        if self.checkWarnings:
+            out = self.warnings.copy()
+            self.warnings = []
+            return out
+
+    def storeWarnings(self, warnings):
+        self.warnings += warnings
+
+    def storeWarning(self, warning):
+        self.warnings.append(warning)
+
+    def storeError(self, error):
+        self.error = error
+
+    def getWarning(self, warnType, *args):
+        self.storeWarning(self.text.getWarning(warnType, *args))
+
+    def getError(self, errType, *args):
+        self.storeError(self.text.getError(errType, *args))
+
+    def checkErrors(self):
+        error = self.error
+        self.error = None
+        return error
+
+    def moveErrorsToWarnings(self):
+        error = self.checkErrors()
+        if error is not None:
+            self.storeWarning(error)
+
+    def resetProgessBar(self):
+        if self.progressBar is not None:
+            self.progressBar.setValue(0)
+
+    def setProgressBar(self, progressBar):
+        self.progressBar = progressBar
+
+
+
+    def getProgressBar(self, iterable):
+        class ProgressBar:
+            def __init__(self, iterable, progressBar):
+                self.iterable = iterable
+                self.progressBar = progressBar
+
+            def __iter__(self):
+                class ProgressIterator:
+                    def __init__(self, iterator, progressBar):
+                        self.currProgress = 0
+                        self.progressBar = progressBar
+                        self.progGoal = len(iterator)
+                        self.iterator = iterator.__iter__()
+
+                    def __next__(self):
+                        o = 'out'
+                        if self.progressBar is not None:
+                            o = 'in'
+                            progress = int((self.currProgress / self.progGoal) * 100)
+                            self.progressBar.setValue(progress)
+                        self.currProgress += 1
+                        print(o, self.currProgress)
+                        return self.iterator.__next__()
+
+                return ProgressIterator(self.iterable, self.progressBar)
+
+        return ProgressBar(iterable, self.progressBar)
 
 class GUIgraph():
 
@@ -642,6 +787,7 @@ class MeasurementGroup():
     def changeData(self):
         self.main.ui.line_meas_folder.setText(self.main.GUIsett.measGroupSettings[self.name]['folder'])
         self.main.ui.line_meas_grp_name.setText(self.main.GUIsett.measGroupNames[self.name])
+        APFunction.setMeasTable(self.main)
         APFunction.setParamTable(self.main)
         # TODO dodaj da nastavi ostale stvari
 
