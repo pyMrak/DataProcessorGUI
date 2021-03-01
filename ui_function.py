@@ -44,6 +44,8 @@ import matplotlib as mpl
 mpl.rcParams['text.color'] = 'white'
 mpl.rcParams['font.size'] = 12
 
+from DataProcessor.Data import DataGroup
+
 
 
 
@@ -301,6 +303,7 @@ class UIFunction(MainWindow):
         ######MEASUREMENTS > PAGE READ MEASUREMENTS >>>>>>>>>>>>>>>>>>>>>>
         self.ui.bn_meas_open_folder.clicked.connect(lambda: APFunction.openFileDialog(self))
         self.ui.bn_meas_grp_rename.clicked.connect(lambda: APFunction.changeGroupName(self))
+        self.ui.bn_read_measurement.clicked.connect(lambda: APFunction.readGroup(self))
 
 
 
@@ -454,12 +457,12 @@ class APFunction():
 
     def setParamTable(self):
         table = self.ui.table_parameters
-        data = 'a'#None
+        data = self.GUIsett.getParameters()
         APFunction.setTable(self, table, data)
 
     def setMeasTable(self):
-        table = self.ui.table_measurements
-        data = 'a'#None
+        table = self.ui.table_meas
+        data = self.GUIsett.getMeasurement()
         APFunction.setTable(self, table, data)
 
     def setTable(self, table, data=None):
@@ -467,20 +470,31 @@ class APFunction():
             table.setRowCount(0)
             table.setColumnCount(0)
         else:
+            dataShape = data.shape()
             # Row count
-            table.setRowCount(3)
+            table.setRowCount(dataShape[0])
 
             # Column count
-            table.setColumnCount(2)
+            table.setColumnCount(dataShape[1])
+            for i, entity in enumerate(data):
+                table.setHorizontalHeaderItem(i, QTableWidgetItem(entity))
+                for j, dPoint in enumerate(data[entity]):
+            #table.setHorizontalHeaderItem(1, QTableWidgetItem("City"))
+                    table.setItem(j, i, QTableWidgetItem(str(dPoint)))
+            # table.setItem(0, 1, QTableWidgetItem("Indore"))
+            # table.setItem(1, 0, QTableWidgetItem("Alan"))
+            # table.setItem(1, 1, QTableWidgetItem("Bhopal"))
+            # table.setItem(2, 0, QTableWidgetItem("Arnavi"))
+            # table.setItem(2, 1, QTableWidgetItem("Mandsaur"))
 
-            table.setHorizontalHeaderItem(0, QTableWidgetItem("Name"))
-            table.setHorizontalHeaderItem(1, QTableWidgetItem("City"))
-            table.setItem(0, 0, QTableWidgetItem("Aloysius"))
-            table.setItem(0, 1, QTableWidgetItem("Indore"))
-            table.setItem(1, 0, QTableWidgetItem("Alan"))
-            table.setItem(1, 1, QTableWidgetItem("Bhopal"))
-            table.setItem(2, 0, QTableWidgetItem("Arnavi"))
-            table.setItem(2, 1, QTableWidgetItem("Mandsaur"))
+    def setMeasurementTab(self):
+        APFunction.setMeasTable(self)
+        APFunction.setParamTable(self)
+
+
+    def readGroup(self):
+        self.GUIsett.readGroup()
+        APFunction.setMeasurementTab(self)
 
 
 
@@ -492,6 +506,7 @@ class GUIsettings(object):
         self.user = user
         self.measGroupNames = {}
         self.measGroupSettings = {}
+        self.groupMeasurements = {}
         self.currentGroup = 'Group1'
         #self.addMeasGroupSetting()
 
@@ -500,10 +515,13 @@ class GUIsettings(object):
         groupName = 'Group{0}'.format(len(self.measGroupNames)+1)
         print('adding for group '+groupName)
         self.measGroupNames[groupName] = groupName
+        self.groupMeasurements[groupName] = DataGroup()
         self.measGroupSettings[groupName] = {'folder': '',
+                                             'currIdx': 0,
                                              }
     def setFolder(self, folder):
         self.measGroupSettings[self.currentGroup]['folder'] = folder
+        self.groupMeasurements[self.currentGroup].setFolder(folder)
 
     def setCurrentGroup(self, group):
         if group[:-1] == 'Group':
@@ -513,6 +531,21 @@ class GUIsettings(object):
     def changeGroupName(self, groupName):
         self.measGroupNames[self.currentGroup] = groupName
 
+    def readGroup(self):
+        self.groupMeasurements[self.currentGroup].readPyro('functionalLab')
+
+    def getMeasurement(self):
+        if self.groupMeasurements[self.currentGroup].isDefined():
+            currIdx = self.measGroupSettings[self.currentGroup]["currIdx"]
+            return self.groupMeasurements[self.currentGroup][currIdx]
+        else:
+            return None
+
+    def getParameters(self):
+        if self.groupMeasurements[self.currentGroup].parametersDefined():
+            return self.groupMeasurements[self.currentGroup]['parameters']
+        else:
+            return None
 
 class GUIgraph():
 
