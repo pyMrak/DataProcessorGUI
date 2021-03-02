@@ -309,6 +309,7 @@ class UIFunction(MainWindow):
         ######MEASUREMENTS > PAGE VIEW MEASUREMENTS >>>>>>>>>>>>>>>>>>>>>>
         self.ui.bn_meas_prev.clicked.connect(lambda: APFunction.viewPrevMeas(self))
         self.ui.bn_meas_next.clicked.connect(lambda: APFunction.viewNextMeas(self))
+        self.ui.bn_show_meas.clicked.connect(lambda: APFunction.showMeas(self))
 
 
 
@@ -480,6 +481,7 @@ class APFunction():
             self.ui.bn_meas_prev.setEnabled(False)
         if nex:
             self.ui.bn_meas_next.setEnabled(False)
+        self.ui.line_view_meas.setText(name)
 
     def setTable(self, table, data=None):
         if data is None:
@@ -521,6 +523,15 @@ class APFunction():
     def viewNextMeas(self):
         self.GUIsett.viewNextMeas()
         APFunction.setMeasTable(self)
+
+    def showMeas(self):
+        measName = self.ui.line_view_meas.text()
+        name, exists = self.GUIsett.getMeas(measName)
+        if not exists:
+            self.errorexec("Datoteka '{0}' v izbrani skupini ne obstaja".format(measName), "icons/1x/errorAsset 55.png", "OK")
+            self.ui.line_view_meas.setText(name)
+        else:
+            APFunction.setMeasTable(self)
 
 
 
@@ -600,6 +611,16 @@ class GUIsettings(object):
             if currIdx == 0:
                 prev = True
         return measName, prev, next
+
+    def getMeas(self, measName):
+        if measName in self.groupMeasurements[self.currentGroup]:
+            idx = list(self.groupMeasurements[self.currentGroup]).index(measName)
+            self.measGroupSettings[self.currentGroup]["currViewIdx"] = idx
+            return measName, True
+        else:
+            currIdx = self.measGroupSettings[self.currentGroup]["currViewIdx"]
+            measNames = list(self.groupMeasurements[self.currentGroup])
+            return measNames[currIdx], False
 
 
 

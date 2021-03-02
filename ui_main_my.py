@@ -2955,6 +2955,68 @@ class Ui_MainWindow(object):
         self.frame_4.setMaximumSize(QSize(16777215, 40))
         self.frame_4.setFrameShape(QFrame.StyledPanel)
         self.frame_4.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_40 = QHBoxLayout(self.frame_4)
+        self.horizontalLayout_40.setObjectName(u"horizontalLayout_40")
+        self.horizontalSpacer_10 = QSpacerItem(105, 17, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_40.addItem(self.horizontalSpacer_10)
+
+        self.line_view_meas = QLineEdit(self.frame_4)
+        self.line_view_meas.setObjectName(u"line_view_meas")
+        self.line_view_meas.setEnabled(True)
+        self.line_view_meas.setMinimumSize(QSize(100, 25))
+        self.line_view_meas.setMaximumSize(QSize(150, 25))
+        self.line_view_meas.setFont(font6)
+        self.line_view_meas.setStyleSheet(u"QLineEdit {\n"
+"	color:rgb(255,255,255);\n"
+"	border:2px solid rgb(51,51,51);\n"
+"	border-radius:4px;\n"
+"	background:rgb(51,51,51);\n"
+"}\n"
+"\n"
+"QLineEdit:disabled {\n"
+"	color:rgb(255,255,255);\n"
+"	border:2px solid rgb(112,112,112);\n"
+"	border-radius:4px;\n"
+"	background:rgb(112,112,112);\n"
+"}")
+
+        self.horizontalLayout_40.addWidget(self.line_view_meas)
+
+        self.bn_show_meas = QPushButton(self.frame_4)
+        self.bn_show_meas.setObjectName(u"bn_show_meas")
+        self.bn_show_meas.setMinimumSize(QSize(80, 25))
+        self.bn_show_meas.setMaximumSize(QSize(80, 25))
+        self.bn_show_meas.setFont(font6)
+        self.bn_show_meas.setStyleSheet(u"QPushButton {\n"
+"	border: 2px solid rgb(51,51,51);\n"
+"	border-radius: 5px;	\n"
+"	color:rgb(255,255,255);\n"
+"	background-color: rgb(51,51,51);\n"
+"}\n"
+"QPushButton:hover {\n"
+"	border: 2px solid rgb(0,143,150);\n"
+"	background-color: rgb(0,143,150);\n"
+"}\n"
+"QPushButton:pressed {	\n"
+"	border: 2px solid rgb(0,143,150);\n"
+"	background-color: rgb(51,51,51);\n"
+"}\n"
+"\n"
+"QPushButton:disabled {	\n"
+"	border-radius: 5px;	\n"
+"	border: 2px solid rgb(112,112,112);\n"
+"	background-color: rgb(112,112,112);\n"
+"}")
+        self.bn_show_meas.setCheckable(False)
+        self.bn_show_meas.setFlat(True)
+
+        self.horizontalLayout_40.addWidget(self.bn_show_meas)
+
+        self.horizontalSpacer_11 = QSpacerItem(104, 17, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_40.addItem(self.horizontalSpacer_11)
+
 
         self.horizontalLayout_39.addWidget(self.frame_4)
 
@@ -3312,6 +3374,8 @@ class Ui_MainWindow(object):
 
         self.group_select_graph_template.setTitle(QCoreApplication.translate("MainWindow", u"Nastavitve grafov", None))
         self.bn_meas_prev.setText("")
+        self.line_view_meas.setText("")
+        self.bn_show_meas.setText(QCoreApplication.translate("MainWindow", u"Prika\u017ei", None))
         self.bn_meas_next.setText("")
         self.checkBox_5.setText(QCoreApplication.translate("MainWindow", u"Hello", None))
         self.lab_tab.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><br/></p></body></html>", None))
