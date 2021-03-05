@@ -2060,7 +2060,7 @@ class Ui_MainWindow(object):
         sizePolicy2.setHeightForWidth(self.bn_group_1.sizePolicy().hasHeightForWidth())
         self.bn_group_1.setSizePolicy(sizePolicy2)
         self.bn_group_1.setMinimumSize(QSize(120, 30))
-        self.bn_group_1.setMaximumSize(QSize(240, 30))
+        self.bn_group_1.setMaximumSize(QSize(16777215, 30))
         self.bn_group_1.setStyleSheet(u"QPushButton {\n"
 "    color: rgba(255,255,255,255);\n"
 "    font-weight: 900;\n"
@@ -2096,7 +2096,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.bn_group_2.sizePolicy().hasHeightForWidth())
         self.bn_group_2.setSizePolicy(sizePolicy)
         self.bn_group_2.setMinimumSize(QSize(120, 30))
-        self.bn_group_2.setMaximumSize(QSize(240, 30))
+        self.bn_group_2.setMaximumSize(QSize(16777215, 30))
         self.bn_group_2.setStyleSheet(u"QPushButton {\n"
 "    color: rgba(255,255,255,255);\n"
 "    font-weight: 900;\n"
@@ -2135,7 +2135,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.bn_group_3.sizePolicy().hasHeightForWidth())
         self.bn_group_3.setSizePolicy(sizePolicy)
         self.bn_group_3.setMinimumSize(QSize(120, 30))
-        self.bn_group_3.setMaximumSize(QSize(240, 30))
+        self.bn_group_3.setMaximumSize(QSize(16777215, 30))
         self.bn_group_3.setStyleSheet(u"QPushButton {\n"
 "    color: rgba(255,255,255,255);\n"
 "    font-weight: 900;\n"
@@ -2171,7 +2171,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.bn_group_4.sizePolicy().hasHeightForWidth())
         self.bn_group_4.setSizePolicy(sizePolicy)
         self.bn_group_4.setMinimumSize(QSize(120, 30))
-        self.bn_group_4.setMaximumSize(QSize(240, 30))
+        self.bn_group_4.setMaximumSize(QSize(16777215, 30))
         self.bn_group_4.setStyleSheet(u"QPushButton {\n"
 "    color: rgba(255,255,255,255);\n"
 "    font-weight: 900;\n"
@@ -2206,7 +2206,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.bn_group_5.sizePolicy().hasHeightForWidth())
         self.bn_group_5.setSizePolicy(sizePolicy)
         self.bn_group_5.setMinimumSize(QSize(120, 30))
-        self.bn_group_5.setMaximumSize(QSize(240, 30))
+        self.bn_group_5.setMaximumSize(QSize(16777215, 30))
         self.bn_group_5.setStyleSheet(u"QPushButton {\n"
 "    color: rgba(255,255,255,255);\n"
 "    font-weight: 900;\n"
@@ -2242,7 +2242,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.bn_group_6.sizePolicy().hasHeightForWidth())
         self.bn_group_6.setSizePolicy(sizePolicy)
         self.bn_group_6.setMinimumSize(QSize(120, 30))
-        self.bn_group_6.setMaximumSize(QSize(240, 30))
+        self.bn_group_6.setMaximumSize(QSize(16777215, 30))
         self.bn_group_6.setStyleSheet(u"QPushButton {\n"
 "    color: rgba(255,255,255,255);\n"
 "    font-weight: 900;\n"
@@ -2485,7 +2485,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_18 = QVBoxLayout(self.group_select_meas_fold)
         self.verticalLayout_18.setSpacing(0)
         self.verticalLayout_18.setObjectName(u"verticalLayout_18")
-        self.verticalLayout_18.setContentsMargins(5, 5, 0, 0)
+        self.verticalLayout_18.setContentsMargins(5, 15, 0, 0)
         self.frame_7 = QFrame(self.group_select_meas_fold)
         self.frame_7.setObjectName(u"frame_7")
         self.frame_7.setMinimumSize(QSize(680, 25))
@@ -2840,6 +2840,7 @@ class Ui_MainWindow(object):
         self.frame_select_param_file = QFrame(self.frame_read_measurements)
         self.frame_select_param_file.setObjectName(u"frame_select_param_file")
         self.frame_select_param_file.setMinimumSize(QSize(680, 100))
+        self.frame_select_param_file.setMaximumSize(QSize(16777215, 100))
         self.frame_select_param_file.setFrameShape(QFrame.StyledPanel)
         self.frame_select_param_file.setFrameShadow(QFrame.Raised)
         self.verticalLayout_16 = QVBoxLayout(self.frame_select_param_file)
@@ -3220,22 +3221,25 @@ class Ui_MainWindow(object):
         self.stackedWidget_measurements.addWidget(self.page_read_measurements)
         self.page_view_measurements = QWidget()
         self.page_view_measurements.setObjectName(u"page_view_measurements")
+        self.page_view_measurements.setMaximumSize(QSize(16777215, 16777215))
         self.verticalLayout_93 = QVBoxLayout(self.page_view_measurements)
         self.verticalLayout_93.setSpacing(0)
         self.verticalLayout_93.setObjectName(u"verticalLayout_93")
         self.verticalLayout_93.setContentsMargins(0, 0, 0, 0)
         self.frame_view_measurements = QFrame(self.page_view_measurements)
         self.frame_view_measurements.setObjectName(u"frame_view_measurements")
-        self.frame_view_measurements.setMinimumSize(QSize(680, 445))
+        self.frame_view_measurements.setMinimumSize(QSize(500, 1000))
         self.frame_view_measurements.setFrameShape(QFrame.NoFrame)
         self.frame_view_measurements.setFrameShadow(QFrame.Plain)
-        self.verticalLayout_4 = QVBoxLayout(self.frame_view_measurements)
-        self.verticalLayout_4.setSpacing(0)
-        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.frame_view_measurements.setLineWidth(0)
+        self.verticalLayout_27 = QVBoxLayout(self.frame_view_measurements)
+        self.verticalLayout_27.setSpacing(0)
+        self.verticalLayout_27.setObjectName(u"verticalLayout_27")
+        self.verticalLayout_27.setContentsMargins(0, 0, 0, 0)
         self.frame_view_meas_fun = QFrame(self.frame_view_measurements)
         self.frame_view_meas_fun.setObjectName(u"frame_view_meas_fun")
         self.frame_view_meas_fun.setMinimumSize(QSize(0, 40))
+        self.frame_view_meas_fun.setMaximumSize(QSize(16777215, 40))
         self.frame_view_meas_fun.setFrameShape(QFrame.NoFrame)
         self.frame_view_meas_fun.setFrameShadow(QFrame.Plain)
         self.frame_view_meas_fun.setLineWidth(0)
@@ -3274,10 +3278,11 @@ class Ui_MainWindow(object):
         self.frame_4.setObjectName(u"frame_4")
         self.frame_4.setMinimumSize(QSize(440, 40))
         self.frame_4.setMaximumSize(QSize(16777215, 40))
-        self.frame_4.setFrameShape(QFrame.StyledPanel)
-        self.frame_4.setFrameShadow(QFrame.Raised)
+        self.frame_4.setFrameShape(QFrame.NoFrame)
+        self.frame_4.setFrameShadow(QFrame.Plain)
         self.horizontalLayout_40 = QHBoxLayout(self.frame_4)
         self.horizontalLayout_40.setObjectName(u"horizontalLayout_40")
+        self.horizontalLayout_40.setContentsMargins(0, 0, 0, 0)
         self.horizontalSpacer_10 = QSpacerItem(105, 17, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_40.addItem(self.horizontalSpacer_10)
@@ -3288,6 +3293,7 @@ class Ui_MainWindow(object):
         self.line_view_meas.setMinimumSize(QSize(100, 25))
         self.line_view_meas.setMaximumSize(QSize(150, 25))
         self.line_view_meas.setFont(font6)
+        self.line_view_meas.setAutoFillBackground(False)
         self.line_view_meas.setStyleSheet(u"QLineEdit {\n"
 "	color:rgb(255,255,255);\n"
 "	border:2px solid rgb(51,51,51);\n"
@@ -3368,12 +3374,25 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_39.addWidget(self.bn_meas_next)
 
+        self.frame_4.raise_()
+        self.bn_meas_next.raise_()
+        self.bn_meas_prev.raise_()
 
-        self.verticalLayout_4.addWidget(self.frame_view_meas_fun)
+        self.verticalLayout_27.addWidget(self.frame_view_meas_fun)
 
-        self.table_meas = QTableWidget(self.frame_view_measurements)
+        self.frame_table_meas = QFrame(self.frame_view_measurements)
+        self.frame_table_meas.setObjectName(u"frame_table_meas")
+        self.frame_table_meas.setMinimumSize(QSize(680, 0))
+        self.frame_table_meas.setFrameShape(QFrame.NoFrame)
+        self.frame_table_meas.setFrameShadow(QFrame.Plain)
+        self.frame_table_meas.setLineWidth(0)
+        self.verticalLayout_4 = QVBoxLayout(self.frame_table_meas)
+        self.verticalLayout_4.setSpacing(0)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.table_meas = QTableWidget(self.frame_table_meas)
         self.table_meas.setObjectName(u"table_meas")
-        self.table_meas.setMinimumSize(QSize(680, 405))
+        self.table_meas.setMinimumSize(QSize(680, 400))
         self.table_meas.setStyleSheet(u"QLineEdit {border: none;\n"
 " background-color: white; selection-color: white;color: black; font-weight:900;}\n"
 "\n"
@@ -3403,6 +3422,9 @@ class Ui_MainWindow(object):
         self.table_meas.setLineWidth(0)
 
         self.verticalLayout_4.addWidget(self.table_meas)
+
+
+        self.verticalLayout_27.addWidget(self.frame_table_meas)
 
 
         self.verticalLayout_93.addWidget(self.frame_view_measurements)

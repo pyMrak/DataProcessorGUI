@@ -4333,7 +4333,7 @@ QSlider::sub-page:horizondal {
                          </property>
                          <property name="maximumSize">
                           <size>
-                           <width>240</width>
+                           <width>16777215</width>
                            <height>30</height>
                           </size>
                          </property>
@@ -4414,7 +4414,7 @@ QPushButton:pressed {
                          </property>
                          <property name="maximumSize">
                           <size>
-                           <width>240</width>
+                           <width>16777215</width>
                            <height>30</height>
                           </size>
                          </property>
@@ -4499,7 +4499,7 @@ QPushButton:pressed {
                          </property>
                          <property name="maximumSize">
                           <size>
-                           <width>240</width>
+                           <width>16777215</width>
                            <height>30</height>
                           </size>
                          </property>
@@ -4580,7 +4580,7 @@ QPushButton:pressed {
                          </property>
                          <property name="maximumSize">
                           <size>
-                           <width>240</width>
+                           <width>16777215</width>
                            <height>30</height>
                           </size>
                          </property>
@@ -4658,7 +4658,7 @@ QPushButton:pressed {
                          </property>
                          <property name="maximumSize">
                           <size>
-                           <width>240</width>
+                           <width>16777215</width>
                            <height>30</height>
                           </size>
                          </property>
@@ -4742,7 +4742,7 @@ QPushButton:pressed {
                          </property>
                          <property name="maximumSize">
                           <size>
-                           <width>240</width>
+                           <width>16777215</width>
                            <height>30</height>
                           </size>
                          </property>
@@ -6067,6 +6067,12 @@ QProgressBar::chunk{
                                <height>100</height>
                               </size>
                              </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>100</height>
+                              </size>
+                             </property>
                              <property name="frameShape">
                               <enum>QFrame::StyledPanel</enum>
                              </property>
@@ -6809,6 +6815,12 @@ QPushButton:disabled {
                        </layout>
                       </widget>
                       <widget class="QWidget" name="page_view_measurements">
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>16777215</height>
+                        </size>
+                       </property>
                        <layout class="QVBoxLayout" name="verticalLayout_9">
                         <property name="spacing">
                          <number>0</number>
@@ -6829,8 +6841,8 @@ QPushButton:disabled {
                          <widget class="QFrame" name="frame_view_measurements">
                           <property name="minimumSize">
                            <size>
-                            <width>680</width>
-                            <height>445</height>
+                            <width>500</width>
+                            <height>1000</height>
                            </size>
                           </property>
                           <property name="frameShape">
@@ -6839,7 +6851,10 @@ QPushButton:disabled {
                           <property name="frameShadow">
                            <enum>QFrame::Plain</enum>
                           </property>
-                          <layout class="QVBoxLayout" name="verticalLayout_4">
+                          <property name="lineWidth">
+                           <number>0</number>
+                          </property>
+                          <layout class="QVBoxLayout" name="verticalLayout_27">
                            <property name="spacing">
                             <number>0</number>
                            </property>
@@ -6860,6 +6875,12 @@ QPushButton:disabled {
                              <property name="minimumSize">
                               <size>
                                <width>0</width>
+                               <height>40</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
                                <height>40</height>
                               </size>
                              </property>
@@ -6958,12 +6979,24 @@ QPushButton:pressed {
                                  </size>
                                 </property>
                                 <property name="frameShape">
-                                 <enum>QFrame::StyledPanel</enum>
+                                 <enum>QFrame::NoFrame</enum>
                                 </property>
                                 <property name="frameShadow">
-                                 <enum>QFrame::Raised</enum>
+                                 <enum>QFrame::Plain</enum>
                                 </property>
                                 <layout class="QHBoxLayout" name="horizontalLayout_40">
+                                 <property name="leftMargin">
+                                  <number>0</number>
+                                 </property>
+                                 <property name="topMargin">
+                                  <number>0</number>
+                                 </property>
+                                 <property name="rightMargin">
+                                  <number>0</number>
+                                 </property>
+                                 <property name="bottomMargin">
+                                  <number>0</number>
+                                 </property>
                                  <item>
                                   <spacer name="horizontalSpacer_10">
                                    <property name="orientation">
@@ -6999,6 +7032,9 @@ QPushButton:pressed {
                                      <family>Segoe UI</family>
                                      <pointsize>12</pointsize>
                                     </font>
+                                   </property>
+                                   <property name="autoFillBackground">
+                                    <bool>false</bool>
                                    </property>
                                    <property name="styleSheet">
                                     <string notr="true">QLineEdit {
@@ -7145,18 +7181,54 @@ QPushButton:pressed {
                                </widget>
                               </item>
                              </layout>
+                             <zorder>frame_4</zorder>
+                             <zorder>bn_meas_next</zorder>
+                             <zorder>bn_meas_prev</zorder>
                             </widget>
                            </item>
                            <item>
-                            <widget class="QTableWidget" name="table_meas">
+                            <widget class="QFrame" name="frame_table_meas">
                              <property name="minimumSize">
                               <size>
                                <width>680</width>
-                               <height>405</height>
+                               <height>0</height>
                               </size>
                              </property>
-                             <property name="styleSheet">
-                              <string notr="true">QLineEdit {border: none;
+                             <property name="frameShape">
+                              <enum>QFrame::NoFrame</enum>
+                             </property>
+                             <property name="frameShadow">
+                              <enum>QFrame::Plain</enum>
+                             </property>
+                             <property name="lineWidth">
+                              <number>0</number>
+                             </property>
+                             <layout class="QVBoxLayout" name="verticalLayout_4">
+                              <property name="spacing">
+                               <number>0</number>
+                              </property>
+                              <property name="leftMargin">
+                               <number>0</number>
+                              </property>
+                              <property name="topMargin">
+                               <number>0</number>
+                              </property>
+                              <property name="rightMargin">
+                               <number>0</number>
+                              </property>
+                              <property name="bottomMargin">
+                               <number>0</number>
+                              </property>
+                              <item>
+                               <widget class="QTableWidget" name="table_meas">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>680</width>
+                                  <height>400</height>
+                                 </size>
+                                </property>
+                                <property name="styleSheet">
+                                 <string notr="true">QLineEdit {border: none;
  background-color: white; selection-color: white;color: black; font-weight:900;}
 
 QTableView::item:selected { color:white; background:rgb(80,180,180); font-weight:900; }
@@ -7180,16 +7252,19 @@ QScrollBar::add-page:vertical {
 QScrollBar::sub-page:vertical {
  	background:rgb(51,51,51);
 }</string>
-                             </property>
-                             <property name="frameShape">
-                              <enum>QFrame::NoFrame</enum>
-                             </property>
-                             <property name="frameShadow">
-                              <enum>QFrame::Plain</enum>
-                             </property>
-                             <property name="lineWidth">
-                              <number>0</number>
-                             </property>
+                                </property>
+                                <property name="frameShape">
+                                 <enum>QFrame::NoFrame</enum>
+                                </property>
+                                <property name="frameShadow">
+                                 <enum>QFrame::Plain</enum>
+                                </property>
+                                <property name="lineWidth">
+                                 <number>0</number>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
                             </widget>
                            </item>
                           </layout>

@@ -46,7 +46,9 @@ mpl.rcParams['font.size'] = 12
 
 from DataProcessor.Data import DataGroup
 from DataProcessor.Texts import Text
+from DataProcessor.Graph import GraphWrapper
 from DataProcessor import Basic
+
 
 
 
@@ -306,6 +308,7 @@ class UIFunction(MainWindow):
         self.ui.bn_meas_open_folder.clicked.connect(lambda: APFunction.openFileDialog(self))
         self.ui.bn_meas_grp_rename.clicked.connect(lambda: APFunction.changeGroupName(self))
         self.ui.bn_read_meas.clicked.connect(lambda: APFunction.readGroup(self))
+        self.ui.bn_graph_format.clicked.connect(lambda: APFunction.plotGraph(self))
 
         APFunction.updateMeasCombos(self)
         self.ui.bn_update_par_files.clicked.connect(lambda: APFunction.getParamFunFiles(self))
@@ -375,7 +378,6 @@ class UIFunction(MainWindow):
 
 
         elif page == "page_view_graph":
-            APFunction.drawGaph(self)
             self.ui.stackedWidget_measurements.setCurrentWidget(self.ui.page_view_graphs)
             self.ui.lab_tab.setText("Measurement > View graph")
             self.ui.frame_view_graph.setStyleSheet("background:rgb(91,90,90)")
@@ -526,6 +528,7 @@ class APFunction():
         self.GUIsett.readGroup(self)
         APFunction.setMeasTable(self)
         APFunction.readParam(self)
+        APFunction.plotGraph(self)
 
 
     def readParam(self):
@@ -577,6 +580,16 @@ class APFunction():
         APFunction.getHeaderFiles(self)
         APFunction.getGraphFiles(self)
 
+    def plotGraph(self):
+        graphFile = self.ui.combo_graph.currentText()
+        if graphFile:
+            self.GUIsett.setGraphFile(graphFile)
+        graphFile = self.GUIsett.getGraphFile()
+        if graphFile is not None:
+            self.graph.setGraphFile(graphFile)
+        mg = self.GUIsett.getMeasGroup()
+        self.graph.plot(mg)
+
 
 
 
@@ -602,6 +615,7 @@ class GUIsettings(object):
                                              'currViewIdx': 0,
                                              'hdrFile': None,
                                              'paramFile': None,
+                                             'grfFile': None
                                              }
     def setFolder(self, folder):
         self.measGroupSettings[self.currentGroup]['folder'] = folder
@@ -633,6 +647,10 @@ class GUIsettings(object):
             return self.groupMeasurements[self.currentGroup][currIdx]
         else:
             return None
+
+    def getMeasGroup(self):
+        return self.groupMeasurements[self.currentGroup]
+
 
     def getParameters(self):
         if self.groupMeasurements[self.currentGroup].parametersDefined():
@@ -680,6 +698,15 @@ class GUIsettings(object):
 
     def setParamFile(self, paramFile):
         self.measGroupSettings[self.currentGroup]['paramFile'] = paramFile
+
+    def getCurrGroup(self):
+        return self.currentGroup
+
+    def setGraphFile(self, graphFile):
+        self.measGroupSettings[self.currentGroup]['grfFile'] = graphFile
+
+    def getGraphFile(self):
+        return self.measGroupSettings[self.currentGroup]['grfFile']
 
 
 
@@ -777,6 +804,7 @@ class GUIfunObj(object):
 class GUIgraph():
 
     def __init__(self, main):
+        self.graph = GraphWrapper(GUIobj=main.GUIsett.GUIfunObj, mlObj=self)
         self.layout = QtWidgMat.QVBoxLayout(main.ui.page_view_graphs)
         self.figure = Figure()
         self.bacgroundHex = QColor.fromRgb(qRgb(91, 90, 90)).name()
@@ -818,6 +846,15 @@ class GUIgraph():
         self.ax2.tick_params(colors=self.markingsHex)
         self.ax2.xaxis.label.set_color(self.markingsHex)
         self.ax2.yaxis.label.set_color(self.markingsHex)
+
+    def plot(self, dgObj):
+        self.graph.draw(dgObj)
+
+    def setGraphFile(self, graphFile):
+        self.graph.setGraphSettings(graphFile)
+
+
+
 
 
 class MeasurementGroup():
