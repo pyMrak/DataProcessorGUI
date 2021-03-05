@@ -46,6 +46,7 @@ mpl.rcParams['font.size'] = 12
 
 from DataProcessor.Data import DataGroup
 from DataProcessor.Texts import Text
+from DataProcessor import Basic
 
 
 
@@ -306,6 +307,12 @@ class UIFunction(MainWindow):
         self.ui.bn_meas_grp_rename.clicked.connect(lambda: APFunction.changeGroupName(self))
         self.ui.bn_read_meas.clicked.connect(lambda: APFunction.readGroup(self))
 
+        APFunction.updateMeasCombos(self)
+        self.ui.bn_update_par_files.clicked.connect(lambda: APFunction.getParamFunFiles(self))
+        self.ui.bn_update_hdr_files.clicked.connect(lambda: APFunction.getHeaderFiles(self))
+        self.ui.bn_update_graph_files.clicked.connect(lambda: APFunction.getGraphFiles(self))
+
+
         ######MEASUREMENTS > PAGE VIEW MEASUREMENTS >>>>>>>>>>>>>>>>>>>>>>
         self.ui.bn_meas_prev.clicked.connect(lambda: APFunction.viewPrevMeas(self))
         self.ui.bn_meas_next.clicked.connect(lambda: APFunction.viewNextMeas(self))
@@ -495,6 +502,7 @@ class APFunction():
             # Column count
             table.setColumnCount(dataShape[1])
             for i, entity in enumerate(data):
+                print('entity:', entity)
                 table.setHorizontalHeaderItem(i, QTableWidgetItem(entity))
                 for j, dPoint in enumerate(data[entity]):
             #table.setHorizontalHeaderItem(1, QTableWidgetItem("City"))
@@ -512,9 +520,20 @@ class APFunction():
 
 
     def readGroup(self):
+        hdrFile = self.ui.combo_header.currentText()
+        if hdrFile:
+            self.GUIsett.setHdrFile(hdrFile)
         self.GUIsett.readGroup(self)
-        APFunction.setMeasurementTab(self)
+        APFunction.setMeasTable(self)
+        APFunction.readParam(self)
 
+
+    def readParam(self):
+        paramFile = self.ui.combo_parameter.currentText()
+        if paramFile:
+            self.GUIsett.setParamFile(paramFile)
+        self.GUIsett.readParam()
+        APFunction.setParamTable(self)
 
     def viewPrevMeas(self):
         self.GUIsett.viewPrevMeas()
@@ -532,6 +551,31 @@ class APFunction():
             self.ui.line_view_meas.setText(name)
         else:
             APFunction.setMeasTable(self)
+    @staticmethod
+    def changeCombo(combo, fileFun, GUIobj):
+        combo.clear()
+        for file in fileFun(GUIobj):
+            combo.addItem(QIcon(), file)
+
+    def getParamFunFiles(self):
+        APFunction.changeCombo(self.ui.combo_parameter,
+                               Basic.getUserParFunFiles,
+                               self.GUIsett.GUIfunObj)
+
+    def getHeaderFiles(self):
+        APFunction.changeCombo(self.ui.combo_header,
+                               Basic.getUserHdrFiles,
+                               self.GUIsett.GUIfunObj)
+
+    def getGraphFiles(self):
+        APFunction.changeCombo(self.ui.combo_graph,
+                               Basic.getUserGrfFiles,
+                               self.GUIsett.GUIfunObj)
+
+    def updateMeasCombos(self):
+        APFunction.getParamFunFiles(self)
+        APFunction.getHeaderFiles(self)
+        APFunction.getGraphFiles(self)
 
 
 
@@ -556,6 +600,8 @@ class GUIsettings(object):
         self.groupMeasurements[groupName] = DataGroup(GUIobj=self.GUIfunObj)
         self.measGroupSettings[groupName] = {'folder': '',
                                              'currViewIdx': 0,
+                                             'hdrFile': None,
+                                             'paramFile': None,
                                              }
     def setFolder(self, folder):
         self.measGroupSettings[self.currentGroup]['folder'] = folder
@@ -571,8 +617,15 @@ class GUIsettings(object):
 
     def readGroup(self, main):
         self.GUIfunObj.setProgressBar(main.ui.progressBar_read_meas)
-        self.groupMeasurements[self.currentGroup].readPyro('functionalLab')
+        hdrFile = self.measGroupSettings[self.currentGroup]['hdrFile']
+        if hdrFile is not None:
+            self.groupMeasurements[self.currentGroup].readPyro(hdrFile)
         self.GUIfunObj.resetProgessBar()
+
+    def readParam(self):
+        paramFile = self.measGroupSettings[self.currentGroup]['paramFile']
+        if paramFile is not None:
+            self.groupMeasurements[self.currentGroup].getParameters(paramFile)
 
     def getMeasurement(self):
         if self.groupMeasurements[self.currentGroup].isDefined():
@@ -621,6 +674,14 @@ class GUIsettings(object):
             currIdx = self.measGroupSettings[self.currentGroup]["currViewIdx"]
             measNames = list(self.groupMeasurements[self.currentGroup])
             return measNames[currIdx], False
+
+    def setHdrFile(self, hdrFile):
+        self.measGroupSettings[self.currentGroup]['hdrFile'] = hdrFile
+
+    def setParamFile(self, paramFile):
+        self.measGroupSettings[self.currentGroup]['paramFile'] = paramFile
+
+
 
 
 
