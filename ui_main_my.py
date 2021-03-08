@@ -3479,6 +3479,154 @@ class Ui_MainWindow(object):
         self.stackedWidget_measurements.addWidget(self.page_view_parameters)
         self.page_view_graphs = QWidget()
         self.page_view_graphs.setObjectName(u"page_view_graphs")
+        self.verticalLayout_95 = QVBoxLayout(self.page_view_graphs)
+        self.verticalLayout_95.setSpacing(0)
+        self.verticalLayout_95.setObjectName(u"verticalLayout_95")
+        self.verticalLayout_95.setContentsMargins(0, 0, 0, 0)
+        self.frame_view_graph_fun = QFrame(self.page_view_graphs)
+        self.frame_view_graph_fun.setObjectName(u"frame_view_graph_fun")
+        self.frame_view_graph_fun.setMinimumSize(QSize(0, 40))
+        self.frame_view_graph_fun.setMaximumSize(QSize(16777215, 40))
+        self.frame_view_graph_fun.setFrameShape(QFrame.NoFrame)
+        self.frame_view_graph_fun.setFrameShadow(QFrame.Plain)
+        self.frame_view_graph_fun.setLineWidth(0)
+        self.horizontalLayout_47 = QHBoxLayout(self.frame_view_graph_fun)
+        self.horizontalLayout_47.setSpacing(0)
+        self.horizontalLayout_47.setObjectName(u"horizontalLayout_47")
+        self.horizontalLayout_47.setContentsMargins(0, 0, 0, 0)
+        self.bn_graph_prev = QPushButton(self.frame_view_graph_fun)
+        self.bn_graph_prev.setObjectName(u"bn_graph_prev")
+        self.bn_graph_prev.setEnabled(False)
+        sizePolicy2.setHeightForWidth(self.bn_graph_prev.sizePolicy().hasHeightForWidth())
+        self.bn_graph_prev.setSizePolicy(sizePolicy2)
+        self.bn_graph_prev.setMinimumSize(QSize(120, 40))
+        self.bn_graph_prev.setMaximumSize(QSize(240, 40))
+        self.bn_graph_prev.setStyleSheet(u"QPushButton {\n"
+"      color: rgba(255,255,255,255);\n"
+"      font-weight: 900;\n"
+"      border: none;\n"
+"      background-color: rgba(0,0,0,0);\n"
+"  }\n"
+"  QPushButton:hover {\n"
+"      background-color: rgb(51,50,50);\n"
+"  }\n"
+"  QPushButton:pressed {\n"
+"      background-color: rgba(0,0,0,0);\n"
+"  }")
+        self.bn_graph_prev.setIcon(icon17)
+        self.bn_graph_prev.setIconSize(QSize(28, 28))
+        self.bn_graph_prev.setFlat(True)
+
+        self.horizontalLayout_47.addWidget(self.bn_graph_prev)
+
+        self.frame_15 = QFrame(self.frame_view_graph_fun)
+        self.frame_15.setObjectName(u"frame_15")
+        self.frame_15.setMinimumSize(QSize(440, 40))
+        self.frame_15.setMaximumSize(QSize(16777215, 40))
+        self.frame_15.setFrameShape(QFrame.NoFrame)
+        self.frame_15.setFrameShadow(QFrame.Plain)
+        self.horizontalLayout_48 = QHBoxLayout(self.frame_15)
+        self.horizontalLayout_48.setObjectName(u"horizontalLayout_48")
+        self.horizontalLayout_48.setContentsMargins(0, 0, 0, 0)
+        self.horizontalSpacer_15 = QSpacerItem(105, 17, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_48.addItem(self.horizontalSpacer_15)
+
+        self.line_view_graph = QLineEdit(self.frame_15)
+        self.line_view_graph.setObjectName(u"line_view_graph")
+        self.line_view_graph.setEnabled(True)
+        self.line_view_graph.setMinimumSize(QSize(100, 25))
+        self.line_view_graph.setMaximumSize(QSize(150, 25))
+        self.line_view_graph.setFont(font6)
+        self.line_view_graph.setAutoFillBackground(False)
+        self.line_view_graph.setStyleSheet(u"QLineEdit {\n"
+"      color:rgb(255,255,255);\n"
+"      border:2px solid rgb(51,51,51);\n"
+"      border-radius:4px;\n"
+"      background:rgb(51,51,51);\n"
+"  }\n"
+"\n"
+"  QLineEdit:disabled {\n"
+"      color:rgb(255,255,255);\n"
+"      border:2px solid rgb(112,112,112);\n"
+"      border-radius:4px;\n"
+"      background:rgb(112,112,112);\n"
+"  }")
+
+        self.horizontalLayout_48.addWidget(self.line_view_graph)
+
+        self.bn_show_graph = QPushButton(self.frame_15)
+        self.bn_show_graph.setObjectName(u"bn_show_graph")
+        self.bn_show_graph.setMinimumSize(QSize(80, 25))
+        self.bn_show_graph.setMaximumSize(QSize(80, 25))
+        self.bn_show_graph.setFont(font6)
+        self.bn_show_graph.setStyleSheet(u"QPushButton {\n"
+"      border: 2px solid rgb(51,51,51);\n"
+"      border-radius: 5px;\n"
+"      color:rgb(255,255,255);\n"
+"      background-color: rgb(51,51,51);\n"
+"  }\n"
+"  QPushButton:hover {\n"
+"      border: 2px solid rgb(0,143,150);\n"
+"      background-color: rgb(0,143,150);\n"
+"  }\n"
+"  QPushButton:pressed {\n"
+"      border: 2px solid rgb(0,143,150);\n"
+"      background-color: rgb(51,51,51);\n"
+"  }\n"
+"\n"
+"  QPushButton:disabled {\n"
+"      border-radius: 5px;\n"
+"      border: 2px solid rgb(112,112,112);\n"
+"      background-color: rgb(112,112,112);\n"
+"  }")
+        self.bn_show_graph.setCheckable(False)
+        self.bn_show_graph.setFlat(True)
+
+        self.horizontalLayout_48.addWidget(self.bn_show_graph)
+
+        self.horizontalSpacer_16 = QSpacerItem(104, 17, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_48.addItem(self.horizontalSpacer_16)
+
+
+        self.horizontalLayout_47.addWidget(self.frame_15)
+
+        self.bn_graph_next = QPushButton(self.frame_view_graph_fun)
+        self.bn_graph_next.setObjectName(u"bn_graph_next")
+        self.bn_graph_next.setEnabled(False)
+        sizePolicy2.setHeightForWidth(self.bn_graph_next.sizePolicy().hasHeightForWidth())
+        self.bn_graph_next.setSizePolicy(sizePolicy2)
+        self.bn_graph_next.setMinimumSize(QSize(120, 40))
+        self.bn_graph_next.setMaximumSize(QSize(240, 40))
+        self.bn_graph_next.setStyleSheet(u"QPushButton {\n"
+"      color: rgba(255,255,255,255);\n"
+"      font-weight: 900;\n"
+"      border: none;\n"
+"      background-color: rgba(0,0,0,0);\n"
+"  }\n"
+"  QPushButton:hover {\n"
+"      background-color: rgb(51,50,50);\n"
+"  }\n"
+"  QPushButton:pressed {\n"
+"      background-color: rgba(0,0,0,0);\n"
+"  }")
+        self.bn_graph_next.setIcon(icon18)
+        self.bn_graph_next.setIconSize(QSize(28, 28))
+        self.bn_graph_next.setFlat(True)
+
+        self.horizontalLayout_47.addWidget(self.bn_graph_next)
+
+
+        self.verticalLayout_95.addWidget(self.frame_view_graph_fun)
+
+        self.frame_view_graphs = QFrame(self.page_view_graphs)
+        self.frame_view_graphs.setObjectName(u"frame_view_graphs")
+        self.frame_view_graphs.setFrameShape(QFrame.StyledPanel)
+        self.frame_view_graphs.setFrameShadow(QFrame.Raised)
+
+        self.verticalLayout_95.addWidget(self.frame_view_graphs)
+
         self.stackedWidget_measurements.addWidget(self.page_view_graphs)
 
         self.horizontalLayout_38.addWidget(self.stackedWidget_measurements)
@@ -3558,7 +3706,7 @@ class Ui_MainWindow(object):
 
         self.stackedWidget.setCurrentIndex(8)
         self.stackedWidget_android.setCurrentIndex(0)
-        self.stackedWidget_measurements.setCurrentIndex(0)
+        self.stackedWidget_measurements.setCurrentIndex(3)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -3717,6 +3865,10 @@ class Ui_MainWindow(object):
         self.bn_show_meas.setText(QCoreApplication.translate("MainWindow", u"Prika\u017ei", None))
         self.bn_meas_next.setText("")
         self.checkBox_5.setText(QCoreApplication.translate("MainWindow", u"Hello", None))
+        self.bn_graph_prev.setText("")
+        self.line_view_graph.setText("")
+        self.bn_show_graph.setText(QCoreApplication.translate("MainWindow", u"Prika\u017ei", None))
+        self.bn_graph_next.setText("")
         self.lab_tab.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><br/></p></body></html>", None))
 #if QT_CONFIG(tooltip)
         self.frame_drag.setToolTip(QCoreApplication.translate("MainWindow", u"Drag", None))

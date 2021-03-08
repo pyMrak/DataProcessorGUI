@@ -41,6 +41,9 @@ from matplotlib.backends.qt_compat import QtCore, QtWidgets as QtWidgMat, is_pyq
 from matplotlib.backends.backend_qt5agg import (FigureCanvas, NavigationToolbar2QT as NavigationToolbar)
 from matplotlib.figure import Figure
 import matplotlib as mpl
+from matplotlib.backend_tools import ToolBase
+mpl.rcParams['toolbar'] = 'toolmanager'
+
 mpl.rcParams['text.color'] = 'white'
 mpl.rcParams['font.size'] = 12
 
@@ -321,6 +324,11 @@ class UIFunction(MainWindow):
         self.ui.bn_meas_next.clicked.connect(lambda: APFunction.viewNextMeas(self))
         self.ui.bn_show_meas.clicked.connect(lambda: APFunction.showMeas(self))
 
+        ######MEASUREMENTS > PAGE VIEW GRAPHS >>>>>>>>>>>>>>>>>>>>>>
+        self.ui.bn_graph_prev.clicked.connect(lambda: APFunction.viewPrevGraph(self))
+        self.ui.bn_graph_next.clicked.connect(lambda: APFunction.viewNextGraph(self))
+        self.ui.bn_show_graph.clicked.connect(lambda: APFunction.showGraph(self))
+
 
 
         ##########PAGE: ABOUT HOME #############
@@ -554,6 +562,27 @@ class APFunction():
             self.ui.line_view_meas.setText(name)
         else:
             APFunction.setMeasTable(self)
+
+    def viewPrevGraph(self):
+        self.GUIsett.viewPrevMeas()
+        self.graph.setCurrIdx(self.GUIsett.getCurrIdx())
+        APFunction.plotGraph(self)
+
+    def viewNextGraph(self):
+        self.GUIsett.viewNextMeas()
+        self.graph.setCurrIdx(self.GUIsett.getCurrIdx())
+        APFunction.plotGraph(self)
+
+    def showGraph(self):
+        measName = self.ui.line_view_graph.text()
+        name, exists = self.GUIsett.getMeas(measName)
+        if not exists:
+            self.errorexec("Datoteka '{0}' v izbrani skupini ne obstaja".format(measName), "icons/1x/errorAsset 55.png", "OK")
+            self.ui.line_view_graph.setText(name)
+        else:
+            self.graph.setCurrIdx(self.GUIsett.getCurrIdx())
+            APFunction.plotGraph(self)
+
     @staticmethod
     def changeCombo(combo, fileFun, GUIobj):
         combo.clear()
@@ -581,6 +610,18 @@ class APFunction():
         APFunction.getGraphFiles(self)
 
     def plotGraph(self):
+        if self.GUIsett.isDefined():
+            self.ui.bn_graph_prev.setEnabled(True)
+            self.ui.bn_graph_next.setEnabled(True)
+        else:
+            self.ui.bn_graph_prev.setEnabled(False)
+            self.ui.bn_graph_next.setEnabled(False)
+        name, prev, nex = self.GUIsett.getMeasName()
+        if prev:
+            self.ui.bn_graph_prev.setEnabled(False)
+        if nex:
+            self.ui.bn_graph_next.setEnabled(False)
+        self.ui.line_view_graph.setText(name)
         graphFile = self.ui.combo_graph.currentText()
         if graphFile:
             self.GUIsett.setGraphFile(graphFile)
@@ -685,6 +726,9 @@ class GUIsettings(object):
     def viewNextMeas(self):
         if self.groupMeasurements[self.currentGroup].isDefined():
             self.measGroupSettings[self.currentGroup]["currViewIdx"] += 1
+
+    def getCurrIdx(self):
+        return self.measGroupSettings[self.currentGroup]["currViewIdx"]
 
     def getMeasName(self):
         next = False
@@ -833,8 +877,17 @@ class GUIfunObj(object):
 class GUIgraph():
 
     def __init__(self, main):
+        class showNext(ToolBase):
+            """Show next graph."""
+            default_keymap = 'N'
+            description = 'Show next graph'
+
+            def trigger(self, *args, **kwargs):
+                self.main.GUIsett.viewNextMeas()
+                mg = self.main.GUIsett.getMeasGroup()
+                self.main.graph.plot(mg)
         self.graph = GraphWrapper(GUIobj=main.GUIsett.GUIfunObj, mlObj=self)
-        self.layout = QtWidgMat.QVBoxLayout(main.ui.page_view_graphs)
+        self.layout = QtWidgMat.QVBoxLayout(main.ui.frame_view_graphs)
         self.figure = Figure()
         self.bacgroundHex = QColor.fromRgb(qRgb(91, 90, 90)).name()
         self.markingsHex = QColor.fromRgb(qRgb(51, 51, 51)).name()
@@ -846,7 +899,7 @@ class GUIgraph():
                                         QTabBar::tab {background: rgb(51, 51, 51); border: 1px solid lightgray;
                                                         border-color: rgb(51, 51, 51);padding: 5px; }
                                        QTabBar::tab:selected {background: rgb(70, 70, 70);margin-bottom: -1px;}""")
-
+        #self.toolbar.add_tool('Next', showNext, main=main)
         self.layout.addWidget(self.toolbar)
         # self.addToolBar(NavigationToolbar(static_canvas, frame))
         self.ax = self.static_canvas.figure.subplots()
@@ -885,6 +938,9 @@ class GUIgraph():
 
     def setGraphFile(self, graphFile):
         self.graph.setGraphSettings(graphFile)
+
+    def setCurrIdx(self, idx):
+        self.graph.setCurrIdx(idx)
 
 
 
