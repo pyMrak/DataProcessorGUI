@@ -590,6 +590,23 @@ class APFunction():
         mg = self.GUIsett.getMeasGroup()
         self.graph.plot(mg)
 
+    @staticmethod
+    def setComboBoxText(comboBox, text):
+        index = comboBox.findText(text)
+        comboBox.setCurrentIndex(index)
+
+    def setGraphFileToCurr(self):
+        graphFile = self.GUIsett.getGraphFile()
+        APFunction.setComboBoxText(self.ui.combo_graph, graphFile)
+
+    def setParamFileToCurr(self):
+        paramFile = self.GUIsett.getParamFile()
+        APFunction.setComboBoxText(self.ui.combo_parameter, paramFile)
+
+    def setHdrFileToCurr(self):
+        hdrFile = self.GUIsett.getHdrFile()
+        APFunction.setComboBoxText(self.ui.combo_header, hdrFile)
+
 
 
 
@@ -696,8 +713,14 @@ class GUIsettings(object):
     def setHdrFile(self, hdrFile):
         self.measGroupSettings[self.currentGroup]['hdrFile'] = hdrFile
 
+    def getHdrFile(self):
+        return self.measGroupSettings[self.currentGroup]['hdrFile']
+
     def setParamFile(self, paramFile):
         self.measGroupSettings[self.currentGroup]['paramFile'] = paramFile
+
+    def getParamFile(self):
+        return self.measGroupSettings[self.currentGroup]['paramFile']
 
     def getCurrGroup(self):
         return self.currentGroup
@@ -707,6 +730,12 @@ class GUIsettings(object):
 
     def getGraphFile(self):
         return self.measGroupSettings[self.currentGroup]['grfFile']
+
+
+
+
+
+
 
 
 
@@ -840,8 +869,12 @@ class GUIgraph():
 
     def draw(self):
         self.ax.figure.canvas.draw()
+        if self.ax2 is not None:
+            self.ax2.figure.canvas.draw()
 
     def addYAxis(self):
+        if self.ax2 is not None:
+            self.ax2.remove()
         self.ax2 = self.ax.twinx()
         self.ax2.tick_params(colors=self.markingsHex)
         self.ax2.xaxis.label.set_color(self.markingsHex)
@@ -908,6 +941,11 @@ class MeasurementGroup():
         self.main.ui.line_meas_grp_name.setText(self.main.GUIsett.measGroupNames[self.name])
         APFunction.setMeasTable(self.main)
         APFunction.setParamTable(self.main)
+        APFunction.setHdrFileToCurr(self.main)
+        APFunction.setParamFileToCurr(self.main)
+        APFunction.setGraphFileToCurr(self.main)
+        APFunction.plotGraph(self.main)
+
         # TODO dodaj da nastavi ostale stvari
 
     def changeGroupName(self, name):
