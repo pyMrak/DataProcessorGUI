@@ -40,6 +40,7 @@ from PySide2.QtGui import QColor, qRgb, QIcon
 from matplotlib.backends.qt_compat import QtCore, QtWidgets as QtWidgMat, is_pyqt5
 from matplotlib.backends.backend_qt5agg import (FigureCanvas, NavigationToolbar2QT as NavigationToolbar)
 from matplotlib.figure import Figure
+from matplotlib import pyplot as plt
 import matplotlib as mpl
 from matplotlib.backend_tools import ToolBase
 mpl.rcParams['toolbar'] = 'toolmanager'
@@ -53,7 +54,7 @@ from DataProcessor.Graph import GraphWrapper
 from DataProcessor import Basic
 
 
-
+#plt.tight_layout()
 
 
 GLOBAL_STATE = 0 #NECESSERY FOR CHECKING WEATHER THE WINDWO IS FULL SCREEN OR NOT
@@ -481,7 +482,7 @@ class APFunction():
     def setParamTable(self):
         table = self.ui.table_parameters
         data = self.GUIsett.getParameters()
-        APFunction.setTable(self, table, data)
+        APFunction.setTable(self, table, data, evaluate=True)
 
     def setMeasTable(self):
         table = self.ui.table_meas
@@ -500,7 +501,7 @@ class APFunction():
             self.ui.bn_meas_next.setEnabled(False)
         self.ui.line_view_meas.setText(name)
 
-    def setTable(self, table, data=None):
+    def setTable(self, table, data=None, evaluate=False):
         if data is None:
             table.setRowCount(0)
             table.setColumnCount(0)
@@ -516,7 +517,14 @@ class APFunction():
                 table.setHorizontalHeaderItem(i, QTableWidgetItem(entity))
                 for j, dPoint in enumerate(data[entity]):
             #table.setHorizontalHeaderItem(1, QTableWidgetItem("City"))
-                    table.setItem(j, i, QTableWidgetItem(str(dPoint)))
+                    tableItem = QTableWidgetItem(str(dPoint))
+                    if evaluate:
+                        if data[j][i].isValid():
+                            tableItem.setBackground(QtGui.QColor(30, 130, 130))
+                        else:
+                            tableItem.setBackground(QtGui.QColor(130, 30, 30))
+                    table.setItem(j, i, tableItem)
+
             # table.setItem(0, 1, QTableWidgetItem("Indore"))
             # table.setItem(1, 0, QTableWidgetItem("Alan"))
             # table.setItem(1, 1, QTableWidgetItem("Bhopal"))
@@ -886,14 +894,18 @@ class GUIgraph():
                 self.main.GUIsett.viewNextMeas()
                 mg = self.main.GUIsett.getMeasGroup()
                 self.main.graph.plot(mg)
+        #plt.tight_layout()
         self.graph = GraphWrapper(GUIobj=main.GUIsett.GUIfunObj, mlObj=self)
         self.layout = QtWidgMat.QVBoxLayout(main.ui.frame_view_graphs)
-        self.figure = Figure()
+        self.layout.setContentsMargins(0, 0, 0, 0)
+        self.figure = plt.Figure()
+        self.figure.subplots_adjust(bottom=0.15)
+
         self.bacgroundHex = QColor.fromRgb(qRgb(91, 90, 90)).name()
         self.markingsHex = QColor.fromRgb(qRgb(51, 51, 51)).name()
         self.figure.patch.set_facecolor(self.bacgroundHex)
         self.static_canvas = FigureCanvas(self.figure)
-        self.layout.addWidget(self.static_canvas)
+
         self.toolbar = NavigationToolbar(self.static_canvas, main.ui.page_view_graphs)
         self.toolbar.setStyleSheet("""QTabWidget::pane {border: none;background: rgb(91, 90, 90);;}
                                         QTabBar::tab {background: rgb(51, 51, 51); border: 1px solid lightgray;
@@ -901,6 +913,7 @@ class GUIgraph():
                                        QTabBar::tab:selected {background: rgb(70, 70, 70);margin-bottom: -1px;}""")
         #self.toolbar.add_tool('Next', showNext, main=main)
         self.layout.addWidget(self.toolbar)
+        self.layout.addWidget(self.static_canvas)
         # self.addToolBar(NavigationToolbar(static_canvas, frame))
         self.ax = self.static_canvas.figure.subplots()
         # self._static_ax.style.use('ggplot')
@@ -934,6 +947,7 @@ class GUIgraph():
         self.ax2.yaxis.label.set_color(self.markingsHex)
 
     def plot(self, dgObj):
+        #plt.tight_layout()
         self.graph.draw(dgObj)
 
     def setGraphFile(self, graphFile):
