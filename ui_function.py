@@ -72,9 +72,10 @@ class UIFunction(MainWindow):
     def initStackTab(self):
         global init
         if init==False:
-            self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
-            self.ui.lab_tab.setText("Home")
-            self.ui.frame_home.setStyleSheet("background:rgb(91,90,90)")
+            self.ui.stackedWidget.setCurrentWidget(self.ui.page_measurements)
+            self.ui.lab_tab.setText("Measurements")
+
+            self.ui.frame_measurements.setStyleSheet("background:rgb(91,90,90)")
             init = True
     ################################################################################################
 
@@ -132,18 +133,18 @@ class UIFunction(MainWindow):
         if clicked:
             currentWidth = self.ui.frame_bottom_west.width() #Reads the current width of the frame
             minWidth = 80 #MINIMUN WITDTH OF THE BOTTOM_WEST FRAME
-            if currentWidth==80:
+            if currentWidth == 80:
                 extend = maxWidth
                 #----> MAKE THE STACKED WIDGET PAGE TO ABOUT HOME PAGE
-                self.ui.stackedWidget.setCurrentWidget(self.ui.page_about_home)
-                self.ui.lab_tab.setText("About > Home")
-                self.ui.frame_home.setStyleSheet("background:rgb(91,90,90)")
+                self.ui.stackedWidget.setCurrentWidget(self.ui.page_about_measurements)
+                self.ui.lab_tab.setText("About > Measurements")
+                self.ui.frame_measurements.setStyleSheet("background:rgb(91,90,90)")
             else:
                 extend = minWidth
                 #-----> REVERT THE ABOUT HOME PAGE TO NORMAL HOME PAGE
-                self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
-                self.ui.lab_tab.setText("Home")
-                self.ui.frame_home.setStyleSheet("background:rgb(91,90,90)")
+                self.ui.stackedWidget.setCurrentWidget(self.ui.page_measurements)
+                self.ui.lab_tab.setText("Measurements")
+                self.ui.frame_measurements.setStyleSheet("background:rgb(91,90,90)")
             #THIS ANIMATION IS RESPONSIBLE FOR THE TOODLE TO MOVE IN A SOME FIXED STATE.
             self.animation = QPropertyAnimation(self.ui.frame_bottom_west, b"minimumWidth")
             self.animation.setDuration(300)
@@ -198,6 +199,7 @@ class UIFunction(MainWindow):
         for each in self.ui.frame_bottom_west.findChildren(QFrame):
             each.setStyleSheet("background:rgb(51,51,51)")
         print(buttonName)
+        """
         if buttonName=='bn_home':
             if self.ui.frame_bottom_west.width()==80  and index!=0:
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
@@ -242,15 +244,15 @@ class UIFunction(MainWindow):
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_about_cloud)
                 self.ui.lab_tab.setText("About > Cloud")
                 self.ui.frame_cloud.setStyleSheet("background:rgb(91,90,90)") # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
-
-        elif buttonName=='bn_measurements':
-            if self.ui.frame_bottom_west.width()==80 and index!=6:
+        """
+        if buttonName == 'bn_measurements':
+            if self.ui.frame_bottom_west.width() == 80 and index != 6:
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_measurements)
                 self.ui.lab_tab.setText("Measurements")
                 self.ui.frame_measurements.setStyleSheet("background:rgb(80,180,180)") # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
 
-            elif self.ui.frame_bottom_west.width()==160 and index!=2:   # ABOUT PAGE STACKED WIDGET
-                self.ui.stackedWidget.setCurrentWidget(self.ui.page_measurements)
+            elif self.ui.frame_bottom_west.width() == 160 and index != 2:   # ABOUT PAGE STACKED WIDGET
+                self.ui.stackedWidget.setCurrentWidget(self.ui.page_about_measurements)
                 self.ui.lab_tab.setText("About > Measurements")
                 self.ui.frame_measurements.setStyleSheet("background:rgb(80,180,180)") # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
 
@@ -263,12 +265,13 @@ class UIFunction(MainWindow):
     # WHAT EVER WIDGET IS IN THE STACKED PAGES ITS ACTION IS EVALUATED HERE AND THEN THE REST FUNCTION IS PASSED.
     def stackPage(self):
 
+        """
         ######### PAGE_HOME ############# BELOW DISPLAYS THE FUNCTION OF WIDGET, LABEL, PROGRESS BAR, E.T.C IN STACKEDWIDGET page_HOME
         self.ui.lab_home_main_hed.setText("Profile")
         self.ui.lab_home_stat_hed.setText("Stat")
 
         ######### PAGE_BUG ############## BELOW DISPLAYS THE FUNCTION OF WIDGET, LABEL, PROGRESS BAR, E.T.C IN STACKEDWIDGET page_bug
-        self.ui.bn_bug_start.clicked.connect(lambda: APFunction.addNumbers(self, self.ui.comboBox_bug.currentText(), True))  
+        self.ui.bn_bug_start.clicked.connect(lambda: APFunction.addNumbers(self, self.ui.comboBox_bug.currentText(), True))
 
         # THIS CALLS A SIMPLE FUNCTION LOOPS THROW THE NUMBER FORWARDED BY THE COMBOBOX 'comboBox_bug' AND DISPLAY IN PROGRESS BAR
         #ALONGWITH MOVING THE PROGRESS CHUNK FROM 0 TO 100%
@@ -284,10 +287,6 @@ class UIFunction(MainWindow):
         self.ui.bn_android_clean.clicked.connect(lambda: UIFunction.androidStackPages(self, "page_clean"))
         self.ui.bn_android_world.clicked.connect(lambda: UIFunction.androidStackPages(self, "page_world"))
 
-        self.ui.bn_view_read_meas.clicked.connect(lambda: UIFunction.measurementStackPages(self, "page_read_measurement"))
-        self.ui.bn_view_measurement.clicked.connect(lambda: UIFunction.measurementStackPages(self, "page_view_measurement"))
-        self.ui.bn_view_parameters.clicked.connect(lambda: UIFunction.measurementStackPages(self, "page_view_parameters"))
-        self.ui.bn_view_graph.clicked.connect(lambda: UIFunction.measurementStackPages(self, "page_view_graph"))
         
         ######ANDROID > PAGE CONTACT >>>>>>>>>>>>>>>>>>>>
         self.ui.bn_android_contact_delete.clicked.connect(lambda: self.dialogexec("Warning", "The Contact Infromtion will be Deleted, Do you want to continue.", "icons/1x/errorAsset 55.png", "Cancel", "Yes"))
@@ -307,6 +306,15 @@ class UIFunction(MainWindow):
         self.ui.checkBox_2.stateChanged.connect(lambda: self.errorexec("Even More Happy to hear this", "icons/1x/smileAsset 1.png", "Ok"))
 
         self.measurementGroups['Group1'].activate()
+        """
+        ######MEASUREMENTS  >>>>>>>>>>>>>>>>>>>>>>
+        self.ui.bn_view_read_meas.clicked.connect(
+            lambda: UIFunction.measurementStackPages(self, "page_read_measurement"))
+        self.ui.bn_view_measurement.clicked.connect(
+            lambda: UIFunction.measurementStackPages(self, "page_view_measurement"))
+        self.ui.bn_view_parameters.clicked.connect(
+            lambda: UIFunction.measurementStackPages(self, "page_view_parameters"))
+        self.ui.bn_view_graph.clicked.connect(lambda: UIFunction.measurementStackPages(self, "page_view_graph"))
 
         ######MEASUREMENTS > PAGE READ MEASUREMENTS >>>>>>>>>>>>>>>>>>>>>>
         self.ui.bn_meas_open_folder.clicked.connect(lambda: APFunction.openFileDialog(self))
@@ -331,13 +339,14 @@ class UIFunction(MainWindow):
         self.ui.bn_show_graph.clicked.connect(lambda: APFunction.showGraph(self))
 
 
-
+        """
         ##########PAGE: ABOUT HOME #############
         self.ui.text_about_home.setVerticalScrollBar(self.ui.vsb_about_home)
         self.ui.text_about_home.setText(aboutHome)
+        """
     ################################################################################################################################
 
-
+    """
     #-----> FUNCTION TO SHOW CORRESPONDING STACK PAGE WHEN THE ANDROID BUTTONS ARE PRESSED: CONTACT, GAME, CLOUD, WORLD
     # SINCE THE ANDROID PAGE AHS A SUB STACKED WIDGET WIT FOUR MORE BUTTONS, ALL THIS 4 PAGES CONTENT: BUTTONS, TEXT, LABEL E.T.C ARE INITIALIED OVER HERE. 
     def androidStackPages(self, page):
@@ -364,6 +373,7 @@ class UIFunction(MainWindow):
             self.ui.stackedWidget_android.setCurrentWidget(self.ui.page_android_world)
             self.ui.lab_tab.setText("Android > World")
             self.ui.frame_android_world.setStyleSheet("background:rgb(91,90,90)")
+    """
 
     def measurementStackPages(self, page):
         # ------> THIS LINE CLEARS THE BG COLOR OF PREVIOUS TABS
@@ -406,6 +416,8 @@ class UIFunction(MainWindow):
 # REDIRECTED TO THIS AREA FOR THE PROCESSING AND THEN THE RESULT ARE EXPOTED.
 #REMEMBER THE SOFTWARE UI HAS A FUNCTION WHOSE CODE SHOULD BE HERE    
 class APFunction():
+
+    """
     #-----> ADDING NUMBER TO ILLUSTRATE THE CAPABILITY OF THE PROGRESS BAR WHEN THE 'START' BUTTON IS PRESSED
     def addNumbers(self, number, enable):
         if enable:
@@ -460,6 +472,7 @@ class APFunction():
         self.ui.bn_android_contact_edit.setEnabled(True)
         self.ui.bn_android_contact_share.setEnabled(True)
         self.ui.bn_android_contact_delete.setEnabled(True)
+    """
 
     def drawGaph(self):
         import numpy as np

@@ -164,7 +164,8 @@ class MainWindow(QMainWindow):
         self.GUIsett = GUIsettings(None)
         self.graph = GUIgraph(self)
         self.measurementGroups = {}
-        self.ui.lab_user.setText("Guest")
+        self.ui.lab_user.setText("debug")
+
         for i in range(1,7):
             groupName = 'Group{0}'.format(i)
             button = self.ui.__dict__['bn_group_{0}'.format(i)]
@@ -195,6 +196,7 @@ class MainWindow(QMainWindow):
         #----> CERTAIN TOOLS LIKE DRAG, MAXIMISE, MINIMISE, CLOSE AND HIDING OF THE WINDOWS TOPBAR
         # THIS WINDOW INITIALISES THE BUTTONS NECESSERY FOR THE MAINWINDOW LIKE: CLOSE, MIN, MAX E.T.C.                ---------(C6)
         UIFunction.constantFunction(self)
+
         #############################################################
 
 
@@ -211,10 +213,10 @@ class MainWindow(QMainWindow):
         #NOW SINCE OUR DEMO APPLICATION HAS ONLY 4 MENU BUTTONS: Home, Bug, Android, Cloud, WHEN USER PRESSES IT THE FOLLOWING CODE             ---------(C8)
         #REDIRECTS IT TO THE ui_function.py FILE buttonPressed() FUNCTION TO MAKE THE NECESSERY RESPONSES TO THE BUTTON PRESSED.
         #IT TAKES SELF AND THE BUTTON NAME AS THE RGUMENT, THIS IS ONLY TO RECOGNISE WHICH BUTTON IS PRESSED BY THE buttonPressed() FUNCTION.
-        self.ui.bn_home.clicked.connect(lambda: UIFunction.buttonPressed(self, 'bn_home'))
-        self.ui.bn_bug.clicked.connect(lambda: UIFunction.buttonPressed(self, 'bn_bug'))
-        self.ui.bn_android.clicked.connect(lambda: UIFunction.buttonPressed(self, 'bn_android'))
-        self.ui.bn_cloud.clicked.connect(lambda: UIFunction.buttonPressed(self, 'bn_cloud'))
+        #self.ui.bn_home.clicked.connect(lambda: UIFunction.buttonPressed(self, 'bn_home'))
+        #self.ui.bn_bug.clicked.connect(lambda: UIFunction.buttonPressed(self, 'bn_bug'))
+        #self.ui.bn_android.clicked.connect(lambda: UIFunction.buttonPressed(self, 'bn_android'))
+        #self.ui.bn_cloud.clicked.connect(lambda: UIFunction.buttonPressed(self, 'bn_cloud'))
         self.ui.bn_measurements.clicked.connect(lambda: UIFunction.buttonPressed(self, 'bn_measurements'))
         #############################################################
 
@@ -232,7 +234,10 @@ class MainWindow(QMainWindow):
         self.diag = dialogUi()
         self.error = errorUi()
         #############################################################
-
+        # TODO make init function for the initial button apperance
+        UIFunction.buttonPressed(self, 'bn_measurements')
+        self.ui.frame_read_measurement.setStyleSheet("background:rgb(91,90,90)")
+        self.measurementGroups["Group1"].clicked()
 
         #############################################################
 
