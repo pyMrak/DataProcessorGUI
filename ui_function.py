@@ -48,6 +48,7 @@ mpl.rcParams['toolbar'] = 'toolmanager'
 mpl.rcParams['text.color'] = 'white'
 mpl.rcParams['font.size'] = 12
 
+
 from DataProcessor.Data import DataGroup
 from DataProcessor.Texts import Text
 from DataProcessor.Graph import GraphWrapper
@@ -534,17 +535,17 @@ class APFunction():
             table.setColumnCount(dataShape[1] + add)
 
             if idx:
-                table.setHorizontalHeaderItem(0, QTableWidgetItem(idx))
+                table.setHorizontalHeaderItem(0, MyTableWidgetItem(idx))
                 for row, index in enumerate(data.df.index):
-                    tableItem = QTableWidgetItem(str(index))
+                    tableItem = MyTableWidgetItem(str(index))
                     table.setItem(row, 0, tableItem)
             for i, entity in enumerate(data):
                 print('entity:', entity)
                 col = i + add
-                table.setHorizontalHeaderItem(col, QTableWidgetItem(entity))
+                table.setHorizontalHeaderItem(col, MyTableWidgetItem(entity))
                 for j, dPoint in enumerate(data[entity]):
             #table.setHorizontalHeaderItem(1, QTableWidgetItem("City"))
-                    tableItem = QTableWidgetItem(str(dPoint))
+                    tableItem = MyTableWidgetItem(str(dPoint))
                     if evaluate:
                         if data[j][i].isValid():
                             tableItem.setBackground(QtGui.QColor(30, 130, 130))
@@ -1048,6 +1049,28 @@ class MeasurementGroup():
     def changeGroupName(self, name):
         self.button.setText(name)
 
+class SortFilterProxyModel(QtCore.QSortFilterProxyModel):
 
+    def lessThan(self, left_index, right_index):
+
+        left_var = left_index.data(Qt.EditRole)
+        right_var = right_index.data(Qt.EditRole)
+
+        try:
+            return float(left_var) < float(right_var)
+        except (ValueError, TypeError):
+            pass
+        return left_var < right_var
+
+class MyTableWidgetItem(QTableWidgetItem):
+    def __lt__(self, other):
+        if isinstance(other, QTableWidgetItem):
+            #my_value, my_ok = self.data(Qt.EditRole).toInt()
+            #other_value, other_ok = other.data(Qt.EditRole).toInt()
+
+            #if ( my_ok and other_ok ):
+            return Basic.lessThan(self.text(), other.text())
+
+        return super(MyTableWidgetItem, self).__lt__(other)
 
 ###############################################################################################################################################################
