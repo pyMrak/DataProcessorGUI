@@ -495,7 +495,7 @@ class APFunction():
     def setParamTable(self):
         table = self.ui.table_parameters
         data = self.GUIsett.getParameters()
-        APFunction.setTable(self, table, data, evaluate=True)
+        APFunction.setTable(self, table, data, evaluate=True, idx="Sample")
 
     def setMeasTable(self):
         table = self.ui.table_meas
@@ -514,20 +514,34 @@ class APFunction():
             self.ui.bn_meas_next.setEnabled(False)
         self.ui.line_view_meas.setText(name)
 
-    def setTable(self, table, data=None, evaluate=False):
+    def setTable(self, table, data=None, evaluate=False, idx=None):
         if data is None:
             table.setRowCount(0)
             table.setColumnCount(0)
         else:
             dataShape = data.shape()
+
+
             # Row count
             table.setRowCount(dataShape[0])
 
             # Column count
-            table.setColumnCount(dataShape[1])
+            if idx:
+                add = 1
+
+            else:
+                add = 0
+            table.setColumnCount(dataShape[1] + add)
+
+            if idx:
+                table.setHorizontalHeaderItem(0, QTableWidgetItem(idx))
+                for row, index in enumerate(data.df.index):
+                    tableItem = QTableWidgetItem(str(index))
+                    table.setItem(row, 0, tableItem)
             for i, entity in enumerate(data):
                 print('entity:', entity)
-                table.setHorizontalHeaderItem(i, QTableWidgetItem(entity))
+                col = i + add
+                table.setHorizontalHeaderItem(col, QTableWidgetItem(entity))
                 for j, dPoint in enumerate(data[entity]):
             #table.setHorizontalHeaderItem(1, QTableWidgetItem("City"))
                     tableItem = QTableWidgetItem(str(dPoint))
@@ -536,7 +550,7 @@ class APFunction():
                             tableItem.setBackground(QtGui.QColor(30, 130, 130))
                         else:
                             tableItem.setBackground(QtGui.QColor(130, 30, 30))
-                    table.setItem(j, i, tableItem)
+                    table.setItem(j, col, tableItem)
 
             # table.setItem(0, 1, QTableWidgetItem("Indore"))
             # table.setItem(1, 0, QTableWidgetItem("Alan"))
