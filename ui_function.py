@@ -538,7 +538,13 @@ class APFunction():
                 table.setHorizontalHeaderItem(0, MyTableWidgetItem(idx))
                 for row, index in enumerate(data.df.index):
                     tableItem = MyTableWidgetItem(str(index))
+                    if evaluate:
+                        if data.areValid(index):
+                            tableItem.setBackground(QtGui.QColor(30, 130, 130))
+                        else:
+                            tableItem.setBackground(QtGui.QColor(130, 30, 30))
                     table.setItem(row, 0, tableItem)
+
             for i, entity in enumerate(data):
                 print('entity:', entity)
                 col = i + add
@@ -548,9 +554,9 @@ class APFunction():
                     tableItem = MyTableWidgetItem(str(dPoint))
                     if evaluate:
                         if data[j][i].isValid():
-                            tableItem.setBackground(QtGui.QColor(30, 130, 130))
+                            tableItem.setBackground(QtGui.QColor(85, 145, 145))
                         else:
-                            tableItem.setBackground(QtGui.QColor(130, 30, 30))
+                            tableItem.setBackground(QtGui.QColor(145, 85, 85))
                     table.setItem(j, col, tableItem)
 
             # table.setItem(0, 1, QTableWidgetItem("Indore"))
