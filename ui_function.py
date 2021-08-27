@@ -516,6 +516,8 @@ class APFunction():
         self.ui.line_view_meas.setText(name)
 
     def setTable(self, table, data=None, evaluate=False, idx=None):
+        ts = TableSubst(table)
+        table.keyPressEvent = ts.myKeyPressEvent
         if data is None:
             table.setRowCount(0)
             table.setColumnCount(0)
@@ -1078,5 +1080,48 @@ class MyTableWidgetItem(QTableWidgetItem):
             return Basic.lessThan(self.text(), other.text())
 
         return super(MyTableWidgetItem, self).__lt__(other)
+
+
+
+class TableSubst(object):
+    def __init__(self, table):
+        self.table = table
+
+    def myKeyPressEvent(self, event):
+        print(event)
+        #print("_______")
+        if event:
+            #super().keyPressEvent(event)
+            if event.key() == Qt.Key_C and (event.modifiers() & Qt.ControlModifier):
+                self.copied_cells = sorted(self.table.selectedIndexes())
+                copiedText = ""
+                sep = ""
+                prevRow = None
+                headerIdx = []
+                for cell in self.copied_cells:
+                    row = cell.row()
+                    column = cell.column()
+                    if column not in headerIdx:
+                        headerIdx.append(column)
+                    if not prevRow is None:
+                        if prevRow != row:
+                            sep = '\n'
+                            prevRow = row
+                        else:
+                            sep = '\t'
+                    else:
+                        prevRow = row
+
+                    text = self.table.item(row, column).text()
+                    copiedText += sep + text
+                headerIdx = sorted(headerIdx)
+                header = ""
+                for idx in headerIdx:
+                    header += self.table.horizontalHeaderItem(idx).text() + '\t'
+                header = header[:-1] + '\n'
+                cb = QApplication.clipboard()
+                cb.clear(mode=cb.Clipboard)
+                cb.setText(header+copiedText, mode=cb.Clipboard)
+                print(copiedText)
 
 ###############################################################################################################################################################
