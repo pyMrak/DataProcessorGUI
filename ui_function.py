@@ -574,6 +574,8 @@ class APFunction():
 
 
     def readGroup(self):
+        print("here")
+        self.GUIsett.saveMeasUserPreset()
         hdrFile = self.ui.combo_header.currentText()
         if hdrFile:
             self.GUIsett.setHdrFile(hdrFile)
@@ -712,8 +714,10 @@ class GUIsettings(object):
         groupName = 'Group{0}'.format(len(self.measGroupNames)+1)
         print('adding for group '+groupName)
         self.measGroupNames[groupName] = groupName
-        self.groupMeasurements[groupName] = DataGroup(GUIobj=self.GUIfunObj)
         self.measGroupSettings[groupName] = Basic.getGUIMeasPresets(self.GUIfunObj)
+        self.groupMeasurements[groupName] = DataGroup(groupDir=self.measGroupSettings[groupName]['folder'],
+                                                      GUIobj=self.GUIfunObj)
+
 
     def setFolder(self, folder):
         self.measGroupSettings[self.currentGroup]['folder'] = folder
@@ -814,6 +818,9 @@ class GUIsettings(object):
 
     def getGraphFile(self):
         return self.measGroupSettings[self.currentGroup]['grfFile']
+
+    def saveMeasUserPreset(self):
+        Basic.saveGUIMeasUserPreset(self.measGroupSettings[self.currentGroup], self.GUIfunObj)
 
 
 
