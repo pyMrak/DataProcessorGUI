@@ -156,15 +156,15 @@ class errorUi(QDialog):
 # OUR APPLICATION MAIN WINDOW :
 #-----> MAIN APPLICATION CLASS
 class MainWindow(QMainWindow):
-    def __init__(self):
+    def __init__(self, user="debug"):
 
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.GUIsett = GUIsettings(None)
+        self.GUIsett = GUIsettings(user)
         self.graph = GUIgraph(self)
         self.measurementGroups = {}
-        self.ui.lab_user.setText("debug")
+        self.ui.lab_user.setText(user)
 
         for i in range(1,7):
             groupName = 'Group{0}'.format(i)
