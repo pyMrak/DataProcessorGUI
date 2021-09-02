@@ -713,12 +713,8 @@ class GUIsettings(object):
         print('adding for group '+groupName)
         self.measGroupNames[groupName] = groupName
         self.groupMeasurements[groupName] = DataGroup(GUIobj=self.GUIfunObj)
-        self.measGroupSettings[groupName] = {'folder': '',
-                                             'currViewIdx': 0,
-                                             'hdrFile': None,
-                                             'paramFile': None,
-                                             'grfFile': None
-                                             }
+        self.measGroupSettings[groupName] = Basic.getGUIMeasPresets(self.GUIfunObj)
+
     def setFolder(self, folder):
         self.measGroupSettings[self.currentGroup]['folder'] = folder
         self.groupMeasurements[self.currentGroup].setFolder(folder)
