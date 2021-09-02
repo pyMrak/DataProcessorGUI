@@ -484,9 +484,11 @@ class APFunction():
         self.graph.draw()
 
     def openFileDialog(self):
-        folderSrting = str(QFileDialog.getExistingDirectory(self, "Izberi mapo"))
-        self.ui.line_meas_folder.setText(folderSrting)
-        self.GUIsett.setFolder(folderSrting)
+        folder = QFileDialog.getExistingDirectory(self, "Izberi mapo", self.ui.line_meas_folder.text())
+        if folder != '':
+            folderSrting = str(folder)
+            self.ui.line_meas_folder.setText(folderSrting)
+            self.GUIsett.setFolder(folderSrting)
 
     def changeGroupName(self):
         newName = self.ui.line_meas_grp_name.text()
