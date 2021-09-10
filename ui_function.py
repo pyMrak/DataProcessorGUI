@@ -66,7 +66,7 @@ init = False # NECRESSERY FOR INITITTION OF THE WINDOW.
 # android_buttons = ['bn_android_contact', 'bn_android_game', 'bn_android_clean', 'bn_android_world'] #BUTTONS IN ANDROID STACKPAGE
 
 # THIS CLASS HOUSES ALL FUNCTION NECESSERY FOR OUR PROGRAMME TO RUN.
-class UIFunction(MainWindow):
+class UIFunction():#MainWindow):
 
     #----> INITIAL FUNCTION TO LOAD THE FRONT STACK WIDGET AND TAB BUTTON I.E. HOME PAGE 
     #INITIALISING THE WELCOME PAGE TO: HOME PAGE IN THE STACKEDWIDGET, SETTING THE BOTTOM LABEL AS THE PAGE NAME, SETTING THE BUTTON STYLE.
@@ -823,16 +823,6 @@ class GUIsettings(object):
 
     def saveMeasUserPreset(self):
         Basic.saveGUIMeasUserPreset(self.measGroupSettings[self.currentGroup], self.GUIfunObj)
-
-
-
-
-
-
-
-
-
-
 
 
 

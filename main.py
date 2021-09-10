@@ -156,7 +156,7 @@ class errorUi(QDialog):
 # OUR APPLICATION MAIN WINDOW :
 #-----> MAIN APPLICATION CLASS
 class MainWindow(QMainWindow):
-    def __init__(self, user="debug"):
+    def __init__(self, version, user="debug"):
 
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
@@ -174,7 +174,7 @@ class MainWindow(QMainWindow):
 
 
         #----> SET WINDOW TITLE AND ICON
-        applicationName = "Data processor 1.0"
+        applicationName = "Data processor " + version
         self.setWindowTitle(applicationName) #SETS THE APPLICATION NAME IN THE WINDOW TOPBAR                        ---------(C4)
         #EVENTHOW IT IS AVSENT THIS IS NECESSERY AS THE OPERATING SYSTEM RECOGNISES THE SOFTWARE SUING THIS NAME
         #SO YOU WILL SEE THE NAME ENTERED HERE IN THE TASKBAR, TITLEBAR, E.T.C
@@ -372,7 +372,7 @@ class MainWindow(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    window = MainWindow()
+    window = MainWindow('1.0', "debug")
     window.show()
     sys.exit(app.exec_())
 
