@@ -326,6 +326,7 @@ class UIFunction():#MainWindow):
         APFunction.updateMeasCombos(self)
         self.ui.bn_update_par_files.clicked.connect(lambda: APFunction.getParamFunFiles(self))
         self.ui.bn_update_hdr_files.clicked.connect(lambda: APFunction.getHeaderFiles(self))
+        self.ui.bn_update_sfun_files.clicked.connect(lambda: APFunction.getSerFunctionFiles(self))
         self.ui.bn_update_graph_files.clicked.connect(lambda: APFunction.getGraphFiles(self))
 
 
@@ -576,11 +577,13 @@ class APFunction():
 
 
     def readGroup(self):
-        print("here")
         self.GUIsett.saveMeasUserPreset()
         hdrFile = self.ui.combo_header.currentText()
+        sfunFile = self.ui.combo_sfunction.currentText()
         if hdrFile:
             self.GUIsett.setHdrFile(hdrFile)
+        if sfunFile:
+            self.GUIsett.setSerFunFile(sfunFile)
         self.GUIsett.readGroup(self)
         APFunction.setMeasTable(self)
         APFunction.readParam(self)
@@ -647,6 +650,11 @@ class APFunction():
                                Basic.getUserHdrFiles,
                                self.GUIsett.GUIfunObj)
 
+    def getSerFunctionFiles(self):
+        APFunction.changeCombo(self.ui.combo_sfunction,
+                               Basic.getUserSerFunFiles,
+                               self.GUIsett.GUIfunObj)
+
     def getGraphFiles(self):
         APFunction.changeCombo(self.ui.combo_graph,
                                Basic.getUserGrfFiles,
@@ -655,6 +663,7 @@ class APFunction():
     def updateMeasCombos(self):
         APFunction.getParamFunFiles(self)
         APFunction.getHeaderFiles(self)
+        APFunction.getSerFunctionFiles(self)
         APFunction.getGraphFiles(self)
 
     def plotGraph(self):
@@ -717,12 +726,12 @@ class GUIsettings(object):
         print('adding for group '+groupName)
         self.measGroupNames[groupName] = groupName
         self.measGroupSettings[groupName] = Basic.getGUIMeasPresets(self.GUIfunObj)
-        self.groupMeasurements[groupName] = DataGroup(groupDir=self.measGroupSettings[groupName]['folder'],
+        self.groupMeasurements[groupName] = DataGroup(groupDir=self.measGroupSettings[groupName]["dataFolder"],
                                                       GUIobj=self.GUIfunObj)
 
 
     def setFolder(self, folder):
-        self.measGroupSettings[self.currentGroup]['folder'] = folder
+        self.measGroupSettings[self.currentGroup]["dataFolder"] = folder
         self.groupMeasurements[self.currentGroup].setFolder(folder)
 
     def setCurrentGroup(self, group):
@@ -735,13 +744,16 @@ class GUIsettings(object):
 
     def readGroup(self, main):
         self.GUIfunObj.setProgressBar(main.ui.progressBar_read_meas)
-        hdrFile = self.measGroupSettings[self.currentGroup]['hdrFile']
+        hdrFile = self.measGroupSettings[self.currentGroup]["headerFile"]
+        sfunFile = self.measGroupSettings[self.currentGroup]["serFunFile"]
         if hdrFile is not None:
             self.groupMeasurements[self.currentGroup].readPyro(hdrFile)
+        if sfunFile is not None:
+            self.groupMeasurements[self.currentGroup].applySerFunctions(sfunFile)
         self.GUIfunObj.resetProgessBar()
 
     def readParam(self):
-        paramFile = self.measGroupSettings[self.currentGroup]['paramFile']
+        paramFile = self.measGroupSettings[self.currentGroup]["parameterFile"]
         if paramFile is not None:
             self.groupMeasurements[self.currentGroup].getParameters(paramFile)
 
@@ -801,25 +813,31 @@ class GUIsettings(object):
             return measNames[currIdx], False
 
     def setHdrFile(self, hdrFile):
-        self.measGroupSettings[self.currentGroup]['hdrFile'] = hdrFile
+        self.measGroupSettings[self.currentGroup]["headerFile"] = hdrFile
 
     def getHdrFile(self):
-        return self.measGroupSettings[self.currentGroup]['hdrFile']
+        return self.measGroupSettings[self.currentGroup]["headerFile"]
+
+    def setSerFunFile(self, sfunFile):
+        self.measGroupSettings[self.currentGroup]["serFunFile"] = sfunFile
+        
+    def getSerFunFile(self):
+        return self.measGroupSettings[self.currentGroup]["serFunFile"]
 
     def setParamFile(self, paramFile):
-        self.measGroupSettings[self.currentGroup]['paramFile'] = paramFile
+        self.measGroupSettings[self.currentGroup]["parameterFile"] = paramFile
 
     def getParamFile(self):
-        return self.measGroupSettings[self.currentGroup]['paramFile']
+        return self.measGroupSettings[self.currentGroup]["parameterFile"]
 
     def getCurrGroup(self):
         return self.currentGroup
 
     def setGraphFile(self, graphFile):
-        self.measGroupSettings[self.currentGroup]['grfFile'] = graphFile
+        self.measGroupSettings[self.currentGroup]["graphFile"] = graphFile
 
     def getGraphFile(self):
-        return self.measGroupSettings[self.currentGroup]['grfFile']
+        return self.measGroupSettings[self.currentGroup]["graphFile"]
 
     def saveMeasUserPreset(self):
         Basic.saveGUIMeasUserPreset(self.measGroupSettings[self.currentGroup], self.GUIfunObj)
@@ -1038,7 +1056,7 @@ class MeasurementGroup():
             self.enableNext()
 
     def changeData(self):
-        self.main.ui.line_meas_folder.setText(self.main.GUIsett.measGroupSettings[self.name]['folder'])
+        self.main.ui.line_meas_folder.setText(self.main.GUIsett.measGroupSettings[self.name]["dataFolder"])
         self.main.ui.line_meas_grp_name.setText(self.main.GUIsett.measGroupNames[self.name])
         APFunction.setMeasTable(self.main)
         APFunction.setParamTable(self.main)

@@ -7,7 +7,7 @@ from libs import Permission, Login
 from DataProcessor import Paths
 
 
-debug = False
+debug = True
 version = "1.0"
 
 ##############################
