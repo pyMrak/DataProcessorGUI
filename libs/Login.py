@@ -68,7 +68,6 @@ class loginModule(object):
         try:
             return self.decrypt.decrypt(encrUsername).decode("utf-8")
         except Exception as e:
-            #print(e)
             return None
     
     def decryptPasswordHash(self, encrPasswordHashTuple):
@@ -90,9 +89,8 @@ class loginModule(object):
         dbFile = Paths.usersDatabase + 'usersSettings.db'
         try:
             conn = sqlite3.connect(dbFile)
-            #print(sqlite3.version)
         except Error as e:
-            pass#print(e)
+            pass
         return conn
     
     def returnUsersAuthData(self):
@@ -110,9 +108,6 @@ class loginModule(object):
     
     def login(self, username, password):
         data = self.returnUsersAuthData()
-        #print('len:', len(data))
-        #print(self.decryptUsername(data[0][0]))
-        #print(self.decryptUsername(data[1][0]))
         for d in data:
             if username == self.decryptUsername(d[0]):
                 if self.checkPassword(password, d):
@@ -120,7 +115,6 @@ class loginModule(object):
                     self.userType = self.decryptUserType(d[1])[64:]
                     return 'OK', self.decryptUserType(d[1])[64:]
                 else:
-                    #print('Gelso ni pravo.')
                     return 'badPassword', None
         return 'noUser', None
 
@@ -235,14 +229,14 @@ class Window(QtWidgets.QMainWindow):
 
 if __name__ == '__main__':
 
-    # import sys
-    # app = QtWidgets.QApplication(sys.argv)
-    # login = Login()
-    #
-    # if login.exec_() == QtWidgets.QDialog.Accepted:
-    #     window = Window()
-    #     window.show()
-    #     sys.exit(app.exec_())
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    login = Login()
+
+    if login.exec_() == QtWidgets.QDialog.Accepted:
+        window = Window()
+        window.show()
+        sys.exit(app.exec_())
     
 
     

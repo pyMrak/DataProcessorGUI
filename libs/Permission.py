@@ -37,12 +37,10 @@ def check(version):
                 online = True
                 break
     except FileNotFoundError as e:
-        print(e)
         if getIntDate() < 8426: #1.01.2023
             checkPermission = True
             online = False
     except Exception as e:
         online = False
-        print(e)
         pass
     return checkPermission, online

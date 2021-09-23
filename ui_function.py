@@ -199,7 +199,6 @@ class UIFunction():#MainWindow):
         #------> THIS LINE CLEARS THE BG OF PREVIOUS TABS I.E. FROM THE LITER COLOR TO THE SAME BG COLOR I.E. TO CHANGE THE HIGHLIGHT.
         for each in self.ui.frame_bottom_west.findChildren(QFrame):
             each.setStyleSheet("background:rgb(51,51,51)")
-        print(buttonName)
         """
         if buttonName=='bn_home':
             if self.ui.frame_bottom_west.width()==80  and index!=0:
@@ -551,7 +550,6 @@ class APFunction():
                     table.setItem(row, 0, tableItem)
 
             for i, entity in enumerate(data):
-                print('entity:', entity)
                 col = i + add
                 table.setHorizontalHeaderItem(col, MyTableWidgetItem(entity))
                 for j, dPoint in enumerate(data[entity]):
@@ -723,7 +721,6 @@ class GUIsettings(object):
     def addMeasGroupSetting(self):
 
         groupName = 'Group{0}'.format(len(self.measGroupNames)+1)
-        print('adding for group '+groupName)
         self.measGroupNames[groupName] = groupName
         self.measGroupSettings[groupName] = Basic.getGUIMeasPresets(self.GUIfunObj)
         self.groupMeasurements[groupName] = DataGroup(groupDir=self.measGroupSettings[groupName]["dataFolder"],
@@ -924,7 +921,6 @@ class GUIfunObj(object):
                             progress = int((self.currProgress / self.progGoal) * 100)
                             self.progressBar.setValue(progress)
                         self.currProgress += 1
-                        print(o, self.currProgress)
                         return self.iterator.__next__()
 
                 return ProgressIterator(self.iterable, self.progressBar)
@@ -1043,7 +1039,6 @@ class MeasurementGroup():
 
 
     def clicked(self):
-        #print('clicked {0} active:{1}'.format(self.name, self.active))
         self.main.GUIsett.setCurrentGroup(self.name)
         for each in self.main.ui.frame_measurement_menu.findChildren(QFrame):
             each.setStyleSheet("background:rgb(51,51,51)")
@@ -1051,7 +1046,6 @@ class MeasurementGroup():
         if self.active:
             self.changeData()
         else:
-            print("activating "+self.name)
             self.activate()
             self.enableNext()
 
@@ -1101,8 +1095,6 @@ class TableSubst(object):
         self.table = table
 
     def myKeyPressEvent(self, event):
-        print(event)
-        #print("_______")
         if event:
             #super().keyPressEvent(event)
             if event.key() == Qt.Key_C and (event.modifiers() & Qt.ControlModifier):
@@ -1135,6 +1127,5 @@ class TableSubst(object):
                 cb = QApplication.clipboard()
                 cb.clear(mode=cb.Clipboard)
                 cb.setText(header+copiedText, mode=cb.Clipboard)
-                print(copiedText)
 
 ###############################################################################################################################################################

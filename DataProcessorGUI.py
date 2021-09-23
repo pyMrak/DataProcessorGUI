@@ -23,7 +23,6 @@ version = "1.0"
 #         else:
 #             log = login.Login()
 #             if log.exec_() == QDialog.Accepted:
-#                 #print(login.logMod.username, login.logMod.userType)
 #                 program = GUI.Main(version, online, login.logMod)
 #
 #     else:
@@ -46,7 +45,6 @@ if __name__ == "__main__":
         else:
             log = Login.Login()
             if log.exec_() == QDialog.Accepted:
-                #print(login.logMod.username, login.logMod.userType)
                 window = MainWindow(version, Login.logMod.username)
         window.show()
     else:
