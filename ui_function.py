@@ -1124,8 +1124,9 @@ class TableSubst(object):
                 for idx in headerIdx:
                     header += self.table.horizontalHeaderItem(idx).text() + '\t'
                 header = header[:-1] + '\n'
+                allText = (header+copiedText).replace('.', ',')
                 cb = QApplication.clipboard()
                 cb.clear(mode=cb.Clipboard)
-                cb.setText(header+copiedText, mode=cb.Clipboard)
+                cb.setText(allText, mode=cb.Clipboard)
 
 ###############################################################################################################################################################
