@@ -98,11 +98,13 @@ class dialogUi(QDialog):
     #THIS IS MADE BY CALLING THIS FUNCTION WHICH TAKES: HEADING, MESSAGE, ICON, BUTTON NAME 1, BUTTON NAME 2 AS ARUMENT.
     #EMBED THE GIVEN PROPERT TO THE DIALOGBOX AND FINALLY DISPLAYS IT IN THE WINDOW.
     #-------> SETTING THE DIALOGBOX CONFIGRATION: TEXT IN BUTTON, LABEL, HEADING
-    def dialogConstrict(self, heading, message, icon, btn1, btn2):
+    def dialogConstrict(self, heading, message, icon, btn1=None, btn2=None):
         self.d.lab_heading.setText(heading)
         self.d.lab_message.setText(message)
-        self.d.bn_east.setText(btn2)
-        self.d.bn_west.setText(btn1)
+        if btn1:
+            self.d.bn_east.setText(btn2)
+        if btn2:
+            self.d.bn_west.setText(btn1)
         pixmap = QtGui.QPixmap(icon)
         self.d.lab_icon.setPixmap(pixmap)
     ##################################################################################################

@@ -14,7 +14,7 @@ from PySide2 import QtWidgets, QtGui
 
 
 #from libs.globalPaths import path
-from DataProcessor import Paths
+import Paths
 
 
 
@@ -127,7 +127,7 @@ class Login(QtWidgets.QDialog):
         super(Login, self).__init__(parent)
         #super().__init__()
         self.sendReq = sendRequest()
-        self.setWindowIcon(QtGui.QIcon('Graphic/Icons/windowIcon.ico'))
+        self.setWindowIcon(QtGui.QIcon(Paths.mainIcon))
         #self.loginModule = loginModule()
         self.textName = QtWidgets.QLineEdit(self)
         self.textPass = QtWidgets.QLineEdit(self)
@@ -179,7 +179,7 @@ class sendRequest(QtWidgets.QWidget):
         
     def openDialog(self):
         super().__init__()
-        self.setWindowIcon(QtGui.QIcon('Graphic/Icons/windowIcon.ico'))
+        self.setWindowIcon(QtGui.QIcon(Paths.mainIcon))
         self.textName = QtWidgets.QLineEdit(self)
         self.textName.setText(self.username)
         self.textPass = QtWidgets.QLineEdit(self)
