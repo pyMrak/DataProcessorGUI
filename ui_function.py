@@ -36,6 +36,7 @@ from main import * #IMPORTING THE MAIN.PY FILE
 from about import *
 
 from PySide2.QtGui import QColor, qRgb, QIcon
+from PyQt5 import sip
 
 from matplotlib.backends.qt_compat import QtCore, QtWidgets as QtWidgMat, is_pyqt5
 from matplotlib.backends.backend_qt5agg import (FigureCanvas, NavigationToolbar2QT as NavigationToolbar)
@@ -48,11 +49,14 @@ mpl.rcParams['toolbar'] = 'toolmanager'
 mpl.rcParams['text.color'] = 'white'
 mpl.rcParams['font.size'] = 12
 
-
+from function_item import Ui_StackedWidget
+#from function_item import Ui_Frame
 from DataProcessor.Data import DataGroup
 from DataProcessor.Texts import Text
 from DataProcessor.Graph import GraphWrapper
 from DataProcessor import Basic
+from DataProcessor import Interface
+import Paths
 
 
 #plt.tight_layout()
@@ -256,6 +260,19 @@ class UIFunction():#MainWindow):
                 self.ui.lab_tab.setText("About > Measurements")
                 self.ui.frame_measurements.setStyleSheet("background:rgb(80,180,180)") # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
 
+        elif buttonName == 'bn_functions':
+            if self.ui.frame_bottom_west.width() == 80 and index != 6:
+                self.ui.stackedWidget.setCurrentWidget(self.ui.page_functions)
+                self.ui.lab_tab.setText("Functions")
+                self.ui.frame_functions.setStyleSheet(
+                    "background:rgb(80,180,180)")  # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
+
+            elif self.ui.frame_bottom_west.width() == 160 and index != 2:  # ABOUT PAGE STACKED WIDGET
+                self.ui.stackedWidget.setCurrentWidget(self.ui.page_about_functions)
+                self.ui.lab_tab.setText("About > Functions")
+                self.ui.frame_functions.setStyleSheet(
+                    "background:rgb(80,180,180)")  # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
+
         #ADD ANOTHER ELIF STATEMENT HERE FOR EXECTUITING A NEW MENU BUTTON STACK PAGE.
     ########################################################################################################################
 
@@ -339,6 +356,23 @@ class UIFunction():#MainWindow):
         self.ui.bn_graph_next.clicked.connect(lambda: APFunction.viewNextGraph(self))
         self.ui.bn_show_graph.clicked.connect(lambda: APFunction.showGraph(self))
 
+        #####FUNCTIONS > FUNCTION DEFINE >>>>>>>>>>>>>>>>>>>>>
+        self.ui.bn_series_function_load.clicked.connect(lambda: APFunction.loadSeriesFunctions(self))
+        self.ui.bn_parameter_function_load.clicked.connect(lambda: APFunction.loadParameterFunctions(self))
+
+        self.ui.bn_series_function_save.clicked.connect(lambda: APFunction.saveSeriesFunctions(self))
+        self.ui.bn_parameter_function_save.clicked.connect(lambda: APFunction.saveParameterFunctions(self))
+
+        #####FUNCTIONS > FUNCTION VIEW >>>>>>>>>>>>>>>>>>>>>
+        self.ui.bn_function_define.clicked.connect(
+            lambda: UIFunction.stackedFunctionDefine(self, "page_function_define"))
+        self.ui.bn_function_sett.clicked.connect(
+            lambda: UIFunction.stackedFunctionDefine(self, "page_function_sett"))
+        self.ui.bn_series_function.clicked.connect(
+            lambda: UIFunction.stackedFunctionType(self, "page_series_function"))
+        self.ui.bn_parameter_function.clicked.connect(
+            lambda: UIFunction.stackedFunctionType(self, "page_parameter_function"))
+
 
         """
         ##########PAGE: ABOUT HOME #############
@@ -401,6 +435,38 @@ class UIFunction():#MainWindow):
             self.ui.stackedWidget_measurements.setCurrentWidget(self.ui.page_view_graphs)
             self.ui.lab_tab.setText("Measurement > View graph")
             self.ui.frame_view_graph.setStyleSheet("background:rgb(91,90,90)")
+
+    def stackedFunctionDefine(self, page):
+        for each in self.ui.frame_function_view.findChildren(QFrame):
+            each.setStyleSheet("background:rgb(51,51,51)")
+
+        if page == "page_function_sett":
+            self.ui.stackedFunction_define.setCurrentWidget(self.ui.page_function_sett)
+            self.ui.lab_tab.setText("Function > Settings")
+            self.ui.frame_function_sett_bn.setStyleSheet("background:rgb(91,90,90)")
+        elif page == "page_function_define":
+            self.ui.stackedFunction_define.setCurrentWidget(self.ui.page_function_define)
+            self.ui.lab_tab.setText("Function > Define")
+            self.ui.frame_function_define_bn.setStyleSheet("background:rgb(91,90,90)")
+            #APFunction.setupFunctionItems(self)
+
+    def stackedFunctionType(self, page):
+        for each in self.ui.frame_function_type.findChildren(QFrame):
+            each.setStyleSheet("background:rgb(51,51,51)")
+
+        if page == "page_series_function":
+            self.ui.sw_function_define.setCurrentWidget(self.ui.page_series_function_define)
+            self.ui.sw_function_sett.setCurrentWidget(self.ui.page_series_function_sett)
+            #self.ui.lab_tab.setText("Function > Settings")
+            self.ui.frame_series_function.setStyleSheet("background:rgb(91,90,90)")
+        elif page == "page_parameter_function":
+            self.ui.sw_function_define.setCurrentWidget(self.ui.page_parameter_function_define)
+            self.ui.sw_function_sett.setCurrentWidget(self.ui.page_parameter_function_sett)
+            #self.ui.lab_tab.setText("Function > Settings")
+            self.ui.frame_parameter_function.setStyleSheet("background:rgb(91,90,90)")
+
+
+
 
         # ADD A ADDITIONAL ELIF STATEMNT WITH THE SIMILAR CODE UP ABOVE FOR YOUR NEW SUBMENU BUTTON IN THE ANDROID STACK PAGE.
 
@@ -633,30 +699,55 @@ class APFunction():
             APFunction.plotGraph(self)
 
     @staticmethod
-    def changeCombo(combo, fileFun, GUIobj):
+    def changeCombo(combo, fileFun, function=None, GUIobj=None):
         combo.clear()
         for file in fileFun(GUIobj):
             combo.addItem(QIcon(), file)
+        if function is not None:
+            combo.currentIndexChanged.connect(function)
+            function(0)
+
+    @staticmethod
+    def setCombo(combo, text):
+        index = combo.findText(text, QtCore.Qt.MatchFixedString)
+        if index >= 0:
+            combo.setCurrentIndex(index)
 
     def getParamFunFiles(self):
         APFunction.changeCombo(self.ui.combo_parameter,
                                Basic.getUserParFunFiles,
-                               self.GUIsett.GUIfunObj)
+                               GUIobj=self.GUIsett.GUIfunObj)
 
     def getHeaderFiles(self):
         APFunction.changeCombo(self.ui.combo_header,
                                Basic.getUserHdrFiles,
-                               self.GUIsett.GUIfunObj)
+                               GUIobj=self.GUIsett.GUIfunObj)
 
     def getSerFunctionFiles(self):
         APFunction.changeCombo(self.ui.combo_sfunction,
                                Basic.getUserSerFunFiles,
-                               self.GUIsett.GUIfunObj)
+                               GUIobj=self.GUIsett.GUIfunObj)
 
     def getGraphFiles(self):
         APFunction.changeCombo(self.ui.combo_graph,
                                Basic.getUserGrfFiles,
-                               self.GUIsett.GUIfunObj)
+                               GUIobj=self.GUIsett.GUIfunObj)
+
+    def populateFunctionCombos(self):
+        APFunction.populateSeriesFunctionCombo(self)
+        APFunction.populateParameterFunctionCombo(self)
+
+    def populateSeriesFunctionCombo(self):
+        APFunction.changeCombo(self.ui.combo_series_function_load,
+                               Basic.getUserSerFunFiles,
+                               function=None,
+                               GUIobj=self.GUIsett.GUIfunObj)
+
+    def populateParameterFunctionCombo(self):
+        APFunction.changeCombo(self.ui.combo_parameter_function_load,
+                               Basic.getUserParFunFiles,
+                               function=None,
+                               GUIobj=self.GUIsett.GUIfunObj)
 
     def updateMeasCombos(self):
         APFunction.getParamFunFiles(self)
@@ -702,6 +793,34 @@ class APFunction():
     def setHdrFileToCurr(self):
         hdrFile = self.GUIsett.getHdrFile()
         APFunction.setComboBoxText(self.ui.combo_header, hdrFile)
+
+    def loadSeriesFile(self):
+        functionFile = self.ui.combo_series_function_load.currentText()
+        self.ui.line_series_function_name.setText(functionFile)
+        self.loadSeriesFunctions(self, functionFile)
+
+    def loadSeriesFunctions(self):
+        functionFile = self.ui.combo_series_function_load.currentText()
+        self.ui.line_series_function_name.setText(functionFile)
+        self.seriesFunctionItems.resetLayout()
+        self.seriesFunctionItems.populate(functionFile, self.GUIsett.GUIfunObj)
+
+    def loadParameterFunctions(self):
+        functionFile = self.ui.combo_parameter_function_load.currentText()
+        self.ui.line_parameter_function_name.setText(functionFile)
+        self.parameterFunctionItems.resetLayout()
+        self.parameterFunctionItems.populate(functionFile, self.GUIsett.GUIfunObj)
+
+    def saveSeriesFunctions(self):
+        functionFileName = self.ui.line_series_function_name.text()
+        self.seriesFunctionItems.saveAs(functionFileName, self.GUIsett.GUIfunObj)
+
+    def saveParameterFunctions(self):
+        functionFileName = self.ui.line_parameter_function_name.text()
+        self.parameterFunctionItems.saveAs(functionFileName, self.GUIsett.GUIfunObj)
+
+    def initializeUser(self):
+        Basic.initiateUserFolders(self.GUIsett.GUIfunObj.username)
 
 
 
@@ -1129,4 +1248,210 @@ class TableSubst(object):
                 cb.clear(mode=cb.Clipboard)
                 cb.setText(allText, mode=cb.Clipboard)
 
-###############################################################################################################################################################
+
+class FunctionItems(object):
+
+    def __init__(self, parent, ftype="s"):
+        self.functionItems = []
+        self.ftype = ftype
+        self.parent = parent
+        if ftype == "s":
+            self.addFrame = self.parent.frame_series_function_define_add
+            self.blankFrame = self.parent.frame_series_function_item_blank
+            self.loadSettingsFile = Basic.loadUserSerFunFile
+            self.functions = Interface.getSeriesFunctions
+            self.getFilePath = Paths.getUserSerFunFile
+            self.p = False
+        elif ftype == "p":
+            self.addFrame = self.parent.frame_parameter_function_define_add
+            self.blankFrame = self.parent.frame_parameter_function_item_blank
+            self.loadSettingsFile = Basic.loadUserParFunFile
+            self.functions = Interface.getParameterFunctions
+            self.getFilePath = Paths.getUserParFunFile
+            self.p = True
+        self.vl_function_define_add = QVBoxLayout(self.addFrame)
+        self.vl_function_define_add.setSpacing(3)
+        self.vl_function_define_add.setContentsMargins(0, 0, 0, 0)
+        self.initializeFrame()
+
+    def initializeFrame(self):
+        self.addInactiveFunction()
+
+    def resetLayout(self):
+        for functionItem in self.functionItems:
+            self.vl_function_define_add.removeWidget(functionItem[0])
+            #sip.delete(functionItem[0])
+            #functionItem[0] = None
+        self.functionItems = []
+
+    def delete(self, a, functionItem):
+        n = self.functionItems.index(functionItem)
+        self.vl_function_define_add.removeWidget(functionItem[0])
+        #functionItem[0].setParent(None)
+        del self.functionItems[n]
+        # for i, functionItem in enumerate(self.functionItems):
+        #     print("i:", i)
+        #     functionItem[1].bn_function_delete.clicked.disconnect()
+        #     functionItem[1].bn_function_delete.clicked.connect(lambda: self.delete(i))
+        #     functionItem[1].cb_evaluate.stateChanged.disconnect()
+        #     functionItem[1].cb_evaluate.stateChanged.connect(lambda: self.functionEvaluation(i))
+
+
+    def addInactiveFunction(self):
+        qsw = QStackedWidget()
+        qsw.setFrameShape(QFrame.NoFrame)
+        qsw.setFrameShadow(QFrame.Plain)
+        qsw.setLineWidth(0)
+        fi = Ui_StackedWidget()
+        fi.setupUi(qsw)
+        qsw.setCurrentWidget(fi.page_add)
+        self.functionItems.append((qsw, fi))
+        self.functionItems[-1][1].bn_add_function.clicked.connect(lambda: self.addBlankFunction())
+        n = len(self.functionItems) - 1
+        self.functionItems[-1][1].bn_function_delete.clicked.connect(lambda a=False, fi=self.functionItems[-1]:
+                                                                     self.delete(a, fi))
+        self.functionEvaluation(False, self.functionItems[-1])
+        self.functionItems[-1][1].cb_evaluate.stateChanged.connect(lambda a=False, fi=self.functionItems[-1]:
+                                                                   self.functionEvaluation(a, fi))
+        self.functionItems[-1][1].cb_evaluate.setEnabled(self.p)
+        # for qsw, fi in self.functionItems:
+        #     self.vl_function_define_add.addWidget(qsw)
+        self.vl_function_define_add.addWidget(qsw)
+
+    def addActiveFunction(self):
+        qsw = QStackedWidget()
+        qsw.setFrameShape(QFrame.NoFrame)
+        qsw.setFrameShadow(QFrame.Plain)
+        qsw.setLineWidth(0)
+        fi = Ui_StackedWidget()
+        fi.setupUi(qsw)
+        qsw.setCurrentWidget(fi.page_define)
+        self.functionItems.append((qsw, fi))
+        n = len(self.functionItems) - 1
+        self.functionItems[-1][1].bn_function_delete.clicked.connect(lambda a=False, fi=self.functionItems[-1]:
+                                                                     self.delete(a, fi))
+        self.functionEvaluation(False, self.functionItems[-1])
+        self.setFunctionTypes(self.functionItems[-1][1])
+        self.functionItems[-1][1].cb_evaluate.stateChanged.connect(lambda a=False, fi=self.functionItems[-1]:
+                                                                     self.functionEvaluation(a, fi))
+        #self.functionItems[-1][1].bn_add_function.clicked.connect(lambda: self.addBlankFunction())
+        # for qsw, fi in self.functionItems:
+        #     self.vl_function_define_add.addWidget(qsw)
+        self.functionItems[-1][1].cb_evaluate.setEnabled(self.p)
+        self.vl_function_define_add.addWidget(qsw)
+
+
+    def addBlankFunction(self):
+        functionItem = self.functionItems[-1][1]
+        self.functionItems[-1][0].setCurrentWidget(functionItem.page_define)
+        self.setFunctionName(functionItem, len(self.functionItems))
+        self.setFunctionTypes(functionItem)
+        self.changeFunctionType(fi=functionItem)
+        self.blankFrame.setParent(None)
+        self.addInactiveFunction()
+        self.vl_function_define_add.addWidget(self.blankFrame)
+
+    def setFunctionName(self, functionItem, n):
+        #n = self.functionItems.index(functionItem)
+        if type(n) == int:
+            name = 'Funckija {}'.format(n)
+        else:
+            name = str(n)
+        functionItem.groupBox.setTitle(name)
+        functionItem.line_function_name.setText(name)
+
+    def setFunctionTypes(self, functionItem):
+        APFunction.changeCombo(functionItem.combo_function_type,
+                               self.functions,
+                               function=lambda x, fi=functionItem: self.changeFunctionType(x, fi=fi),
+                               GUIobj=None)
+
+    def changeFunctionType(self, *args, **kwargs):
+        functionItem = kwargs["fi"]
+        functionName = functionItem.combo_function_type.currentText()
+        mandatory = Interface.getMandatorySett(self.ftype, functionName)
+        functionItem.line_function_par1.setEnabled("feature1" in mandatory)
+        functionItem.line_function_par2.setEnabled("feature2" in mandatory)
+        functionItem.line_function_val1.setEnabled("value1" in mandatory)
+        functionItem.line_function_val2.setEnabled("value2" in mandatory)
+
+    def functionEvaluation(self, a, functionItem):
+        cb = functionItem[1].cb_evaluate.isChecked()
+        functionItem[1].line_function_min.setEnabled(cb)
+        functionItem[1].line_function_max.setEnabled(cb)
+
+
+    def populate(self, functionName, GUIobj=None):
+        functions = self.loadSettingsFile(functionName, GUIobj)
+        self.resetLayout()
+        for functionName in functions:
+            self.addDefinedFunction(functionName, functions[functionName])
+        self.addInactiveFunction()
+        self.vl_function_define_add.addWidget(self.blankFrame)
+
+
+
+    def addDefinedFunction(self, functionName, content):
+        self.addActiveFunction()
+        functionItem = self.functionItems[-1][1]
+        self.setFunctionName(functionItem, functionName)
+        if "function" in content:
+            APFunction.setCombo(functionItem.combo_function_type, content["function"])
+        if "parameters" in content:
+            if "feature1" in content["parameters"]:
+                functionItem.line_function_par1.setText(content["parameters"]["feature1"])
+            if "value1" in content["parameters"]:
+                functionItem.line_function_val1.setText(str(content["parameters"]["value1"]))
+            if "feature2" in content["parameters"]:
+                functionItem.line_function_par2.setText(content["parameters"]["feature2"])
+            if "value2" in content["parameters"]:
+                functionItem.line_function_val2.setText(str(content["parameters"]["value2"]))
+        if "evaluation" in content:
+            functionItem.cb_evaluate.setChecked(True)
+            if "min" in content["evaluation"]:
+                functionItem.line_function_min.setText(str(content["evaluation"]["min"]))
+            if "max" in content["evaluation"]:
+                functionItem.line_function_max.setText(str(content["evaluation"]["max"]))
+        else:
+            functionItem.cb_evaluate.setChecked(False)
+
+    def toJson(self):
+        content = {}
+        for functionItem in self.functionItems[:-1]:
+            fi = functionItem[1]
+            functionParam = {"feature1": (fi.line_function_par1, "s"),
+                             "value1": (fi.line_function_val1, "f"),
+                             "feature2": (fi.line_function_par2, "s"),
+                             "value2": (fi.line_function_val2, "f"),
+                             }
+
+            functionName = fi.line_function_name.text()
+            content[functionName] = {}
+            content[functionName]["function"] = fi.combo_function_type.currentText()
+            content[functionName]["parameters"] = {}
+            for fParam in functionParam:
+                if functionParam[fParam][0].isEnabled():
+                    text = functionParam[fParam][0].text()
+                    if functionParam[fParam][1] == "f":
+                        if Basic.isNumericalText(text):
+                            content[functionName]["parameters"][fParam] = float(text)
+                        else:
+                            content[functionName]["parameters"][fParam] = 0
+                    else:
+                        content[functionName]["parameters"][fParam] = text
+            if fi.cb_evaluate.isChecked():
+                evaluationParam = {"min": fi.line_function_min,
+                                   "max": fi.line_function_max,}
+                content[functionName]["evaluation"] = {}
+                for eParam in evaluationParam:
+                    text = evaluationParam[eParam].text()
+                    if Basic.isNumericalText(text):
+                        content[functionName]["evaluation"][eParam] = float(text)
+        return content
+
+    def saveAs(self, fileName, GUIobj):
+        filePath = self.getFilePath(GUIobj.username, fileName)
+        Basic.saveJsonFile(filePath, self.toJson(), GUIobj)
+        #print(filePath)
+
+######################################################################################################################

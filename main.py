@@ -152,6 +152,12 @@ class errorUi(QDialog):
         pixmap2 = QtGui.QPixmap(icon)
         self.e.lab_icon.setPixmap(pixmap2)
 
+class functionItem(QFrame):
+
+    def __init__(self, parent=None):
+        super(functionItem, self).__init__(parent)
+        self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+
 
 
 
@@ -163,6 +169,8 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.seriesFunctionItems = FunctionItems(self.ui, "s")
+        self.parameterFunctionItems = FunctionItems(self.ui, "p")
         self.GUIsett = GUIsettings(user)
         self.graph = GUIgraph(self)
         self.measurementGroups = {}
@@ -220,6 +228,7 @@ class MainWindow(QMainWindow):
         #self.ui.bn_android.clicked.connect(lambda: UIFunction.buttonPressed(self, 'bn_android'))
         #self.ui.bn_cloud.clicked.connect(lambda: UIFunction.buttonPressed(self, 'bn_cloud'))
         self.ui.bn_measurements.clicked.connect(lambda: UIFunction.buttonPressed(self, 'bn_measurements'))
+        self.ui.bn_functions.clicked.connect(lambda: UIFunction.buttonPressed(self, 'bn_functions'))
         #############################################################
 
 
@@ -227,6 +236,7 @@ class MainWindow(QMainWindow):
         #OUR APPLICATION CHANGES THE PAGES BY USING THE STACKED WIDGET, THIS CODE POINTS TO A FUNCTION IN ui_function.py FILE             ---------(C9)
         #WHICH GOES AND SETS THE DEFAULT IN THESE PAGES AND SEARCHES FOR THE RESPONSES MADE BY THE USER IN THE CORRSPONDING PAGES.
         UIFunction.stackPage(self)
+        self.initializeGUI()
         #############################################################
 
 
@@ -236,10 +246,17 @@ class MainWindow(QMainWindow):
         self.diag = dialogUi()
         self.error = errorUi()
         #############################################################
-        # TODO make init function for the initial button apperance
+
+    def initializeGUI(self):
+
         UIFunction.buttonPressed(self, 'bn_measurements')
         self.ui.frame_read_measurement.setStyleSheet("background:rgb(91,90,90)")
         self.measurementGroups["Group1"].clicked()
+
+        UIFunction.stackedFunctionDefine(self, "page_function_sett")
+        UIFunction.stackedFunctionType(self, "page_parameter_function")
+        APFunction.populateFunctionCombos(self)
+        APFunction.initializeUser(self)
 
         #############################################################
 
