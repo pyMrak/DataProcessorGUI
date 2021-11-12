@@ -801,15 +801,17 @@ class APFunction():
 
     def loadSeriesFunctions(self):
         functionFile = self.ui.combo_series_function_load.currentText()
-        self.ui.line_series_function_name.setText(functionFile)
-        self.seriesFunctionItems.resetLayout()
-        self.seriesFunctionItems.populate(functionFile, self.GUIsett.GUIfunObj)
+        if functionFile:
+            self.ui.line_series_function_name.setText(functionFile)
+            self.seriesFunctionItems.resetLayout()
+            self.seriesFunctionItems.populate(functionFile, self.GUIsett.GUIfunObj)
 
     def loadParameterFunctions(self):
         functionFile = self.ui.combo_parameter_function_load.currentText()
-        self.ui.line_parameter_function_name.setText(functionFile)
-        self.parameterFunctionItems.resetLayout()
-        self.parameterFunctionItems.populate(functionFile, self.GUIsett.GUIfunObj)
+        if functionFile:
+            self.ui.line_parameter_function_name.setText(functionFile)
+            self.parameterFunctionItems.resetLayout()
+            self.parameterFunctionItems.populate(functionFile, self.GUIsett.GUIfunObj)
 
     def saveSeriesFunctions(self):
         functionFileName = self.ui.line_series_function_name.text()

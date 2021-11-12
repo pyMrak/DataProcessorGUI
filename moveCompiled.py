@@ -17,7 +17,6 @@ if not DataProcessorGUI.debug:
     #os.mkdir(Paths.sourcePath)
     shutil.move(Paths.compiledMain, Paths.downloadPath)
 
-
     for folder in ["icons", "exe", "DataProcessor/Text"]:
         shutil.copytree(folder, Paths.sourcePath+'/'+folder, dirs_exist_ok=True)
 
