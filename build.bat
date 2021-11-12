@@ -1,2 +1,2 @@
-call activateVenv.bat & pyinstaller BuildTools/DataProcessorGUI.spec -y & pyinstaller BuildTools/Updater.spec -y & python moveCompiled.py
+call activateVenv.bat & pyinstaller DataProcessorGUI.spec -y & pyinstaller Updater.spec -y & python moveCompiled.py
 
