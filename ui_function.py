@@ -1316,6 +1316,7 @@ class FunctionItems(object):
         self.functionItems[-1][1].cb_evaluate.stateChanged.connect(lambda a=False, fi=self.functionItems[-1]:
                                                                    self.functionEvaluation(a, fi))
         self.functionItems[-1][1].cb_evaluate.setEnabled(self.p)
+        self.functionItems[-1][1].combo_rounding_function.setEnabled(self.p)
         # for qsw, fi in self.functionItems:
         #     self.vl_function_define_add.addWidget(qsw)
         self.vl_function_define_add.addWidget(qsw)
@@ -1340,6 +1341,7 @@ class FunctionItems(object):
         # for qsw, fi in self.functionItems:
         #     self.vl_function_define_add.addWidget(qsw)
         self.functionItems[-1][1].cb_evaluate.setEnabled(self.p)
+        self.functionItems[-1][1].combo_rounding_function.setEnabled(self.p)
         self.vl_function_define_add.addWidget(qsw)
 
 
@@ -1408,6 +1410,11 @@ class FunctionItems(object):
                 functionItem.line_function_par2.setText(content["parameters"]["feature2"])
             if "value2" in content["parameters"]:
                 functionItem.line_function_val2.setText(str(content["parameters"]["value2"]))
+            if "rounding" in content["parameters"]:
+                rounding = ['1', '0,1', '0,01', '0,001', '0,0001']
+                if 0 <= int(content["parameters"]["rounding"]) < 5:
+                    APFunction.setCombo(functionItem.combo_rounding_function,
+                                        rounding[int(content["parameters"]["rounding"])])
         if "evaluation" in content:
             functionItem.cb_evaluate.setChecked(True)
             if "min" in content["evaluation"]:
@@ -1416,6 +1423,7 @@ class FunctionItems(object):
                 functionItem.line_function_max.setText(str(content["evaluation"]["max"]))
         else:
             functionItem.cb_evaluate.setChecked(False)
+
 
     def toJson(self):
         content = {}
@@ -1441,6 +1449,10 @@ class FunctionItems(object):
                             content[functionName]["parameters"][fParam] = 0
                     else:
                         content[functionName]["parameters"][fParam] = text
+                if fi.combo_rounding_function.isEnabled():
+                    idx = fi.combo_rounding_function.currentIndex()
+                    if idx:
+                        content[functionName]["parameters"]["rounding"] = idx - 1
             if fi.cb_evaluate.isChecked():
                 evaluationParam = {"min": fi.line_function_min,
                                    "max": fi.line_function_max,}

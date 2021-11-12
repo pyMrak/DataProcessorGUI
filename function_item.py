@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'function_item1.ui'
+## Form generated from reading UI file 'function_item.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -569,7 +569,7 @@ class Ui_StackedWidget(object):
         self.horizontalLayout_6.setContentsMargins(5, 0, 0, 0)
         self.cb_evaluate = QCheckBox(self.frame_6)
         self.cb_evaluate.setObjectName(u"cb_evaluate")
-        self.cb_evaluate.setMinimumSize(QSize(80, 0))
+        self.cb_evaluate.setMinimumSize(QSize(100, 0))
         self.cb_evaluate.setFont(font)
         self.cb_evaluate.setStyleSheet(u"QCheckBox {\n"
 "    color:rgb(255,255,255);\n"
@@ -605,6 +605,87 @@ class Ui_StackedWidget(object):
 
         self.horizontalLayout_6.addWidget(self.cb_evaluate)
 
+        self.lab_series_function_load = QLabel(self.frame_6)
+        self.lab_series_function_load.setObjectName(u"lab_series_function_load")
+        self.lab_series_function_load.setMinimumSize(QSize(120, 20))
+        self.lab_series_function_load.setMaximumSize(QSize(120, 30))
+        self.lab_series_function_load.setFont(font1)
+        self.lab_series_function_load.setStyleSheet(u"color:rgb(255,255,255);")
+        self.lab_series_function_load.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.horizontalLayout_6.addWidget(self.lab_series_function_load)
+
+        self.combo_rounding_function = QComboBox(self.frame_6)
+        self.combo_rounding_function.addItem("")
+        self.combo_rounding_function.addItem("")
+        self.combo_rounding_function.addItem("")
+        self.combo_rounding_function.addItem("")
+        self.combo_rounding_function.addItem("")
+        self.combo_rounding_function.addItem("")
+        self.combo_rounding_function.setObjectName(u"combo_rounding_function")
+        self.combo_rounding_function.setMinimumSize(QSize(100, 25))
+        self.combo_rounding_function.setMaximumSize(QSize(100, 25))
+        self.combo_rounding_function.setFont(font3)
+        self.combo_rounding_function.setStyleSheet(u"QComboBox {\n"
+"	border: 2px solid rgb(51,51,51);\n"
+"	border-radius: 5px;	\n"
+"	color:rgb(255,255,255);\n"
+"	background-color: rgb(51,51,51);\n"
+"}\n"
+"\n"
+"QComboBox:hover {\n"
+"	border: 2px solid rgb(0,143,170);\n"
+"	border-radius: 5px;	\n"
+"	color:rgb(255,255,255);\n"
+"	background-color: rgb(0,143,170);\n"
+"}\n"
+"\n"
+"QComboBox:!editable, QComboBox::drop-down:editable {\n"
+"	background: rgb(51,51,51);\n"
+"}\n"
+"\n"
+"QComboBox:!editable:on, QComboBox::drop-down:editable:on {\n"
+"    background:rgb(51,51,51);\n"
+"}\n"
+"\n"
+"QComboBox:on { /* shift the text when the popup opens */\n"
+"    padding-top: 3px;\n"
+"    padding-left: 4px;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down {\n"
+"    subcontrol-origin: padding;\n"
+"    subcontrol-position: top right;\n"
+"    width: 15px;\n"
+"\n"
+"    border-left-width: 1px;\n"
+"    border-left-color: darkgray;\n"
+"    border-left-style: solid; /* just a single line */\n"
+"    border-top-right-radius: 5px; /* same radius as the QComboBox */\n"
+"    border-bottom-right-radius: 5px;\n"
+""
+                        "}\n"
+"\n"
+"QComboBox::down-arrow {\n"
+"    image: url(icons/1x/arrow.png);\n"
+"}\n"
+"\n"
+"QComboBox::down-arrow:on { /* shift the arrow when popup is open */\n"
+"    top: 1px;\n"
+"    left: 1px;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down {\n"
+"    background:rgb(51,51,51);\n"
+"}\n"
+"\n"
+"")
+        self.combo_rounding_function.setSizeAdjustPolicy(QComboBox.AdjustToContents)
+        self.combo_rounding_function.setFrame(False)
+        self.combo_rounding_function.setModelColumn(0)
+
+        self.horizontalLayout_6.addWidget(self.combo_rounding_function)
+
         self.horizontalSpacer_6 = QSpacerItem(646, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_6.addItem(self.horizontalSpacer_6)
@@ -620,6 +701,7 @@ class Ui_StackedWidget(object):
         self.retranslateUi(StackedWidget)
 
         StackedWidget.setCurrentIndex(1)
+        self.combo_rounding_function.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(StackedWidget)
@@ -646,5 +728,13 @@ class Ui_StackedWidget(object):
         self.lab_function_max.setText(QCoreApplication.translate("StackedWidget", u"<html><head/><body><p><span style=\" font-size:12pt; color:#ffffff;\">max:</span></p></body></html>", None))
         self.line_function_max.setText("")
         self.cb_evaluate.setText(QCoreApplication.translate("StackedWidget", u"Ovrednoti", None))
+        self.lab_series_function_load.setText(QCoreApplication.translate("StackedWidget", u"<html><head/><body><p><span style=\" font-size:12pt; color:#ffffff;\">Zaokro\u017eevanje:</span></p></body></html>", None))
+        self.combo_rounding_function.setItemText(0, "")
+        self.combo_rounding_function.setItemText(1, QCoreApplication.translate("StackedWidget", u"1", None))
+        self.combo_rounding_function.setItemText(2, QCoreApplication.translate("StackedWidget", u"0,1", None))
+        self.combo_rounding_function.setItemText(3, QCoreApplication.translate("StackedWidget", u"0,01", None))
+        self.combo_rounding_function.setItemText(4, QCoreApplication.translate("StackedWidget", u"0,001", None))
+        self.combo_rounding_function.setItemText(5, QCoreApplication.translate("StackedWidget", u"0,0001", None))
+
     # retranslateUi
 
