@@ -686,6 +686,38 @@ class Ui_StackedWidget(object):
 
         self.horizontalLayout_6.addWidget(self.combo_rounding_function)
 
+        self.lab_series_function_name = QLabel(self.frame_6)
+        self.lab_series_function_name.setObjectName(u"lab_series_function_name")
+        self.lab_series_function_name.setMinimumSize(QSize(100, 20))
+        self.lab_series_function_name.setMaximumSize(QSize(100, 30))
+        self.lab_series_function_name.setFont(font1)
+        self.lab_series_function_name.setStyleSheet(u"color:rgb(255,255,255);")
+        self.lab_series_function_name.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.horizontalLayout_6.addWidget(self.lab_series_function_name)
+
+        self.line_series_function_name = QLineEdit(self.frame_6)
+        self.line_series_function_name.setObjectName(u"line_series_function_name")
+        self.line_series_function_name.setEnabled(True)
+        self.line_series_function_name.setMinimumSize(QSize(100, 25))
+        self.line_series_function_name.setMaximumSize(QSize(100, 25))
+        self.line_series_function_name.setFont(font2)
+        self.line_series_function_name.setStyleSheet(u"QLineEdit {\n"
+"	color:rgb(255,255,255);\n"
+"	border:2px solid rgb(51,51,51);\n"
+"	border-radius:4px;\n"
+"	background:rgb(51,51,51);\n"
+"}\n"
+"\n"
+"QLineEdit:disabled {\n"
+"	color:rgb(255,255,255);\n"
+"	border:2px solid rgb(112,112,112);\n"
+"	border-radius:4px;\n"
+"	background:rgb(112,112,112);\n"
+"}")
+
+        self.horizontalLayout_6.addWidget(self.line_series_function_name)
+
         self.horizontalSpacer_6 = QSpacerItem(646, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_6.addItem(self.horizontalSpacer_6)
@@ -736,5 +768,7 @@ class Ui_StackedWidget(object):
         self.combo_rounding_function.setItemText(4, QCoreApplication.translate("StackedWidget", u"0,001", None))
         self.combo_rounding_function.setItemText(5, QCoreApplication.translate("StackedWidget", u"0,0001", None))
 
+        self.lab_series_function_name.setText(QCoreApplication.translate("StackedWidget", u"<html><head/><body><p><span style=\" font-size:12pt; color:#ffffff;\">Novo ime:</span></p></body></html>", None))
+        self.line_series_function_name.setText("")
     # retranslateUi
 

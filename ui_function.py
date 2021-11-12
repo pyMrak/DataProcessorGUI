@@ -1317,6 +1317,7 @@ class FunctionItems(object):
                                                                    self.functionEvaluation(a, fi))
         self.functionItems[-1][1].cb_evaluate.setEnabled(self.p)
         self.functionItems[-1][1].combo_rounding_function.setEnabled(self.p)
+        self.functionItems[-1][1].line_series_function_name.setEnabled(not self.p)
         # for qsw, fi in self.functionItems:
         #     self.vl_function_define_add.addWidget(qsw)
         self.vl_function_define_add.addWidget(qsw)
@@ -1342,6 +1343,7 @@ class FunctionItems(object):
         #     self.vl_function_define_add.addWidget(qsw)
         self.functionItems[-1][1].cb_evaluate.setEnabled(self.p)
         self.functionItems[-1][1].combo_rounding_function.setEnabled(self.p)
+        self.functionItems[-1][1].line_series_function_name.setEnabled(not self.p)
         self.vl_function_define_add.addWidget(qsw)
 
 
@@ -1415,6 +1417,8 @@ class FunctionItems(object):
                 if 0 <= int(content["parameters"]["rounding"]) < 5:
                     APFunction.setCombo(functionItem.combo_rounding_function,
                                         rounding[int(content["parameters"]["rounding"])])
+            if "newName" in content["parameters"]:
+                functionItem.line_series_function_name.setText(content["parameters"]["newName"])
         if "evaluation" in content:
             functionItem.cb_evaluate.setChecked(True)
             if "min" in content["evaluation"]:
@@ -1453,6 +1457,10 @@ class FunctionItems(object):
                     idx = fi.combo_rounding_function.currentIndex()
                     if idx:
                         content[functionName]["parameters"]["rounding"] = idx - 1
+                if fi.line_series_function_name.isEnabled():
+                    newName = fi.line_series_function_name.text()
+                    if newName:
+                        content[functionName]["parameters"]["newName"] = newName
             if fi.cb_evaluate.isChecked():
                 evaluationParam = {"min": fi.line_function_min,
                                    "max": fi.line_function_max,}
