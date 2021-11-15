@@ -844,6 +844,101 @@ QPushButton:pressed {
            </widget>
           </item>
           <item>
+           <widget class="QFrame" name="frame_reports">
+            <property name="minimumSize">
+             <size>
+              <width>80</width>
+              <height>55</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>160</width>
+              <height>55</height>
+             </size>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Plain</enum>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_60">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QPushButton" name="bn_reports">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>80</width>
+                 <height>55</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>160</width>
+                 <height>55</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+	border: none;
+	background-color: rgba(0,0,0,0);
+}
+QPushButton:hover {
+	background-color: rgb(80,180,180);
+}
+QPushButton:pressed {	
+	background-color: rgba(0,0,0,0);
+}</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>icons/1x/reportAsset.png</normaloff>icons/1x/reportAsset.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>30</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
            <widget class="QFrame" name="frame_5">
             <property name="minimumSize">
              <size>
@@ -9410,8 +9505,8 @@ QScrollBar::sub-page:vertical {
                                <rect>
                                 <x>0</x>
                                 <y>0</y>
-                                <width>783</width>
-                                <height>458</height>
+                                <width>100</width>
+                                <height>30</height>
                                </rect>
                               </property>
                               <layout class="QVBoxLayout" name="verticalLayout_34">
@@ -27162,7 +27257,7 @@ QScrollBar::sub-page:vertical {
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>804</width>
+                      <width>98</width>
                       <height>838</height>
                      </rect>
                     </property>

@@ -9,7 +9,7 @@ from libs import Permission, Login
 import Paths
 
 
-debug = False
+debug = True
 debugUpdater = False
 version = "1.1"
 

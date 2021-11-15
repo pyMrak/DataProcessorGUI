@@ -352,6 +352,45 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addWidget(self.frame_functions)
 
+        self.frame_reports = QFrame(self.frame_bottom_west)
+        self.frame_reports.setObjectName(u"frame_reports")
+        self.frame_reports.setMinimumSize(QSize(80, 55))
+        self.frame_reports.setMaximumSize(QSize(160, 55))
+        self.frame_reports.setFrameShape(QFrame.NoFrame)
+        self.frame_reports.setFrameShadow(QFrame.Plain)
+        self.horizontalLayout_60 = QHBoxLayout(self.frame_reports)
+        self.horizontalLayout_60.setSpacing(0)
+        self.horizontalLayout_60.setObjectName(u"horizontalLayout_60")
+        self.horizontalLayout_60.setContentsMargins(0, 0, 0, 0)
+        self.bn_reports = QPushButton(self.frame_reports)
+        self.bn_reports.setObjectName(u"bn_reports")
+        self.bn_reports.setEnabled(True)
+        sizePolicy.setHeightForWidth(self.bn_reports.sizePolicy().hasHeightForWidth())
+        self.bn_reports.setSizePolicy(sizePolicy)
+        self.bn_reports.setMinimumSize(QSize(80, 55))
+        self.bn_reports.setMaximumSize(QSize(160, 55))
+        self.bn_reports.setStyleSheet(u"QPushButton {\n"
+"	border: none;\n"
+"	background-color: rgba(0,0,0,0);\n"
+"}\n"
+"QPushButton:hover {\n"
+"	background-color: rgb(80,180,180);\n"
+"}\n"
+"QPushButton:pressed {	\n"
+"	background-color: rgba(0,0,0,0);\n"
+"}")
+        icon6 = QIcon()
+        icon6.addFile(u"icons/1x/reportAsset.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.bn_reports.setIcon(icon6)
+        self.bn_reports.setIconSize(QSize(30, 30))
+        self.bn_reports.setCheckable(False)
+        self.bn_reports.setFlat(True)
+
+        self.horizontalLayout_60.addWidget(self.bn_reports)
+
+
+        self.verticalLayout_3.addWidget(self.frame_reports)
+
         self.frame_5 = QFrame(self.frame_bottom_west)
         self.frame_5.setObjectName(u"frame_5")
         self.frame_5.setMinimumSize(QSize(80, 0))
@@ -1016,9 +1055,9 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        icon6 = QIcon()
-        icon6.addFile(u"icons/1x/bookAsset 57.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.bn_android_contact.setIcon(icon6)
+        icon7 = QIcon()
+        icon7.addFile(u"icons/1x/bookAsset 57.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.bn_android_contact.setIcon(icon7)
         self.bn_android_contact.setIconSize(QSize(13, 16))
         self.bn_android_contact.setFlat(True)
 
@@ -1052,9 +1091,9 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        icon7 = QIcon()
-        icon7.addFile(u"icons/1x/gameAsset 61.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.bn_android_game.setIcon(icon7)
+        icon8 = QIcon()
+        icon8.addFile(u"icons/1x/gameAsset 61.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.bn_android_game.setIcon(icon8)
         self.bn_android_game.setIconSize(QSize(20, 13))
         self.bn_android_game.setFlat(True)
 
@@ -1087,9 +1126,9 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        icon8 = QIcon()
-        icon8.addFile(u"icons/1x/cleanAsset 59.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.bn_android_clean.setIcon(icon8)
+        icon9 = QIcon()
+        icon9.addFile(u"icons/1x/cleanAsset 59.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.bn_android_clean.setIcon(icon9)
         self.bn_android_clean.setFlat(True)
 
         self.horizontalLayout_23.addWidget(self.bn_android_clean)
@@ -1122,9 +1161,9 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        icon9 = QIcon()
-        icon9.addFile(u"icons/1x/worldAsset 60.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.bn_android_world.setIcon(icon9)
+        icon10 = QIcon()
+        icon10.addFile(u"icons/1x/worldAsset 60.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.bn_android_world.setIcon(icon10)
         self.bn_android_world.setFlat(True)
 
         self.horizontalLayout_24.addWidget(self.bn_android_world)
@@ -2012,9 +2051,9 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        icon10 = QIcon()
-        icon10.addFile(u"icons/1x/addAsset.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.bn_group_2.setIcon(icon10)
+        icon11 = QIcon()
+        icon11.addFile(u"icons/1x/addAsset.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.bn_group_2.setIcon(icon11)
         self.bn_group_2.setFlat(True)
 
         self.horizontalLayout_33.addWidget(self.bn_group_2)
@@ -2219,9 +2258,9 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        icon11 = QIcon()
-        icon11.addFile(u"icons/1x/settAsset 50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.bn_view_read_meas.setIcon(icon11)
+        icon12 = QIcon()
+        icon12.addFile(u"icons/1x/settAsset 50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.bn_view_read_meas.setIcon(icon12)
         self.bn_view_read_meas.setFlat(True)
 
         self.verticalLayout_20.addWidget(self.bn_view_read_meas)
@@ -2255,9 +2294,9 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        icon12 = QIcon()
-        icon12.addFile(u"icons/1x/listAsset.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.bn_view_measurement.setIcon(icon12)
+        icon13 = QIcon()
+        icon13.addFile(u"icons/1x/listAsset.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.bn_view_measurement.setIcon(icon13)
         self.bn_view_measurement.setIconSize(QSize(22, 22))
         self.bn_view_measurement.setFlat(True)
 
@@ -2329,9 +2368,9 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        icon13 = QIcon()
-        icon13.addFile(u"icons/1x/graphAsset.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.bn_view_graph.setIcon(icon13)
+        icon14 = QIcon()
+        icon14.addFile(u"icons/1x/graphAsset.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.bn_view_graph.setIcon(icon14)
         self.bn_view_graph.setFlat(True)
 
         self.verticalLayout_23.addWidget(self.bn_view_graph)
@@ -3299,9 +3338,9 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        icon14 = QIcon()
-        icon14.addFile(u"icons/1x/prevAsset.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.bn_meas_prev.setIcon(icon14)
+        icon15 = QIcon()
+        icon15.addFile(u"icons/1x/prevAsset.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.bn_meas_prev.setIcon(icon15)
         self.bn_meas_prev.setIconSize(QSize(28, 28))
         self.bn_meas_prev.setFlat(True)
 
@@ -3399,9 +3438,9 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        icon15 = QIcon()
-        icon15.addFile(u"icons/1x/nextAsset.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.bn_meas_next.setIcon(icon15)
+        icon16 = QIcon()
+        icon16.addFile(u"icons/1x/nextAsset.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.bn_meas_next.setIcon(icon16)
         self.bn_meas_next.setIconSize(QSize(28, 28))
         self.bn_meas_next.setFlat(True)
 
@@ -3541,7 +3580,7 @@ class Ui_MainWindow(object):
 "  QPushButton:pressed {\n"
 "      background-color: rgba(0,0,0,0);\n"
 "  }")
-        self.bn_graph_prev.setIcon(icon14)
+        self.bn_graph_prev.setIcon(icon15)
         self.bn_graph_prev.setIconSize(QSize(28, 28))
         self.bn_graph_prev.setFlat(True)
 
@@ -3639,7 +3678,7 @@ class Ui_MainWindow(object):
 "  QPushButton:pressed {\n"
 "      background-color: rgba(0,0,0,0);\n"
 "  }")
-        self.bn_graph_next.setIcon(icon15)
+        self.bn_graph_next.setIcon(icon16)
         self.bn_graph_next.setIconSize(QSize(28, 28))
         self.bn_graph_next.setFlat(True)
 
@@ -3729,7 +3768,7 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        self.bn_series_function.setIcon(icon13)
+        self.bn_series_function.setIcon(icon14)
         self.bn_series_function.setIconSize(QSize(18, 18))
         self.bn_series_function.setFlat(True)
 
@@ -3768,7 +3807,7 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        self.bn_parameter_function.setIcon(icon12)
+        self.bn_parameter_function.setIcon(icon13)
         self.bn_parameter_function.setIconSize(QSize(22, 22))
         self.bn_parameter_function.setFlat(True)
 
@@ -3829,7 +3868,7 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        self.bn_function_sett.setIcon(icon11)
+        self.bn_function_sett.setIcon(icon12)
         self.bn_function_sett.setFlat(True)
 
         self.verticalLayout_30.addWidget(self.bn_function_sett)
@@ -3863,7 +3902,7 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        self.bn_function_define.setIcon(icon12)
+        self.bn_function_define.setIcon(icon13)
         self.bn_function_define.setIconSize(QSize(22, 22))
         self.bn_function_define.setFlat(True)
 
@@ -4432,7 +4471,7 @@ class Ui_MainWindow(object):
         self.scrollA_function_define.setWidgetResizable(True)
         self.scrollW_function_define = QWidget()
         self.scrollW_function_define.setObjectName(u"scrollW_function_define")
-        self.scrollW_function_define.setGeometry(QRect(0, 0, 783, 458))
+        self.scrollW_function_define.setGeometry(QRect(0, 0, 100, 30))
         self.verticalLayout_342 = QVBoxLayout(self.scrollW_function_define)
         self.verticalLayout_342.setSpacing(0)
         self.verticalLayout_342.setObjectName(u"verticalLayout_342")
@@ -4681,7 +4720,7 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        self.bn_parameter_function_11.setIcon(icon10)
+        self.bn_parameter_function_11.setIcon(icon11)
         self.bn_parameter_function_11.setIconSize(QSize(22, 22))
         self.bn_parameter_function_11.setFlat(True)
 
@@ -5595,7 +5634,7 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        self.bn_parameter_function_12.setIcon(icon10)
+        self.bn_parameter_function_12.setIcon(icon11)
         self.bn_parameter_function_12.setIconSize(QSize(22, 22))
         self.bn_parameter_function_12.setFlat(True)
 
@@ -6510,7 +6549,7 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        self.bn_parameter_function_13.setIcon(icon10)
+        self.bn_parameter_function_13.setIcon(icon11)
         self.bn_parameter_function_13.setIconSize(QSize(22, 22))
         self.bn_parameter_function_13.setFlat(True)
 
@@ -7418,7 +7457,7 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        self.bn_parameter_function_14.setIcon(icon10)
+        self.bn_parameter_function_14.setIcon(icon11)
         self.bn_parameter_function_14.setIconSize(QSize(22, 22))
         self.bn_parameter_function_14.setFlat(True)
 
@@ -8326,7 +8365,7 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        self.bn_parameter_function_15.setIcon(icon10)
+        self.bn_parameter_function_15.setIcon(icon11)
         self.bn_parameter_function_15.setIconSize(QSize(22, 22))
         self.bn_parameter_function_15.setFlat(True)
 
@@ -9234,7 +9273,7 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        self.bn_parameter_function_16.setIcon(icon10)
+        self.bn_parameter_function_16.setIcon(icon11)
         self.bn_parameter_function_16.setIconSize(QSize(22, 22))
         self.bn_parameter_function_16.setFlat(True)
 
@@ -10142,7 +10181,7 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        self.bn_parameter_function_17.setIcon(icon10)
+        self.bn_parameter_function_17.setIcon(icon11)
         self.bn_parameter_function_17.setIconSize(QSize(22, 22))
         self.bn_parameter_function_17.setFlat(True)
 
@@ -11050,7 +11089,7 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        self.bn_parameter_function_3.setIcon(icon10)
+        self.bn_parameter_function_3.setIcon(icon11)
         self.bn_parameter_function_3.setIconSize(QSize(22, 22))
         self.bn_parameter_function_3.setFlat(True)
 
@@ -11926,7 +11965,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 804, 838))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 98, 838))
         self.scrollAreaWidgetContents.setStyleSheet(u"QScrollBar:vertical {\n"
 "	background:rgb(51,51,51);\n"
 "    width:20px;\n"
@@ -12092,6 +12131,7 @@ class Ui_MainWindow(object):
         self.bn_close.setText("")
         self.bn_measurements.setText("")
         self.bn_functions.setText("")
+        self.bn_reports.setText("")
         self.lab_home_main_hed.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#ffffff;\">Profile</span></p></body></html>", None))
         self.lab_home_main_disc.setText(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
