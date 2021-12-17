@@ -646,8 +646,8 @@ class APFunction():
         sfunFile = self.ui.combo_sfunction.currentText()
         if hdrFile:
             self.GUIsett.setHdrFile(hdrFile)
-        if sfunFile:
-            self.GUIsett.setSerFunFile(sfunFile)
+        # if sfunFile:
+        self.GUIsett.setSerFunFile(sfunFile)
         self.GUIsett.readGroup(self)
         APFunction.setMeasTable(self)
         APFunction.readParam(self)
@@ -864,9 +864,10 @@ class GUIsettings(object):
         self.GUIfunObj.setProgressBar(main.ui.progressBar_read_meas)
         hdrFile = self.measGroupSettings[self.currentGroup]["headerFile"]
         sfunFile = self.measGroupSettings[self.currentGroup]["serFunFile"]
+        self.groupMeasurements[self.currentGroup].reset()
         if hdrFile is not None:
             self.groupMeasurements[self.currentGroup].readPyro(hdrFile)
-        if sfunFile is not None:
+        if sfunFile:
             self.groupMeasurements[self.currentGroup].applySerFunctions(sfunFile)
         self.GUIfunObj.resetProgessBar()
 
