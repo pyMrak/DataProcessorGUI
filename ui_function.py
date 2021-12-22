@@ -641,7 +641,6 @@ class APFunction():
 
 
     def readGroup(self):
-        self.GUIsett.saveMeasUserPreset()
         hdrFile = self.ui.combo_header.currentText()
         sfunFile = self.ui.combo_sfunction.currentText()
         if hdrFile:
@@ -652,6 +651,7 @@ class APFunction():
         APFunction.setMeasTable(self)
         APFunction.readParam(self)
         APFunction.plotGraph(self)
+        self.GUIsett.saveMeasUserPreset()
 
 
     def readParam(self):
@@ -794,6 +794,10 @@ class APFunction():
         hdrFile = self.GUIsett.getHdrFile()
         APFunction.setComboBoxText(self.ui.combo_header, hdrFile)
 
+    def setSerFileToCurr(self):
+        serFile = self.GUIsett.getSerFunFile()
+        APFunction.setComboBoxText(self.ui.combo_sfunction, serFile)
+
     def loadSeriesFile(self):
         functionFile = self.ui.combo_series_function_load.currentText()
         self.ui.line_series_function_name.setText(functionFile)
@@ -862,6 +866,7 @@ class GUIsettings(object):
 
     def readGroup(self, main):
         self.GUIfunObj.setProgressBar(main.ui.progressBar_read_meas)
+        #self.GUIsett.setParamFile(paramFile)
         hdrFile = self.measGroupSettings[self.currentGroup]["headerFile"]
         sfunFile = self.measGroupSettings[self.currentGroup]["serFunFile"]
         self.groupMeasurements[self.currentGroup].reset()
@@ -1177,6 +1182,7 @@ class MeasurementGroup():
         APFunction.setMeasTable(self.main)
         APFunction.setParamTable(self.main)
         APFunction.setHdrFileToCurr(self.main)
+        APFunction.setSerFileToCurr(self.main)
         APFunction.setParamFileToCurr(self.main)
         APFunction.setGraphFileToCurr(self.main)
         APFunction.plotGraph(self.main)
