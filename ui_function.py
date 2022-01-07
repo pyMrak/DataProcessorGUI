@@ -273,6 +273,19 @@ class UIFunction():#MainWindow):
                 self.ui.frame_functions.setStyleSheet(
                     "background:rgb(80,180,180)")  # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
 
+        elif buttonName == 'bn_reports':
+            if self.ui.frame_bottom_west.width() == 80 and index != 6:
+                self.ui.stackedWidget.setCurrentWidget(self.ui.page_report)
+                self.ui.lab_tab.setText("Reports")
+                self.ui.frame_reports.setStyleSheet(
+                    "background:rgb(80,180,180)")  # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
+
+            elif self.ui.frame_bottom_west.width() == 160 and index != 2:  # ABOUT PAGE STACKED WIDGET
+                self.ui.stackedWidget.setCurrentWidget(self.ui.page_about_report)
+                self.ui.lab_tab.setText("About > Reports")
+                self.ui.frame_reports.setStyleSheet(
+                    "background:rgb(80,180,180)")  # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
+
         #ADD ANOTHER ELIF STATEMENT HERE FOR EXECTUITING A NEW MENU BUTTON STACK PAGE.
     ########################################################################################################################
 
@@ -373,6 +386,18 @@ class UIFunction():#MainWindow):
         self.ui.bn_parameter_function.clicked.connect(
             lambda: UIFunction.stackedFunctionType(self, "page_parameter_function"))
 
+        #####REPORTS > FUNCTION VIEW >>>>>>>>>>>>>>>>>>>>>
+        self.ui.bn_report_pick_bn.clicked.connect(
+            lambda: UIFunction.stackedReportDefine(self, "page_report_pick"))
+        self.ui.bn_report_sett_bn.clicked.connect(
+            lambda: UIFunction.stackedReportDefine(self, "page_report_sett"))
+        self.ui.bn_report_create_bn.clicked.connect(
+            lambda: UIFunction.stackedReportDefine(self, "page_report_create"))
+        self.ui.bn_excel_report.clicked.connect(
+            lambda: UIFunction.stackedReportType(self, "page_excel_report"))
+        self.ui.bn_word_report.clicked.connect(
+            lambda: UIFunction.stackedReportType(self, "page_word_report"))
+
 
         """
         ##########PAGE: ABOUT HOME #############
@@ -464,6 +489,40 @@ class UIFunction():#MainWindow):
             self.ui.sw_function_sett.setCurrentWidget(self.ui.page_parameter_function_sett)
             #self.ui.lab_tab.setText("Function > Settings")
             self.ui.frame_parameter_function.setStyleSheet("background:rgb(91,90,90)")
+
+    def stackedReportDefine(self, page):
+        for each in self.ui.frame_report_view.findChildren(QFrame):
+            each.setStyleSheet("background:rgb(51,51,51)")
+
+        if page == "page_report_pick":
+            self.ui.stackedReport_define.setCurrentWidget(self.ui.page_report_pick)
+            self.ui.lab_tab.setText("Report > Pick")
+            self.ui.frame_report_pick_bn.setStyleSheet("background:rgb(91,90,90)")
+        elif page == "page_report_sett":
+            self.ui.stackedReport_define.setCurrentWidget(self.ui.page_report_define)
+            self.ui.lab_tab.setText("Report > Settings")
+            self.ui.frame_report_sett_bn.setStyleSheet("background:rgb(91,90,90)")
+        elif page == "page_report_create":
+            self.ui.stackedReport_define.setCurrentWidget(self.ui.page_report_create)
+            self.ui.lab_tab.setText("Report > Create")
+            self.ui.bn_report_create_bn.setStyleSheet("background:rgb(91,90,90)")
+
+    def stackedReportType(self, page):
+        for each in self.ui.frame_report_type.findChildren(QFrame):
+            each.setStyleSheet("background:rgb(51,51,51)")
+
+        if page == "page_excel_report":
+            self.ui.sw_report_pick.setCurrentWidget(self.ui.page_excel_report_pick)
+            self.ui.sw_report_define.setCurrentWidget(self.ui.page_excel_report_define)
+            self.ui.sw_report_create.setCurrentWidget(self.ui.page_excel_report_create)
+            # self.ui.lab_tab.setText("Function > Settings")
+            self.ui.frame_excel_report.setStyleSheet("background:rgb(91,90,90)")
+        elif page == "page_word_report":
+            self.ui.sw_report_pick.setCurrentWidget(self.ui.page_word_report_pick)
+            self.ui.sw_report_define.setCurrentWidget(self.ui.page_word_report_define)
+            self.ui.sw_report_create.setCurrentWidget(self.ui.page_word_report_create)
+            # self.ui.lab_tab.setText("Function > Settings")
+            self.ui.frame_word_report.setStyleSheet("background:rgb(91,90,90)")
 
 
 

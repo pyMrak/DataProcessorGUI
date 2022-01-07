@@ -229,6 +229,7 @@ class MainWindow(QMainWindow):
         #self.ui.bn_cloud.clicked.connect(lambda: UIFunction.buttonPressed(self, 'bn_cloud'))
         self.ui.bn_measurements.clicked.connect(lambda: UIFunction.buttonPressed(self, 'bn_measurements'))
         self.ui.bn_functions.clicked.connect(lambda: UIFunction.buttonPressed(self, 'bn_functions'))
+        self.ui.bn_reports.clicked.connect(lambda: UIFunction.buttonPressed(self, 'bn_reports'))
         #############################################################
 
 
