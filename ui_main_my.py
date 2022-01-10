@@ -12079,14 +12079,14 @@ class Ui_MainWindow(object):
         self.verticalLayout_55.setSpacing(0)
         self.verticalLayout_55.setObjectName(u"verticalLayout_55")
         self.verticalLayout_55.setContentsMargins(0, 0, 0, 0)
-        self.bn_report_pick_bn = QPushButton(self.frame_report_pick_bn)
-        self.bn_report_pick_bn.setObjectName(u"bn_report_pick_bn")
-        self.bn_report_pick_bn.setEnabled(True)
-        sizePolicy2.setHeightForWidth(self.bn_report_pick_bn.sizePolicy().hasHeightForWidth())
-        self.bn_report_pick_bn.setSizePolicy(sizePolicy2)
-        self.bn_report_pick_bn.setMinimumSize(QSize(40, 30))
-        self.bn_report_pick_bn.setMaximumSize(QSize(40, 300))
-        self.bn_report_pick_bn.setStyleSheet(u"QPushButton {\n"
+        self.bn_report_pick = QPushButton(self.frame_report_pick_bn)
+        self.bn_report_pick.setObjectName(u"bn_report_pick")
+        self.bn_report_pick.setEnabled(True)
+        sizePolicy2.setHeightForWidth(self.bn_report_pick.sizePolicy().hasHeightForWidth())
+        self.bn_report_pick.setSizePolicy(sizePolicy2)
+        self.bn_report_pick.setMinimumSize(QSize(40, 30))
+        self.bn_report_pick.setMaximumSize(QSize(40, 500))
+        self.bn_report_pick.setStyleSheet(u"QPushButton {\n"
 "	border: none;\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}\n"
@@ -12098,10 +12098,10 @@ class Ui_MainWindow(object):
 "}")
         icon18 = QIcon()
         icon18.addFile(u"icons/1x/pickAsset.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.bn_report_pick_bn.setIcon(icon18)
-        self.bn_report_pick_bn.setFlat(True)
+        self.bn_report_pick.setIcon(icon18)
+        self.bn_report_pick.setFlat(True)
 
-        self.verticalLayout_55.addWidget(self.bn_report_pick_bn)
+        self.verticalLayout_55.addWidget(self.bn_report_pick)
 
 
         self.verticalLayout_54.addWidget(self.frame_report_pick_bn)
@@ -12117,14 +12117,14 @@ class Ui_MainWindow(object):
         self.verticalLayout_74.setSpacing(0)
         self.verticalLayout_74.setObjectName(u"verticalLayout_74")
         self.verticalLayout_74.setContentsMargins(0, 0, 0, 0)
-        self.bn_report_sett_bn = QPushButton(self.frame_report_sett_bn)
-        self.bn_report_sett_bn.setObjectName(u"bn_report_sett_bn")
-        self.bn_report_sett_bn.setEnabled(True)
-        sizePolicy2.setHeightForWidth(self.bn_report_sett_bn.sizePolicy().hasHeightForWidth())
-        self.bn_report_sett_bn.setSizePolicy(sizePolicy2)
-        self.bn_report_sett_bn.setMinimumSize(QSize(40, 30))
-        self.bn_report_sett_bn.setMaximumSize(QSize(40, 300))
-        self.bn_report_sett_bn.setStyleSheet(u"QPushButton {\n"
+        self.bn_report_sett = QPushButton(self.frame_report_sett_bn)
+        self.bn_report_sett.setObjectName(u"bn_report_sett")
+        self.bn_report_sett.setEnabled(True)
+        sizePolicy2.setHeightForWidth(self.bn_report_sett.sizePolicy().hasHeightForWidth())
+        self.bn_report_sett.setSizePolicy(sizePolicy2)
+        self.bn_report_sett.setMinimumSize(QSize(40, 30))
+        self.bn_report_sett.setMaximumSize(QSize(40, 500))
+        self.bn_report_sett.setStyleSheet(u"QPushButton {\n"
 "	border: none;\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}\n"
@@ -12134,31 +12134,32 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        self.bn_report_sett_bn.setIcon(icon12)
-        self.bn_report_sett_bn.setFlat(True)
+        self.bn_report_sett.setIcon(icon12)
+        self.bn_report_sett.setFlat(True)
 
-        self.verticalLayout_74.addWidget(self.bn_report_sett_bn)
+        self.verticalLayout_74.addWidget(self.bn_report_sett)
 
 
         self.verticalLayout_54.addWidget(self.frame_report_sett_bn)
 
         self.frame_report_create_bn = QFrame(self.frame_report_view)
         self.frame_report_create_bn.setObjectName(u"frame_report_create_bn")
-        self.frame_report_create_bn.setMaximumSize(QSize(40, 300))
+        self.frame_report_create_bn.setMaximumSize(QSize(40, 500))
         self.frame_report_create_bn.setFrameShape(QFrame.NoFrame)
         self.frame_report_create_bn.setFrameShadow(QFrame.Plain)
+        self.frame_report_create_bn.setLineWidth(0)
         self.verticalLayout_56 = QVBoxLayout(self.frame_report_create_bn)
         self.verticalLayout_56.setSpacing(0)
         self.verticalLayout_56.setObjectName(u"verticalLayout_56")
         self.verticalLayout_56.setContentsMargins(0, 0, 0, 0)
-        self.bn_report_create_bn = QPushButton(self.frame_report_create_bn)
-        self.bn_report_create_bn.setObjectName(u"bn_report_create_bn")
-        self.bn_report_create_bn.setEnabled(True)
-        sizePolicy2.setHeightForWidth(self.bn_report_create_bn.sizePolicy().hasHeightForWidth())
-        self.bn_report_create_bn.setSizePolicy(sizePolicy2)
-        self.bn_report_create_bn.setMinimumSize(QSize(40, 30))
-        self.bn_report_create_bn.setMaximumSize(QSize(40, 300))
-        self.bn_report_create_bn.setStyleSheet(u"QPushButton {\n"
+        self.bn_report_create = QPushButton(self.frame_report_create_bn)
+        self.bn_report_create.setObjectName(u"bn_report_create")
+        self.bn_report_create.setEnabled(True)
+        sizePolicy2.setHeightForWidth(self.bn_report_create.sizePolicy().hasHeightForWidth())
+        self.bn_report_create.setSizePolicy(sizePolicy2)
+        self.bn_report_create.setMinimumSize(QSize(40, 30))
+        self.bn_report_create.setMaximumSize(QSize(40, 300))
+        self.bn_report_create.setStyleSheet(u"QPushButton {\n"
 "	border: none;\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}\n"
@@ -12168,11 +12169,13 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgba(0,0,0,0);\n"
 "}")
-        self.bn_report_create_bn.setIcon(icon13)
-        self.bn_report_create_bn.setIconSize(QSize(22, 22))
-        self.bn_report_create_bn.setFlat(True)
+        icon19 = QIcon()
+        icon19.addFile(u"icons/1x/penAsset.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.bn_report_create.setIcon(icon19)
+        self.bn_report_create.setIconSize(QSize(22, 22))
+        self.bn_report_create.setFlat(True)
 
-        self.verticalLayout_56.addWidget(self.bn_report_create_bn)
+        self.verticalLayout_56.addWidget(self.bn_report_create)
 
 
         self.verticalLayout_54.addWidget(self.frame_report_create_bn)
@@ -12734,11 +12737,122 @@ class Ui_MainWindow(object):
         self.verticalLayout_631.setContentsMargins(0, 0, 0, 0)
         self.frame_excel_report_create = QFrame(self.page_excel_report_create)
         self.frame_excel_report_create.setObjectName(u"frame_excel_report_create")
-        self.frame_excel_report_create.setFrameShape(QFrame.StyledPanel)
-        self.frame_excel_report_create.setFrameShadow(QFrame.Raised)
-        self.label_13 = QLabel(self.frame_excel_report_create)
-        self.label_13.setObjectName(u"label_13")
-        self.label_13.setGeometry(QRect(210, 250, 101, 16))
+        self.frame_excel_report_create.setFrameShape(QFrame.NoFrame)
+        self.frame_excel_report_create.setFrameShadow(QFrame.Plain)
+        self.frame_excel_report_create.setLineWidth(0)
+        self.horizontalLayout_69 = QHBoxLayout(self.frame_excel_report_create)
+        self.horizontalLayout_69.setSpacing(0)
+        self.horizontalLayout_69.setObjectName(u"horizontalLayout_69")
+        self.horizontalLayout_69.setContentsMargins(0, 0, 0, 0)
+        self.sa_excel_report_create = QScrollArea(self.frame_excel_report_create)
+        self.sa_excel_report_create.setObjectName(u"sa_excel_report_create")
+        self.sa_excel_report_create.setStyleSheet(u"QScrollBar:vertical {\n"
+"	background:rgb(51,51,51);\n"
+"    width:20px;\n"
+"    margin: 0px 0px 0px 0px;\n"
+"}\n"
+"QScrollBar::handle:vertical {\n"
+"    background:rgb(0,143,170);\n"
+"	height: 10px;\n"
+"	width: 20px;\n"
+"}\n"
+"QScrollBar::add-page:vertical {\n"
+" 	background:rgb(51,51,51);\n"
+"}\n"
+"QScrollBar::sub-page:vertical {\n"
+" 	background:rgb(51,51,51);\n"
+"}")
+        self.sa_excel_report_create.setFrameShape(QFrame.NoFrame)
+        self.sa_excel_report_create.setFrameShadow(QFrame.Plain)
+        self.sa_excel_report_create.setLineWidth(0)
+        self.sa_excel_report_create.setWidgetResizable(True)
+        self.scrollW_excel_report_create = QWidget()
+        self.scrollW_excel_report_create.setObjectName(u"scrollW_excel_report_create")
+        self.scrollW_excel_report_create.setGeometry(QRect(0, 0, 783, 458))
+        self.verticalLayout_75 = QVBoxLayout(self.scrollW_excel_report_create)
+        self.verticalLayout_75.setSpacing(0)
+        self.verticalLayout_75.setObjectName(u"verticalLayout_75")
+        self.verticalLayout_75.setContentsMargins(0, 0, 0, 0)
+        self.frame_report_create_sa = QFrame(self.scrollW_excel_report_create)
+        self.frame_report_create_sa.setObjectName(u"frame_report_create_sa")
+        self.frame_report_create_sa.setFrameShape(QFrame.NoFrame)
+        self.frame_report_create_sa.setFrameShadow(QFrame.Plain)
+        self.frame_report_create_sa.setLineWidth(0)
+        self.verticalLayout_64 = QVBoxLayout(self.frame_report_create_sa)
+        self.verticalLayout_64.setSpacing(0)
+        self.verticalLayout_64.setObjectName(u"verticalLayout_64")
+        self.verticalLayout_64.setContentsMargins(0, 0, 0, 0)
+        self.frame_excel_report_create_item_create = QFrame(self.frame_report_create_sa)
+        self.frame_excel_report_create_item_create.setObjectName(u"frame_excel_report_create_item_create")
+        self.frame_excel_report_create_item_create.setStyleSheet(u"QFrame {\n"
+"	background:rgb(91,90,90);\n"
+"}")
+        self.frame_excel_report_create_item_create.setFrameShape(QFrame.NoFrame)
+        self.frame_excel_report_create_item_create.setFrameShadow(QFrame.Plain)
+        self.frame_excel_report_create_item_create.setLineWidth(0)
+        self.verticalLayout_65 = QVBoxLayout(self.frame_excel_report_create_item_create)
+        self.verticalLayout_65.setSpacing(0)
+        self.verticalLayout_65.setObjectName(u"verticalLayout_65")
+        self.verticalLayout_65.setContentsMargins(0, 0, 0, 0)
+        self.frame_17 = QFrame(self.frame_excel_report_create_item_create)
+        self.frame_17.setObjectName(u"frame_17")
+        self.frame_17.setMinimumSize(QSize(0, 50))
+        self.frame_17.setMaximumSize(QSize(16777215, 50))
+        self.frame_17.setFrameShape(QFrame.StyledPanel)
+        self.frame_17.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_87 = QHBoxLayout(self.frame_17)
+        self.horizontalLayout_87.setObjectName(u"horizontalLayout_87")
+        self.bn_excel_report_create = QPushButton(self.frame_17)
+        self.bn_excel_report_create.setObjectName(u"bn_excel_report_create")
+        self.bn_excel_report_create.setMinimumSize(QSize(180, 25))
+        self.bn_excel_report_create.setMaximumSize(QSize(180, 25))
+        self.bn_excel_report_create.setFont(font6)
+        self.bn_excel_report_create.setStyleSheet(u"QPushButton {\n"
+"	border: 2px solid rgb(51,51,51);\n"
+"	border-radius: 5px;	\n"
+"	color:rgb(255,255,255);\n"
+"	background-color: rgb(51,51,51);\n"
+"}\n"
+"QPushButton:hover {\n"
+"	border: 2px solid rgb(0,143,150);\n"
+"	background-color: rgb(0,143,150);\n"
+"}\n"
+"QPushButton:pressed {	\n"
+"	border: 2px solid rgb(0,143,150);\n"
+"	background-color: rgb(51,51,51);\n"
+"}\n"
+"\n"
+"QPushButton:disabled {	\n"
+"	border-radius: 5px;	\n"
+"	border: 2px solid rgb(112,112,112);\n"
+"	background-color: rgb(112,112,112);\n"
+"}")
+        self.bn_excel_report_create.setCheckable(False)
+        self.bn_excel_report_create.setFlat(True)
+
+        self.horizontalLayout_87.addWidget(self.bn_excel_report_create)
+
+        self.horizontalSpacer_26 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_87.addItem(self.horizontalSpacer_26)
+
+
+        self.verticalLayout_65.addWidget(self.frame_17)
+
+        self.verticalSpacer_7 = QSpacerItem(20, 405, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_65.addItem(self.verticalSpacer_7)
+
+
+        self.verticalLayout_64.addWidget(self.frame_excel_report_create_item_create)
+
+
+        self.verticalLayout_75.addWidget(self.frame_report_create_sa)
+
+        self.sa_excel_report_create.setWidget(self.scrollW_excel_report_create)
+
+        self.horizontalLayout_69.addWidget(self.sa_excel_report_create)
+
 
         self.verticalLayout_631.addWidget(self.frame_excel_report_create)
 
@@ -12751,11 +12865,122 @@ class Ui_MainWindow(object):
         self.verticalLayout_632.setContentsMargins(0, 0, 0, 0)
         self.frame_word_report_create = QFrame(self.page_word_report_create)
         self.frame_word_report_create.setObjectName(u"frame_word_report_create")
-        self.frame_word_report_create.setFrameShape(QFrame.StyledPanel)
-        self.frame_word_report_create.setFrameShadow(QFrame.Raised)
-        self.label_14 = QLabel(self.frame_word_report_create)
-        self.label_14.setObjectName(u"label_14")
-        self.label_14.setGeometry(QRect(340, 290, 101, 16))
+        self.frame_word_report_create.setFrameShape(QFrame.NoFrame)
+        self.frame_word_report_create.setFrameShadow(QFrame.Plain)
+        self.frame_word_report_create.setLineWidth(0)
+        self.horizontalLayout_89 = QHBoxLayout(self.frame_word_report_create)
+        self.horizontalLayout_89.setSpacing(0)
+        self.horizontalLayout_89.setObjectName(u"horizontalLayout_89")
+        self.horizontalLayout_89.setContentsMargins(0, 0, 0, 0)
+        self.sa_word_report_create = QScrollArea(self.frame_word_report_create)
+        self.sa_word_report_create.setObjectName(u"sa_word_report_create")
+        self.sa_word_report_create.setStyleSheet(u"QScrollBar:vertical {\n"
+"	background:rgb(51,51,51);\n"
+"    width:20px;\n"
+"    margin: 0px 0px 0px 0px;\n"
+"}\n"
+"QScrollBar::handle:vertical {\n"
+"    background:rgb(0,143,170);\n"
+"	height: 10px;\n"
+"	width: 20px;\n"
+"}\n"
+"QScrollBar::add-page:vertical {\n"
+" 	background:rgb(51,51,51);\n"
+"}\n"
+"QScrollBar::sub-page:vertical {\n"
+" 	background:rgb(51,51,51);\n"
+"}")
+        self.sa_word_report_create.setFrameShape(QFrame.NoFrame)
+        self.sa_word_report_create.setFrameShadow(QFrame.Plain)
+        self.sa_word_report_create.setLineWidth(0)
+        self.sa_word_report_create.setWidgetResizable(True)
+        self.scrollW_word_report_create = QWidget()
+        self.scrollW_word_report_create.setObjectName(u"scrollW_word_report_create")
+        self.scrollW_word_report_create.setGeometry(QRect(0, 0, 783, 458))
+        self.verticalLayout_76 = QVBoxLayout(self.scrollW_word_report_create)
+        self.verticalLayout_76.setSpacing(0)
+        self.verticalLayout_76.setObjectName(u"verticalLayout_76")
+        self.verticalLayout_76.setContentsMargins(0, 0, 0, 0)
+        self.frame_word_report_create_sa = QFrame(self.scrollW_word_report_create)
+        self.frame_word_report_create_sa.setObjectName(u"frame_word_report_create_sa")
+        self.frame_word_report_create_sa.setFrameShape(QFrame.NoFrame)
+        self.frame_word_report_create_sa.setFrameShadow(QFrame.Plain)
+        self.frame_word_report_create_sa.setLineWidth(0)
+        self.verticalLayout_77 = QVBoxLayout(self.frame_word_report_create_sa)
+        self.verticalLayout_77.setSpacing(0)
+        self.verticalLayout_77.setObjectName(u"verticalLayout_77")
+        self.verticalLayout_77.setContentsMargins(0, 0, 0, 0)
+        self.frame_word_report_create_item_create = QFrame(self.frame_word_report_create_sa)
+        self.frame_word_report_create_item_create.setObjectName(u"frame_word_report_create_item_create")
+        self.frame_word_report_create_item_create.setStyleSheet(u"QFrame {\n"
+"	background:rgb(91,90,90);\n"
+"}")
+        self.frame_word_report_create_item_create.setFrameShape(QFrame.NoFrame)
+        self.frame_word_report_create_item_create.setFrameShadow(QFrame.Plain)
+        self.frame_word_report_create_item_create.setLineWidth(0)
+        self.verticalLayout_78 = QVBoxLayout(self.frame_word_report_create_item_create)
+        self.verticalLayout_78.setSpacing(0)
+        self.verticalLayout_78.setObjectName(u"verticalLayout_78")
+        self.verticalLayout_78.setContentsMargins(0, 0, 0, 0)
+        self.frame_18 = QFrame(self.frame_word_report_create_item_create)
+        self.frame_18.setObjectName(u"frame_18")
+        self.frame_18.setMinimumSize(QSize(0, 50))
+        self.frame_18.setMaximumSize(QSize(16777215, 50))
+        self.frame_18.setFrameShape(QFrame.StyledPanel)
+        self.frame_18.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_88 = QHBoxLayout(self.frame_18)
+        self.horizontalLayout_88.setObjectName(u"horizontalLayout_88")
+        self.bn_word_report_create = QPushButton(self.frame_18)
+        self.bn_word_report_create.setObjectName(u"bn_word_report_create")
+        self.bn_word_report_create.setMinimumSize(QSize(180, 25))
+        self.bn_word_report_create.setMaximumSize(QSize(180, 25))
+        self.bn_word_report_create.setFont(font6)
+        self.bn_word_report_create.setStyleSheet(u"QPushButton {\n"
+"	border: 2px solid rgb(51,51,51);\n"
+"	border-radius: 5px;	\n"
+"	color:rgb(255,255,255);\n"
+"	background-color: rgb(51,51,51);\n"
+"}\n"
+"QPushButton:hover {\n"
+"	border: 2px solid rgb(0,143,150);\n"
+"	background-color: rgb(0,143,150);\n"
+"}\n"
+"QPushButton:pressed {	\n"
+"	border: 2px solid rgb(0,143,150);\n"
+"	background-color: rgb(51,51,51);\n"
+"}\n"
+"\n"
+"QPushButton:disabled {	\n"
+"	border-radius: 5px;	\n"
+"	border: 2px solid rgb(112,112,112);\n"
+"	background-color: rgb(112,112,112);\n"
+"}")
+        self.bn_word_report_create.setCheckable(False)
+        self.bn_word_report_create.setFlat(True)
+
+        self.horizontalLayout_88.addWidget(self.bn_word_report_create)
+
+        self.horizontalSpacer_27 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_88.addItem(self.horizontalSpacer_27)
+
+
+        self.verticalLayout_78.addWidget(self.frame_18)
+
+        self.verticalSpacer_8 = QSpacerItem(20, 405, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_78.addItem(self.verticalSpacer_8)
+
+
+        self.verticalLayout_77.addWidget(self.frame_word_report_create_item_create)
+
+
+        self.verticalLayout_76.addWidget(self.frame_word_report_create_sa)
+
+        self.sa_word_report_create.setWidget(self.scrollW_word_report_create)
+
+        self.horizontalLayout_89.addWidget(self.sa_word_report_create)
+
 
         self.verticalLayout_632.addWidget(self.frame_word_report_create)
 
@@ -12814,7 +13039,7 @@ class Ui_MainWindow(object):
         self.sa_excel_report_define.setWidgetResizable(True)
         self.scrollW_excel_report_define = QWidget()
         self.scrollW_excel_report_define.setObjectName(u"scrollW_excel_report_define")
-        self.scrollW_excel_report_define.setGeometry(QRect(0, 0, 100, 30))
+        self.scrollW_excel_report_define.setGeometry(QRect(0, 0, 783, 458))
         self.verticalLayout_69 = QVBoxLayout(self.scrollW_excel_report_define)
         self.verticalLayout_69.setSpacing(0)
         self.verticalLayout_69.setObjectName(u"verticalLayout_69")
@@ -13012,7 +13237,7 @@ class Ui_MainWindow(object):
         self.stackedWidget_18.setCurrentIndex(2)
         self.stackedWidget_19.setCurrentIndex(2)
         self.stackedWidget_5.setCurrentIndex(2)
-        self.stackedReport_define.setCurrentIndex(1)
+        self.stackedReport_define.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -13380,9 +13605,9 @@ class Ui_MainWindow(object):
         self.line_parameter_function_val2_2.setText("")
         self.bn_excel_report.setText("")
         self.bn_word_report.setText("")
-        self.bn_report_pick_bn.setText("")
-        self.bn_report_sett_bn.setText("")
-        self.bn_report_create_bn.setText("")
+        self.bn_report_pick.setText("")
+        self.bn_report_sett.setText("")
+        self.bn_report_create.setText("")
         self.lab_excel_report_heading.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#ffffff;\">Izbira Excel poro\u010dil</span></p></body></html>", None))
         self.lab_excel_report_name.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt; color:#ffffff;\">Ime nastavitev poro\u010dila:</span></p></body></html>", None))
         self.line_excel_report_name.setText("")
@@ -13395,8 +13620,8 @@ class Ui_MainWindow(object):
         self.bn_word_report_save.setText(QCoreApplication.translate("MainWindow", u"Shrani", None))
         self.lab_word_report_load.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt; color:#ffffff;\">Izberi obstoje\u010do datoteko:</span></p></body></html>", None))
         self.bn_word_report_load.setText(QCoreApplication.translate("MainWindow", u"Nalo\u017ei", None))
-        self.label_13.setText(QCoreApplication.translate("MainWindow", u"excel create", None))
-        self.label_14.setText(QCoreApplication.translate("MainWindow", u"word create", None))
+        self.bn_excel_report_create.setText(QCoreApplication.translate("MainWindow", u"Ustvari Excel poro\u010dilo", None))
+        self.bn_word_report_create.setText(QCoreApplication.translate("MainWindow", u"Ustvari Word poro\u010dilo", None))
         self.label_11.setText(QCoreApplication.translate("MainWindow", u"Exel define", None))
         self.label_12.setText(QCoreApplication.translate("MainWindow", u"Word define", None))
         self.lab_tab.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><br/></p></body></html>", None))

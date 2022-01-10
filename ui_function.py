@@ -387,11 +387,11 @@ class UIFunction():#MainWindow):
             lambda: UIFunction.stackedFunctionType(self, "page_parameter_function"))
 
         #####REPORTS > FUNCTION VIEW >>>>>>>>>>>>>>>>>>>>>
-        self.ui.bn_report_pick_bn.clicked.connect(
+        self.ui.bn_report_pick.clicked.connect(
             lambda: UIFunction.stackedReportDefine(self, "page_report_pick"))
-        self.ui.bn_report_sett_bn.clicked.connect(
+        self.ui.bn_report_sett.clicked.connect(
             lambda: UIFunction.stackedReportDefine(self, "page_report_sett"))
-        self.ui.bn_report_create_bn.clicked.connect(
+        self.ui.bn_report_create.clicked.connect(
             lambda: UIFunction.stackedReportDefine(self, "page_report_create"))
         self.ui.bn_excel_report.clicked.connect(
             lambda: UIFunction.stackedReportType(self, "page_excel_report"))
@@ -505,7 +505,7 @@ class UIFunction():#MainWindow):
         elif page == "page_report_create":
             self.ui.stackedReport_define.setCurrentWidget(self.ui.page_report_create)
             self.ui.lab_tab.setText("Report > Create")
-            self.ui.bn_report_create_bn.setStyleSheet("background:rgb(91,90,90)")
+            self.ui.frame_report_create_bn.setStyleSheet("background:rgb(91,90,90)")
 
     def stackedReportType(self, page):
         for each in self.ui.frame_report_type.findChildren(QFrame):
