@@ -621,6 +621,7 @@ class APFunction():
         self.GUIsett.changeGroupName(newName)
         self.measurementGroups[self.GUIsett.currentGroup].changeGroupName(newName)
         self.excelGroupChooseItems.updateChooseCombos()
+        self.wordGroupChooseItems.updateChooseCombos()
 
     def setParamTable(self):
         table = self.ui.table_parameters
@@ -1250,6 +1251,7 @@ class MeasurementGroup():
         self.main.ui.line_meas_folder.setText(self.main.GUIsett.measGroupSettings[self.name]["dataFolder"])
         self.main.ui.line_meas_grp_name.setText(self.main.GUIsett.measGroupNames[self.name])
         self.main.excelGroupChooseItems.updateChooseCombos()
+        self.main.wordGroupChooseItems.updateChooseCombos()
         APFunction.setMeasTable(self.main)
         APFunction.setParamTable(self.main)
         APFunction.setHdrFileToCurr(self.main)
@@ -1556,7 +1558,7 @@ class FunctionItems(object):
         #print(filePath)
 
 
-class GroupCooseItems(object):
+class GroupChooseItems(object):
 
     def __init__(self, parent, rtype="e"):
         self.groupChooseItems = []
@@ -1569,14 +1571,16 @@ class GroupCooseItems(object):
             #self.functions = Interface.getSeriesFunctions
             self.getFilePath = Paths.getUserExcelReportFile
             self.w = False
-        # elif rtype == "w":
-        #     self.addFrame = self.parent.ui.frame_word_report_create_sa  # frame_excel_report_create_item_create
-        #     self.blankFrame = self.parent.ui.frame_word_report_create_item_create
-        #     self.loadSettingsFile = Basic.loadUserWordReportFile
-        #     # self.functions = Interface.getSeriesFunctions
-        #     self.getFilePath = Paths.getUserExcelReportFile
-        #     self.w = False
-        self.vl_report_group_choose = self.parent.ui.verticalLayout_excel_create
+            #self.vl_report_group_choose = self.parent.ui.verticalLayout_excel_create
+        elif rtype == "w":
+            self.addFrame = self.parent.ui.frame_word_report_create_sa  # frame_excel_report_create_item_create
+            self.blankFrame = self.parent.ui.frame_word_report_create_item_create
+            self.loadSettingsFile = Basic.loadUserWordReportFile
+            # self.functions = Interface.getSeriesFunctions
+            self.getFilePath = Paths.getUserWordReportFile
+            #self.vl_report_group_choose = self.parent.ui.verticalLayout_excel_create
+            self.w = False
+
         self.initializeFrame()
         #self.vl_function_define_add.setSpacing(3)
         #self.vl_function_define_add.setContentsMargins(0, 0, 0, 0)

@@ -173,7 +173,8 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         self.seriesFunctionItems = FunctionItems(self.ui, "s")
         self.parameterFunctionItems = FunctionItems(self.ui, "p")
-        self.excelGroupChooseItems = GroupCooseItems(self, "e")
+        self.excelGroupChooseItems = GroupChooseItems(self, "e")
+        self.wordGroupChooseItems = GroupChooseItems(self, "w")
         self.graph = GUIgraph(self)
         self.ui.lab_user.setText(user)
 
