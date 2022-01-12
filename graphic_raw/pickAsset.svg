@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 128 128"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="pickAsset.svg"
+   width="128"
+   height="128"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15, custom)">
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview6"
+     showgrid="false"
+     inkscape:zoom="1.6601562"
+     inkscape:cx="160"
+     inkscape:cy="231.90588"
+     inkscape:window-x="3832"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4" />
+  <path
+     d="M 97.79085,81.378119 H 72.580255 l 13.268098,32.318391 c 0.92421,2.24054 -0.131895,4.75271 -2.244343,5.7033 l -11.683939,5.09207 c -2.17804,0.95059 -4.62058,-0.1357 -5.544791,-2.30851 L 53.767368,91.494535 33.171886,112.67796 c -2.744591,2.82253 -7.195491,0.64663 -7.195491,-3.0552 V 7.5108634 c 0,-3.8974188 4.734176,-5.7974104 7.195253,-3.055196 L 100.76145,73.977539 c 2.72629,2.656662 0.7146,7.40058 -2.9706,7.40058 z"
+     id="path2"
+     style="stroke-width:0.238;stroke-miterlimit:4;stroke-dasharray:none;stroke:none;stroke-opacity:1;fill:#ffffff;fill-opacity:1" />
+</svg>
