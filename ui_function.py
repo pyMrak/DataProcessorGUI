@@ -50,6 +50,7 @@ mpl.rcParams['text.color'] = 'white'
 mpl.rcParams['font.size'] = 12
 
 from function_item import Ui_StackedWidget
+from report_group_item import Ui_StackedWidget as rgi_StacketWidget
 #from function_item import Ui_Frame
 from DataProcessor.Data import DataGroup
 from DataProcessor.Texts import Text
@@ -619,6 +620,7 @@ class APFunction():
         newName = self.ui.line_meas_grp_name.text()
         self.GUIsett.changeGroupName(newName)
         self.measurementGroups[self.GUIsett.currentGroup].changeGroupName(newName)
+        self.excelGroupChooseItems.updateChooseCombos()
 
     def setParamTable(self):
         table = self.ui.table_parameters
@@ -807,6 +809,12 @@ class APFunction():
                                Basic.getUserParFunFiles,
                                function=None,
                                GUIobj=self.GUIsett.GUIfunObj)
+
+    def populateGroupChooseCombo(self, parent):
+        APFunction.changeCombo(self.combo_excel_group_choose,
+                               parent.GUIsett.getGroupNames,
+                               function=None,
+                               GUIobj=parent.GUIsett.GUIfunObj)
 
     def updateMeasCombos(self):
         APFunction.getParamFunFiles(self)
@@ -1025,6 +1033,9 @@ class GUIsettings(object):
     def saveMeasUserPreset(self):
         Basic.saveGUIMeasUserPreset(self.measGroupSettings[self.currentGroup], self.GUIfunObj)
 
+    def getGroupNames(self, GUIobj):
+        return [self.measGroupNames[group] for group in self.measGroupNames]
+
 
 
 class GUIfunObj(object):
@@ -1238,6 +1249,7 @@ class MeasurementGroup():
     def changeData(self):
         self.main.ui.line_meas_folder.setText(self.main.GUIsett.measGroupSettings[self.name]["dataFolder"])
         self.main.ui.line_meas_grp_name.setText(self.main.GUIsett.measGroupNames[self.name])
+        self.main.excelGroupChooseItems.updateChooseCombos()
         APFunction.setMeasTable(self.main)
         APFunction.setParamTable(self.main)
         APFunction.setHdrFileToCurr(self.main)
@@ -1245,6 +1257,7 @@ class MeasurementGroup():
         APFunction.setParamFileToCurr(self.main)
         APFunction.setGraphFileToCurr(self.main)
         APFunction.plotGraph(self.main)
+
 
         # TODO dodaj da nastavi ostale stvari
 
@@ -1541,5 +1554,141 @@ class FunctionItems(object):
         filePath = self.getFilePath(GUIobj.username, fileName)
         Basic.saveJsonFile(filePath, self.toJson(), GUIobj)
         #print(filePath)
+
+
+class GroupCooseItems(object):
+
+    def __init__(self, parent, rtype="e"):
+        self.groupChooseItems = []
+        self.rtype = rtype
+        self.parent = parent
+        if rtype == "e":
+            self.addFrame = self.parent.ui.frame_excel_report_create_sa#frame_excel_report_create_item_create
+            self.blankFrame = self.parent.ui.frame_excel_report_create_item_create
+            self.loadSettingsFile = Basic.loadUserExcReportFile
+            #self.functions = Interface.getSeriesFunctions
+            self.getFilePath = Paths.getUserExcelReportFile
+            self.w = False
+        # elif rtype == "w":
+        #     self.addFrame = self.parent.ui.frame_word_report_create_sa  # frame_excel_report_create_item_create
+        #     self.blankFrame = self.parent.ui.frame_word_report_create_item_create
+        #     self.loadSettingsFile = Basic.loadUserWordReportFile
+        #     # self.functions = Interface.getSeriesFunctions
+        #     self.getFilePath = Paths.getUserExcelReportFile
+        #     self.w = False
+        self.vl_report_group_choose = self.parent.ui.verticalLayout_excel_create
+        self.initializeFrame()
+        #self.vl_function_define_add.setSpacing(3)
+        #self.vl_function_define_add.setContentsMargins(0, 0, 0, 0)
+
+    def initializeFrame(self):
+        self.addGroups(1)
+
+    def resetLayout(self):
+        self.blankFrame.setParent(None)
+        for groupChooseItem in self.groupChooseItems:
+            self.vl_report_group_choose.removeWidget(groupChooseItem[0])
+            #sip.delete(functionItem[0])
+            #functionItem[0] = None
+        self.groupChooseItems = []
+
+    # def delete(self, a, functionItem):
+    #     n = self.functionItems.index(functionItem)
+    #     self.vl_function_define_add.removeWidget(functionItem[0])
+    #     #functionItem[0].setParent(None)
+    #     del self.functionItems[n]
+        # for i, functionItem in enumerate(self.functionItems):
+        #     print("i:", i)
+        #     functionItem[1].bn_function_delete.clicked.disconnect()
+        #     functionItem[1].bn_function_delete.clicked.connect(lambda: self.delete(i))
+        #     functionItem[1].cb_evaluate.stateChanged.disconnect()
+        #     functionItem[1].cb_evaluate.stateChanged.connect(lambda: self.functionEvaluation(i))
+
+
+    def addGroups(self, n):
+        self.resetLayout()
+        self.vl_report_group_choose = QVBoxLayout(self.addFrame)
+        self.vl_report_group_choose.setSpacing(3)
+        self.vl_report_group_choose.setContentsMargins(0, 0, 0, 0)
+        for i in range(n):
+            qsw = QStackedWidget()
+            qsw.setFrameShape(QFrame.NoFrame)
+            qsw.setFrameShadow(QFrame.Plain)
+            qsw.setLineWidth(0)
+            gci = rgi_StacketWidget()
+            gci.setupUi(qsw)
+            qsw.setCurrentWidget(gci.page_group_choose)
+            self.setGroupName(gci, i+1)
+            self.groupChooseItems.append((qsw, gci))
+            self.vl_report_group_choose.addWidget(qsw)
+        self.vl_report_group_choose.addWidget(self.blankFrame)
+        self.updateChooseCombos()
+        if n > 0:
+            self.parent.ui.bn_excel_report_create.setEnabled(True)
+        else:
+            self.parent.ui.bn_excel_report_create.setEnabled(False)
+
+        # self.functionItems[-1][1].bn_add_function.clicked.connect(lambda: self.addBlankFunction())
+        # n = len(self.functionItems) - 1
+        # self.functionItems[-1][1].bn_function_delete.clicked.connect(lambda a=False, fi=self.functionItems[-1]:
+        #                                                              self.delete(a, fi))
+        # self.functionEvaluation(False, self.functionItems[-1])
+        # self.functionItems[-1][1].cb_evaluate.stateChanged.connect(lambda a=False, fi=self.functionItems[-1]:
+        #                                                            self.functionEvaluation(a, fi))
+        # self.functionItems[-1][1].cb_evaluate.setEnabled(self.p)
+        # self.functionItems[-1][1].combo_rounding_function.setEnabled(self.p)
+        # self.functionItems[-1][1].line_series_function_name.setEnabled(not self.p)
+        # # for qsw, fi in self.functionItems:
+        # #     self.vl_function_define_add.addWidget(qsw)
+        # self.vl_report_group_choose.addWidget(qsw)
+
+    def updateChooseCombos(self):
+        for groupChooseItem in self.groupChooseItems:
+            APFunction.populateGroupChooseCombo(groupChooseItem[1], self.parent)
+
+    # def addActiveFunction(self):
+    #     qsw = QStackedWidget()
+    #     qsw.setFrameShape(QFrame.NoFrame)
+    #     qsw.setFrameShadow(QFrame.Plain)
+    #     qsw.setLineWidth(0)
+    #     fi = Ui_StackedWidget()
+    #     fi.setupUi(qsw)
+    #     qsw.setCurrentWidget(fi.page_define)
+    #     self.functionItems.append((qsw, fi))
+    #     n = len(self.functionItems) - 1
+    #     self.functionItems[-1][1].bn_function_delete.clicked.connect(lambda a=False, fi=self.functionItems[-1]:
+    #                                                                  self.delete(a, fi))
+    #     self.functionEvaluation(False, self.functionItems[-1])
+    #     self.setFunctionTypes(self.functionItems[-1][1])
+    #     self.functionItems[-1][1].cb_evaluate.stateChanged.connect(lambda a=False, fi=self.functionItems[-1]:
+    #                                                                  self.functionEvaluation(a, fi))
+    #     #self.functionItems[-1][1].bn_add_function.clicked.connect(lambda: self.addBlankFunction())
+    #     # for qsw, fi in self.functionItems:
+    #     #     self.vl_function_define_add.addWidget(qsw)
+    #     self.functionItems[-1][1].cb_evaluate.setEnabled(self.p)
+    #     self.functionItems[-1][1].combo_rounding_function.setEnabled(self.p)
+    #     self.functionItems[-1][1].line_series_function_name.setEnabled(not self.p)
+    #     self.vl_report_group_choose.addWidget(qsw)
+    #
+    #
+    # def addBlankFunction(self):
+    #     functionItem = self.functionItems[-1][1]
+    #     self.functionItems[-1][0].setCurrentWidget(functionItem.page_define)
+    #     self.setFunctionName(functionItem, len(self.functionItems))
+    #     self.setFunctionTypes(functionItem)
+    #     self.changeFunctionType(fi=functionItem)
+    #     self.blankFrame.setParent(None)
+    #     self.addInactiveFunction()
+    #     self.vl_report_group_choose.addWidget(self.blankFrame)
+
+    def setGroupName(self, groupChooseItem, n):
+        #n = self.functionItems.index(functionItem)
+        if type(n) == int:
+            name = 'Skupina {}:'.format(n)
+        else:
+            name = str(n)
+        #groupChooseItem.groupBox.setTitle(name)
+        groupChooseItem.lab_excel_report_load.setText(name)
+
 
 ######################################################################################################################

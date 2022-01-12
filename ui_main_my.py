@@ -12773,27 +12773,26 @@ class Ui_MainWindow(object):
         self.verticalLayout_75.setSpacing(0)
         self.verticalLayout_75.setObjectName(u"verticalLayout_75")
         self.verticalLayout_75.setContentsMargins(0, 0, 0, 0)
-        self.frame_report_create_sa = QFrame(self.scrollW_excel_report_create)
-        self.frame_report_create_sa.setObjectName(u"frame_report_create_sa")
-        self.frame_report_create_sa.setFrameShape(QFrame.NoFrame)
-        self.frame_report_create_sa.setFrameShadow(QFrame.Plain)
-        self.frame_report_create_sa.setLineWidth(0)
-        self.verticalLayout_64 = QVBoxLayout(self.frame_report_create_sa)
-        self.verticalLayout_64.setSpacing(0)
-        self.verticalLayout_64.setObjectName(u"verticalLayout_64")
-        self.verticalLayout_64.setContentsMargins(0, 0, 0, 0)
-        self.frame_excel_report_create_item_create = QFrame(self.frame_report_create_sa)
+        self.frame_excel_report_create_sa = QFrame(self.scrollW_excel_report_create)
+        self.frame_excel_report_create_sa.setObjectName(u"frame_excel_report_create_sa")
+        self.frame_excel_report_create_sa.setFrameShape(QFrame.NoFrame)
+        self.frame_excel_report_create_sa.setFrameShadow(QFrame.Plain)
+        self.frame_excel_report_create_sa.setLineWidth(0)
+        self.frame_excel_report_create_item_create = QFrame(self.frame_excel_report_create_sa)
         self.frame_excel_report_create_item_create.setObjectName(u"frame_excel_report_create_item_create")
+        self.frame_excel_report_create_item_create.setGeometry(QRect(240, 0, 246, 455))
+        self.frame_excel_report_create_item_create.setMinimumSize(QSize(0, 50))
+        self.frame_excel_report_create_item_create.setMaximumSize(QSize(16777215, 16777215))
         self.frame_excel_report_create_item_create.setStyleSheet(u"QFrame {\n"
 "	background:rgb(91,90,90);\n"
 "}")
         self.frame_excel_report_create_item_create.setFrameShape(QFrame.NoFrame)
         self.frame_excel_report_create_item_create.setFrameShadow(QFrame.Plain)
         self.frame_excel_report_create_item_create.setLineWidth(0)
-        self.verticalLayout_65 = QVBoxLayout(self.frame_excel_report_create_item_create)
-        self.verticalLayout_65.setSpacing(0)
-        self.verticalLayout_65.setObjectName(u"verticalLayout_65")
-        self.verticalLayout_65.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_excel_create = QVBoxLayout(self.frame_excel_report_create_item_create)
+        self.verticalLayout_excel_create.setSpacing(0)
+        self.verticalLayout_excel_create.setObjectName(u"verticalLayout_excel_create")
+        self.verticalLayout_excel_create.setContentsMargins(0, 0, 0, 0)
         self.frame_17 = QFrame(self.frame_excel_report_create_item_create)
         self.frame_17.setObjectName(u"frame_17")
         self.frame_17.setMinimumSize(QSize(0, 50))
@@ -12837,17 +12836,14 @@ class Ui_MainWindow(object):
         self.horizontalLayout_87.addItem(self.horizontalSpacer_26)
 
 
-        self.verticalLayout_65.addWidget(self.frame_17)
+        self.verticalLayout_excel_create.addWidget(self.frame_17)
 
         self.verticalSpacer_7 = QSpacerItem(20, 405, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.verticalLayout_65.addItem(self.verticalSpacer_7)
+        self.verticalLayout_excel_create.addItem(self.verticalSpacer_7)
 
 
-        self.verticalLayout_64.addWidget(self.frame_excel_report_create_item_create)
-
-
-        self.verticalLayout_75.addWidget(self.frame_report_create_sa)
+        self.verticalLayout_75.addWidget(self.frame_excel_report_create_sa)
 
         self.sa_excel_report_create.setWidget(self.scrollW_excel_report_create)
 
@@ -12906,12 +12902,9 @@ class Ui_MainWindow(object):
         self.frame_word_report_create_sa.setFrameShape(QFrame.NoFrame)
         self.frame_word_report_create_sa.setFrameShadow(QFrame.Plain)
         self.frame_word_report_create_sa.setLineWidth(0)
-        self.verticalLayout_77 = QVBoxLayout(self.frame_word_report_create_sa)
-        self.verticalLayout_77.setSpacing(0)
-        self.verticalLayout_77.setObjectName(u"verticalLayout_77")
-        self.verticalLayout_77.setContentsMargins(0, 0, 0, 0)
         self.frame_word_report_create_item_create = QFrame(self.frame_word_report_create_sa)
         self.frame_word_report_create_item_create.setObjectName(u"frame_word_report_create_item_create")
+        self.frame_word_report_create_item_create.setGeometry(QRect(0, 0, 246, 455))
         self.frame_word_report_create_item_create.setStyleSheet(u"QFrame {\n"
 "	background:rgb(91,90,90);\n"
 "}")
@@ -12970,9 +12963,6 @@ class Ui_MainWindow(object):
         self.verticalSpacer_8 = QSpacerItem(20, 405, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.verticalLayout_78.addItem(self.verticalSpacer_8)
-
-
-        self.verticalLayout_77.addWidget(self.frame_word_report_create_item_create)
 
 
         self.verticalLayout_76.addWidget(self.frame_word_report_create_sa)
@@ -13100,7 +13090,7 @@ class Ui_MainWindow(object):
         self.sa_word_report_define.setWidgetResizable(True)
         self.scrollW_word_report_define = QWidget()
         self.scrollW_word_report_define.setObjectName(u"scrollW_word_report_define")
-        self.scrollW_word_report_define.setGeometry(QRect(0, 0, 100, 30))
+        self.scrollW_word_report_define.setGeometry(QRect(0, 0, 783, 458))
         self.verticalLayout_72 = QVBoxLayout(self.scrollW_word_report_define)
         self.verticalLayout_72.setSpacing(0)
         self.verticalLayout_72.setObjectName(u"verticalLayout_72")
@@ -13237,7 +13227,7 @@ class Ui_MainWindow(object):
         self.stackedWidget_18.setCurrentIndex(2)
         self.stackedWidget_19.setCurrentIndex(2)
         self.stackedWidget_5.setCurrentIndex(2)
-        self.stackedReport_define.setCurrentIndex(0)
+        self.stackedReport_define.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)

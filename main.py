@@ -167,14 +167,16 @@ class MainWindow(QMainWindow):
     def __init__(self, version, user="debug"):
 
         super(MainWindow, self).__init__()
+        self.GUIsett = GUIsettings(user)
+        self.measurementGroups = {}
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.seriesFunctionItems = FunctionItems(self.ui, "s")
         self.parameterFunctionItems = FunctionItems(self.ui, "p")
-        self.GUIsett = GUIsettings(user)
+        self.excelGroupChooseItems = GroupCooseItems(self, "e")
         self.graph = GUIgraph(self)
-        self.measurementGroups = {}
         self.ui.lab_user.setText(user)
+
 
         for i in range(1,7):
             groupName = 'Group{0}'.format(i)
