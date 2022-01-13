@@ -57,6 +57,7 @@ from DataProcessor.Texts import Text
 from DataProcessor.Graph import GraphWrapper
 from DataProcessor import Basic
 from DataProcessor import Interface
+from DataProcessor import Reports
 import Paths
 
 
@@ -387,7 +388,7 @@ class UIFunction():#MainWindow):
         self.ui.bn_parameter_function.clicked.connect(
             lambda: UIFunction.stackedFunctionType(self, "page_parameter_function"))
 
-        #####REPORTS > FUNCTION VIEW >>>>>>>>>>>>>>>>>>>>>
+        #####REPORTS > CREATE VIEW >>>>>>>>>>>>>>>>>>>>>
         self.ui.bn_report_pick.clicked.connect(
             lambda: UIFunction.stackedReportDefine(self, "page_report_pick"))
         self.ui.bn_report_sett.clicked.connect(
@@ -398,6 +399,10 @@ class UIFunction():#MainWindow):
             lambda: UIFunction.stackedReportType(self, "page_excel_report"))
         self.ui.bn_word_report.clicked.connect(
             lambda: UIFunction.stackedReportType(self, "page_word_report"))
+
+        #####REPORTS > PICK VIEW >>>>>>>>>>>>>>>>>>>>>
+        self.ui.bn_excel_report_load.clicked.connect(lambda: APFunction.loadExcelReportSett(self))
+        self.ui.bn_excel_report_create.clicked.connect(lambda: APFunction.createExcelReport(self))
 
 
         """
@@ -799,6 +804,10 @@ class APFunction():
         APFunction.populateSeriesFunctionCombo(self)
         APFunction.populateParameterFunctionCombo(self)
 
+    def populateReportCombos(self):
+        APFunction.populateExcelReportCombo(self)
+        APFunction.populateWordReportCombo(self)
+
     def populateSeriesFunctionCombo(self):
         APFunction.changeCombo(self.ui.combo_series_function_load,
                                Basic.getUserSerFunFiles,
@@ -808,6 +817,18 @@ class APFunction():
     def populateParameterFunctionCombo(self):
         APFunction.changeCombo(self.ui.combo_parameter_function_load,
                                Basic.getUserParFunFiles,
+                               function=None,
+                               GUIobj=self.GUIsett.GUIfunObj)
+
+    def populateExcelReportCombo(self):
+        APFunction.changeCombo(self.ui.combo_excel_report_load,
+                               Basic.getUserExcelReportFiles,
+                               function=None,
+                               GUIobj=self.GUIsett.GUIfunObj)
+
+    def populateWordReportCombo(self):
+        APFunction.changeCombo(self.ui.combo_word_report_load,
+                               Basic.getUserWordReportFiles,
                                function=None,
                                GUIobj=self.GUIsett.GUIfunObj)
 
@@ -885,6 +906,17 @@ class APFunction():
             self.parameterFunctionItems.resetLayout()
             self.parameterFunctionItems.populate(functionFile, self.GUIsett.GUIfunObj)
 
+    def loadExcelReportSett(self):
+        excelReportSett = self.ui.combo_excel_report_load.currentText()
+        print(excelReportSett)
+        if excelReportSett:
+            self.ui.line_excel_report_name.setText(excelReportSett)
+            nrDataGroups = self.excelReport.readReportSetting(excelReportSett)
+            print(nrDataGroups)
+            self.excelGroupChooseItems.addGroups(nrDataGroups)
+            # self.parameterFunctionItems.resetLayout()
+            # self.parameterFunctionItems.populate(functionFile, self.GUIsett.GUIfunObj)
+
     def saveSeriesFunctions(self):
         functionFileName = self.ui.line_series_function_name.text()
         self.seriesFunctionItems.saveAs(functionFileName, self.GUIsett.GUIfunObj)
@@ -895,6 +927,13 @@ class APFunction():
 
     def initializeUser(self):
         Basic.initiateUserFolders(self.GUIsett.GUIfunObj.username)
+
+    def createExcelReport(self):
+        dataGroups = []
+        for groupName in self.excelGroupChooseItems:
+            dataGroups.append(self.GUIsett.getMeasGroup(groupName))
+        print(dataGroups)
+        self.excelReport.save(dataGroups)
 
 
 
@@ -956,8 +995,13 @@ class GUIsettings(object):
         else:
             return None
 
-    def getMeasGroup(self):
-        return self.groupMeasurements[self.currentGroup]
+    def getMeasGroup(self, groupName=None):
+        if groupName is None:
+            return self.groupMeasurements[self.currentGroup]
+        else:
+            for group in self.groupMeasurements:
+                if self.measGroupNames[group] == groupName:
+                    return self.groupMeasurements[group]
 
 
     def getParameters(self):
@@ -1585,8 +1629,15 @@ class GroupChooseItems(object):
         #self.vl_function_define_add.setSpacing(3)
         #self.vl_function_define_add.setContentsMargins(0, 0, 0, 0)
 
+    def __iter__(self):
+        for groupChooseItem in self.groupChooseItems:
+            yield groupChooseItem[1].combo_excel_group_choose.currentText()
+
     def initializeFrame(self):
-        self.addGroups(1)
+        self.vl_report_group_choose = QVBoxLayout(self.addFrame)
+        self.vl_report_group_choose.setSpacing(3)
+        self.vl_report_group_choose.setContentsMargins(0, 0, 0, 0)
+        self.addGroups(0)
 
     def resetLayout(self):
         self.blankFrame.setParent(None)
@@ -1611,9 +1662,6 @@ class GroupChooseItems(object):
 
     def addGroups(self, n):
         self.resetLayout()
-        self.vl_report_group_choose = QVBoxLayout(self.addFrame)
-        self.vl_report_group_choose.setSpacing(3)
-        self.vl_report_group_choose.setContentsMargins(0, 0, 0, 0)
         for i in range(n):
             qsw = QStackedWidget()
             qsw.setFrameShape(QFrame.NoFrame)

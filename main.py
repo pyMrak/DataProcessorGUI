@@ -175,6 +175,9 @@ class MainWindow(QMainWindow):
         self.parameterFunctionItems = FunctionItems(self.ui, "p")
         self.excelGroupChooseItems = GroupChooseItems(self, "e")
         self.wordGroupChooseItems = GroupChooseItems(self, "w")
+
+        self.excelReport = Reports.ExcelReport()
+        #self.wordReport = Reports.WordReport()
         self.graph = GUIgraph(self)
         self.ui.lab_user.setText(user)
 
@@ -260,6 +263,7 @@ class MainWindow(QMainWindow):
         UIFunction.stackedFunctionDefine(self, "page_function_sett")
         UIFunction.stackedFunctionType(self, "page_parameter_function")
         APFunction.populateFunctionCombos(self)
+        APFunction.populateReportCombos(self)
         APFunction.initializeUser(self)
 
         #############################################################
