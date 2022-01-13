@@ -403,6 +403,7 @@ class UIFunction():#MainWindow):
         #####REPORTS > PICK VIEW >>>>>>>>>>>>>>>>>>>>>
         self.ui.bn_excel_report_load.clicked.connect(lambda: APFunction.loadExcelReportSett(self))
         self.ui.bn_excel_report_create.clicked.connect(lambda: APFunction.createExcelReport(self))
+        self.ui.bn_excel_report_open.clicked.connect(lambda: APFunction.openExcelReport(self))
 
 
         """
@@ -908,11 +909,9 @@ class APFunction():
 
     def loadExcelReportSett(self):
         excelReportSett = self.ui.combo_excel_report_load.currentText()
-        print(excelReportSett)
         if excelReportSett:
             self.ui.line_excel_report_name.setText(excelReportSett)
             nrDataGroups = self.excelReport.readReportSetting(excelReportSett)
-            print(nrDataGroups)
             self.excelGroupChooseItems.addGroups(nrDataGroups)
             # self.parameterFunctionItems.resetLayout()
             # self.parameterFunctionItems.populate(functionFile, self.GUIsett.GUIfunObj)
@@ -932,9 +931,10 @@ class APFunction():
         dataGroups = []
         for groupName in self.excelGroupChooseItems:
             dataGroups.append(self.GUIsett.getMeasGroup(groupName))
-        print(dataGroups)
         self.excelReport.save(dataGroups)
 
+    def openExcelReport(self):
+        self.excelReport.openLast()
 
 
 
