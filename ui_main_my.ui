@@ -10076,7 +10076,7 @@ QPushButton:pressed {
                           <item>
                            <widget class="QPushButton" name="bn_word_report">
                             <property name="enabled">
-                             <bool>true</bool>
+                             <bool>false</bool>
                             </property>
                             <property name="sizePolicy">
                              <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
@@ -10334,7 +10334,7 @@ QPushButton:pressed {
                              <item>
                               <widget class="QPushButton" name="bn_report_sett">
                                <property name="enabled">
-                                <bool>true</bool>
+                                <bool>false</bool>
                                </property>
                                <property name="sizePolicy">
                                 <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">

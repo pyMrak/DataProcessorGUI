@@ -262,6 +262,8 @@ class MainWindow(QMainWindow):
 
         UIFunction.stackedFunctionDefine(self, "page_function_sett")
         UIFunction.stackedFunctionType(self, "page_parameter_function")
+        UIFunction.stackedReportDefine(self, "page_report_pick")
+        UIFunction.stackedReportType(self, "page_excel_report")
         APFunction.populateFunctionCombos(self)
         APFunction.populateReportCombos(self)
         APFunction.initializeUser(self)
