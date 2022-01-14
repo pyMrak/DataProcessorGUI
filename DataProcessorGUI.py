@@ -9,9 +9,9 @@ from libs import Permission, Login
 import Paths
 
 
-debug = True
+debug = False
 debugUpdater = False
-version = "1.1"
+version = "1.2"
 
 if __name__ == "__main__":
     if ("2512" in sys.argv) or (not debugUpdater and debug):
